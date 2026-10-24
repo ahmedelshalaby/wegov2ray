@@ -954,7 +954,10 @@
           });
         }
       }
-    } catch (err) { list.innerHTML = '<p style="text-align:center; color:var(--red);">Error loading data.</p>'; }
+    } catch (err) { 
+    console.error(err);
+    list.innerHTML = `<p style="text-align:center; color:var(--red);">Error: ${err.message}</p>`; 
+}
   }
 
   window.fetchConfigAndCopy = async function(subUrl, boxId, btn) {
