@@ -79,8 +79,8 @@ app.post('/api/create-order', async (req, res) => {
             } catch (err) {}
         }
 
-        // 🟢 إرسال إشعار التليجرام بعد نجاح العملية
-        const tgMessage = `🛒 <b>أوردر جديد تم بنجاح!</b>\n\n👤 <b>الاسم:</b> ${name}\n📧 <b>الإيميل:</b> ${email}\n📦 <b>المساحة:</b> ${volumeGB === 0 ? 'غير محدود' : volumeGB + ' GB'}\n⏱️ <b>المدة:</b> ${durationDays} يوم\n\n✅ <b>تم إنشاء الكونفيج تلقائياً.</b>`;
+        // 🟢 إرسال إشعار التليجرام بالشكل التفصيلي (الخيار الثالث)
+        const tgMessage = `📦 <b>Order Details</b>\n\n👤 <b>Name:</b> ${name}\n📧 <b>Email:</b> ${email}\n🛠️ <b>Plan:</b> ${volumeGB === 0 ? 'Unlimited' : volumeGB + ' GB'} | ${durationDays} Days\n\n🔗 <b>Sub Link:</b>\n<code>${subUrl}</code>\n\n✅ <b>Status:</b> Provisioned in Nexora.`;
         await sendTelegramNotification(tgMessage);
 
         res.json({ success: true, data: { vless: vlessLink } });
@@ -161,3 +161,9 @@ app.post('/api/admin/orders', async (req, res) => {
 });
 
 module.exports = app;
+
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(process.env.PORT || 3000, () => {
+        console.log(`🚀 السيرفر شغال على بورت ${process.env.PORT || 3000}`);
+    });
+}
