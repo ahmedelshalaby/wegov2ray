@@ -20,25 +20,18 @@ async function sendTelegramNotification(message) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
     
-    if (!botToken || !chatId) {
-        console.log("⚠️ Telegram bot not configured.");
-        return;
-    }
+    if (!botToken || !chatId) return;
 
     try {
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-        await axios.post(url, {
+        await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             chat_id: chatId,
             text: message,
             parse_mode: 'HTML'
         });
-        console.log("✅ Telegram notification sent.");
-    } catch (error) {
-        console.error("❌ Failed to send Telegram message:", error.message);
-    }
+    } catch (error) {}
 }
 
-// 1. مسار إنشاء الأوردر
+// 1. مسار إنشاء الأوردر المدفوع
 app.post('/api/create-order', async (req, res) => {
     const { name, email, volumeGB, durationDays } = req.body;
     if (!name || !email) return res.status(400).json({ success: false, message: 'بيانات غير صحيحة' });
@@ -58,7 +51,7 @@ app.post('/api/create-order', async (req, res) => {
             resetCalendar: "", resetDays: 0, resetPeriod: "", resetStartDay: 1, resetStartMonth: 1,
             speedLimit: 0, subId: crypto.randomUUID(), templateIds: [],
             volume: volumeInBytes, start_on_first_connection: true,
-            note: `Email: ${email} | Name: ${name}`
+            note: `Type: Paid | Email: ${email} | Name: ${name}`
         };
 
         const response = await axios.post(`${NEXORA_API}/users`, payload, {
@@ -74,13 +67,12 @@ app.post('/api/create-order', async (req, res) => {
             try {
                 const subRes = await axios.get(subUrl, { httpsAgent });
                 const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
-                const lines = decoded.split('\n');
+                lines = decoded.split('\n');
                 lines.forEach(line => { if (line.startsWith('vless://')) vlessLink = line.trim(); });
             } catch (err) {}
         }
 
-        // 🟢 إرسال إشعار التليجرام بالشكل التفصيلي (الخيار الثالث)
-        const tgMessage = `📦 <b>Order Details</b>\n\n👤 <b>Name:</b> ${name}\n📧 <b>Email:</b> ${email}\n🛠️ <b>Plan:</b> ${volumeGB === 0 ? 'Unlimited' : volumeGB + ' GB'} | ${durationDays} Days\n\n🔗 <b>Sub Link:</b>\n<code>${subUrl}</code>\n\n✅ <b>Status:</b> Provisioned in Nexora.`;
+        const tgMessage = `💳 <b>Paid Order!</b>\n\n👤 <b>Name:</b> ${name}\n📧 <b>Email:</b> ${email}\n🛠️ <b>Plan:</b> ${volumeGB === 0 ? 'Unlimited' : volumeGB + ' GB'} | ${durationDays} Days\n\n🔗 <b>Sub Link:</b>\n<code>${subUrl}</code>`;
         await sendTelegramNotification(tgMessage);
 
         res.json({ success: true, data: { vless: vlessLink } });
@@ -89,7 +81,59 @@ app.post('/api/create-order', async (req, res) => {
     }
 });
 
-// 2. مسار جلب اشتراكات المستخدم
+// 🟢 2. مسار إنشاء الأوردر المجاني (Free Trial)
+app.post('/api/create-free-order', async (req, res) => {
+    const { name, email } = req.body;
+    if (!name || !email) return res.status(400).json({ success: false, message: 'بيانات غير صحيحة' });
+
+    try {
+        const safeName = name.replace(/\s+/g, '_').substring(0, 10);
+        const safeEmail = email.replace(/[@.]/g, '_').substring(0, 10);
+        
+        // 🛑 الحدود القصوى للنسخة المجانية (1 جيجا، 1 يوم)
+        const durationInSeconds = 1 * 24 * 60 * 60; 
+        const volumeInBytes = 1 * 1024 * 1024 * 1024;
+        const uniqueId = crypto.randomBytes(4).toString('hex'); 
+
+        const payload = {
+            adminId: 0, allTemplates: true, autoReset: false,
+            config: { uuid: crypto.randomUUID(), password: crypto.randomBytes(16).toString('hex') },
+            desc: "", deviceLimit: 0, duration: durationInSeconds, enable: true, expiry: 0,
+            group: "", ipLimit: 0, name: `Free_${safeName}_${uniqueId}`, remark: "",
+            resetCalendar: "", resetDays: 0, resetPeriod: "", resetStartDay: 1, resetStartMonth: 1,
+            speedLimit: 0, subId: crypto.randomUUID(), templateIds: [],
+            volume: volumeInBytes, start_on_first_connection: true,
+            note: `Type: FREE | Email: ${email} | Name: ${name}`
+        };
+
+        const response = await axios.post(`${NEXORA_API}/users`, payload, {
+            headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            httpsAgent, timeout: 8000 
+        });
+
+        const userData = response.data;
+        const subUrl = userData.subUrl;
+        let vlessLink = "لم يتم العثور على VLESS";
+
+        if (subUrl) {
+            try {
+                const subRes = await axios.get(subUrl, { httpsAgent });
+                const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
+                lines = decoded.split('\n');
+                lines.forEach(line => { if (line.startsWith('vless://')) vlessLink = line.trim(); });
+            } catch (err) {}
+        }
+
+        const tgMessage = `🎁 <b>New FREE Order (Ad Watched)!</b>\n\n👤 <b>Name:</b> ${name}\n📧 <b>Email:</b> ${email}\n🛠️ <b>Plan:</b> 1 GB | 24 Hours\n\n🔗 <b>Sub Link:</b>\n<code>${subUrl}</code>`;
+        await sendTelegramNotification(tgMessage);
+
+        res.json({ success: true, data: { vless: vlessLink } });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'حدث خطأ، حاول لاحقاً' });
+    }
+});
+
+// 3. مسار جلب اشتراكات المستخدم
 app.post('/api/my-orders', async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, message: 'إيميل غير صحيح' });
@@ -117,7 +161,7 @@ app.post('/api/my-orders', async (req, res) => {
     }
 });
 
-// 3. مسار جلب الكونفيج
+// 4. مسار جلب الكونفيج
 app.post('/api/get-config', async (req, res) => {
     const { subUrl } = req.body;
     try {
@@ -129,7 +173,7 @@ app.post('/api/get-config', async (req, res) => {
     } catch (error) { res.status(500).json({ success: false, message: 'خطأ' }); }
 });
 
-// 4. مسار لوحة التحكم
+// 5. مسار لوحة التحكم
 app.post('/api/admin/orders', async (req, res) => {
     const { password } = req.body;
     if (password !== ADMIN_PASS) return res.status(401).json({ success: false, message: 'Wrong Password' });
