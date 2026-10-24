@@ -249,7 +249,7 @@
     if(!isAutoLogin) document.getElementById('loginError').style.display = 'none';
 
     try {
-      const res = await fetch('http://localhost:3000/api/admin/orders', {
+      const res = await fetch('/api/admin/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: pass })
