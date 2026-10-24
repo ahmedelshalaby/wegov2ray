@@ -15,6 +15,27 @@ const TOKEN = process.env.NEXORA_TOKEN;
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'wego123456';
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
+// 🟢 خريطة الربط: تربط اختيار العميل في الموقع باسم الـ Inbound في لوحة Nexora
+// ⚠️ مهم جداً: غير الأسماء اللي تحت دي زي ما هي مكتوبة بالظبط في لوحة Nexora
+const CONFIG_MAP = {
+    'vless_tcp_tls': {
+        proxies: { vless: {} },
+        inbounds: { vless: ["VLESS TCP REALITY"] } // غير الاسم ده
+    },
+    'vless_ws_tls': {
+        proxies: { vless: {} },
+        inbounds: { vless: ["VLESS WS TLS"] } // غير الاسم ده
+    },
+    'vmess_ws_tls': {
+        proxies: { vmess: {} },
+        inbounds: { vmess: ["VMess WS TLS"] } // غير الاسم ده
+    },
+    'vmess_tcp_no_tls': {
+        proxies: { vmess: {} },
+        inbounds: { vmess: ["VMess TCP"] } // غير الاسم ده
+    }
+};
+
 async function sendTelegramNotification(message) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -27,9 +48,9 @@ async function sendTelegramNotification(message) {
 }
 
 app.post('/api/create-custom-order', async (req, res) => {
-    const { name, email, protocol, durationDays } = req.body;
+    const { name, email, configType, durationDays } = req.body;
     
-    if (!name || !email || !protocol || !durationDays) {
+    if (!name || !email || !configType || !durationDays) {
         return res.status(400).json({ success: false, message: 'بيانات غير مكتملة' });
     }
 
@@ -41,19 +62,10 @@ app.post('/api/create-custom-order', async (req, res) => {
         const volumeInBytes = volumeInGB * 1024 * 1024 * 1024;
         const uniqueId = crypto.randomBytes(4).toString('hex'); 
 
-        let proxies = {};
-        let inbounds = {};
-
-        // 🟢 تحديد البروتوكول بناءً على اختيار العميل
-        if (protocol === 'v2ray' || protocol === 'v2ray_ws') {
-            proxies = { vless: {}, vmess: {} };
-            inbounds = { vless: ["VLESS TCP REALITY"], vmess: ["VMess TCP"] };
-        } else if (protocol === 'trojan') {
-            proxies = { trojan: {} };
-            inbounds = { trojan: ["TROJAN TCP"] };
-        } else if (protocol === 'ssh') {
-            proxies = { ssh: {} }; 
-            inbounds = { ssh: ["SSH"] };
+        // 🟢 بنجيب إعدادات الإنباوند بناءً على اختيار العميل
+        const targetConfig = CONFIG_MAP[configType];
+        if (!targetConfig) {
+            return res.status(400).json({ success: false, message: 'نوع الاتصال غير مدعوم' });
         }
 
         const payload = {
@@ -64,8 +76,9 @@ app.post('/api/create-custom-order', async (req, res) => {
             resetCalendar: "", resetDays: 0, resetPeriod: "", resetStartDay: 1, resetStartMonth: 1,
             speedLimit: 0, subId: crypto.randomUUID(), templateIds: [],
             volume: volumeInBytes, start_on_first_connection: true,
-            note: `Type: Free | Protocol: ${protocol} | Email: ${email} | Name: ${name}`,
-            proxies: proxies, inbounds: inbounds
+            note: `Type: Free | Config: ${configType} | Email: ${email}`,
+            proxies: targetConfig.proxies,
+            inbounds: targetConfig.inbounds
         };
 
         const response = await axios.post(`${NEXORA_API}/users`, payload, {
@@ -83,26 +96,17 @@ app.post('/api/create-custom-order', async (req, res) => {
                 const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
                 const lines = decoded.split('\n');
                 
-                // 🟢 بنجيب الكونفيج حسب البروتوكول اللي إحنا طالبينه
-                lines.forEach(line => {
-                    if (protocol.includes('v2ray') && line.startsWith('vless://')) configLink = line.trim();
-                    if (protocol === 'trojan' && line.startsWith('trojan://')) configLink = line.trim();
-                    if (protocol === 'ssh' && (line.includes('ssh') || line.includes('@'))) configLink = line.trim();
-                });
-
-                // لو ملقاش حاجة، يرجع أول سطر
-                if (configLink === "لم يتم العثور على الكونفيج" && lines.length > 0) {
-                    configLink = lines[0].trim();
-                }
+                // بنجيب أول سطر متاح (اللوحة بتدي الكونفيج اللي إحنا طالبينه)
+                if (lines.length > 0) configLink = lines[0].trim();
+                
             } catch (err) {
                 console.error("Error fetching config:", err.message);
             }
         }
 
-        const tgMessage = `🎁 <b>كونفيج مجاني جديد</b>\n👤 <b>الاسم:</b> ${name} | 📧 <b>الإيميل:</b> ${email}\n📦 <b>الباقة:</b> ${protocol} / ${durationDays} يوم\n🔗 <b>اللينك:</b>\n<code>${subUrl}</code>`;
+        const tgMessage = `🎁 <b>كونفيج مجاني جديد</b>\n👤 <b>الاسم:</b> ${name} | 📧 <b>الإيميل:</b> ${email}\n📦 <b>الباقة:</b> ${configType} / ${durationDays} يوم\n🔗 <b>اللينك:</b>\n<code>${subUrl}</code>`;
         await sendTelegramNotification(tgMessage);
 
-        // بنرجع الكونفيج اللي طلع (سواء vless أو ssh أو غيره)
         res.json({ success: true, data: { configLink: configLink } });
     } catch (error) {
         console.error("Error:", error.response?.data || error.message);
@@ -110,6 +114,7 @@ app.post('/api/create-custom-order', async (req, res) => {
     }
 });
 
+// ... (باقي المسارات زي ما هي: my-orders, get-config, admin/orders) ...
 app.post('/api/my-orders', async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, message: 'إيميل غير صحيح' });
