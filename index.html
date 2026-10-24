@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WEGOV2Ray</title>
-<meta name="monetag" content="b693e4810151223c1f6cada2d8b03eb6">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23f5c542'/><text x='50' y='50' font-size='65' font-family='Arial' font-weight='bold' fill='%230a0a0a' dominant-baseline='central' text-anchor='middle'>W</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -36,7 +35,6 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* NAV */
   .nav{position:fixed;top:0;inset-inline:0;z-index:100;padding:16px 0;transition:.4s; background: rgba(5,6,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);}
   .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px; cursor:pointer;}
@@ -47,7 +45,6 @@
   .nav-links span{font-size:15px;color:var(--muted);font-weight:600;transition:.3s; cursor: pointer;}
   .nav-links span:hover{color:var(--gold)}
   
-  /* BTN */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:14px;font-weight:700;font-size:15px;transition:.3s;}
   .btn-gold{background:linear-gradient(135deg,var(--gold),#e0a800);color:#0a0a0a;box-shadow:var(--shadow-gold);}
   .btn-gold:hover{transform:translateY(-2px);}
@@ -61,26 +58,22 @@
   .menu-toggle { font-size: 24px; color: #fff; cursor: pointer; display: none; transition: .3s; padding: 5px; }
   .menu-toggle:hover { color: var(--gold); }
 
-  /* HERO */
   .hero{position:relative;min-height:90vh;display:flex;align-items:center;padding:160px 24px 80px;text-align:center; background: radial-gradient(circle at top right, rgba(124,58,237,.15), transparent 40%), radial-gradient(circle at bottom left, rgba(245,197,66,.1), transparent 40%);}
   .hero-inner{position:relative;max-width:900px;margin:0 auto;z-index:2}
   .hero h1{font-size:clamp(34px,6vw,68px);font-weight:900;line-height:1.15;margin-bottom:22px;}
   .grad{background:linear-gradient(120deg,#f5c542,#ffdf7a,#f5c542);-webkit-background-clip:text;color:transparent;}
   .hero p{font-size:clamp(15px,2vw,18px);color:var(--muted);max-width:620px;margin:0 auto 38px;}
   
-  /* STATS */
   .stats-grid{display:flex; justify-content:center; gap:40px; margin-top:50px; padding-top:30px; border-top:1px solid var(--border); flex-wrap:wrap;}
   .stat-item h4{font-size:32px; font-weight:900; color:var(--gold);}
   .stat-item p{font-size:13px; color:var(--muted);}
 
-  /* SECTIONS */
   section{padding:100px 24px;}
   .container{max-width:1200px;margin:0 auto}
   .section-head{text-align:center;margin-bottom:60px}
   .section-head h2{font-size:clamp(28px,4.5vw,46px);font-weight:900;margin-bottom:14px;}
   .section-head p{color:var(--muted); max-width:600px; margin: 0 auto;}
 
-  /* FEATURES */
   .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
   .feature-card{background:var(--card); padding:30px; border-radius:var(--r-lg); border:1px solid var(--border); transition:.3s;}
   .feature-card:hover{transform:translateY(-5px); border-color:rgba(245,197,66,.3);}
@@ -88,14 +81,12 @@
   .feature-card h3{font-size:18px; margin-bottom:10px;}
   .feature-card p{font-size:14px; color:var(--muted);}
 
-  /* HOW IT WORKS */
   .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px; text-align:center;}
   .step-item{padding:20px;}
   .step-num{width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--gold),#c98f00); color:#000; font-weight:900; font-size:24px; display:grid; place-items:center; margin:0 auto 20px;}
   .step-item h3{font-size:18px; margin-bottom:10px;}
   .step-item p{font-size:14px; color:var(--muted);}
 
-  /* PRICING */
   .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;align-items:stretch;}
   .plan{position:relative;padding: 40px 25px; border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid var(--border);display:flex;flex-direction:column;transition:.4s;}
   .plan:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.18)}
@@ -108,7 +99,6 @@
   .plan-list{list-style:none;margin:0 0 30px 0;flex:1;} 
   .plan-list li{display:flex;align-items:center;gap:12px;padding:14px 0;font-size:15px;color:#c9cbd6;border-bottom:1px solid rgba(255,255,255,.05);} 
 
-  /* FAQ */
   .faq-list{max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;}
   .faq-item{background:var(--card); border:1px solid var(--border); border-radius: 16px; overflow: hidden;}
   .faq-q{padding: 20px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
@@ -117,13 +107,11 @@
   .faq-item.active .faq-q::after{transform: rotate(45deg);}
   .faq-item.active .faq-a{max-height: 200px; padding-bottom: 20px;}
 
-  /* FOOTER */
   footer{padding:40px 24px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 14px;}
 
-  /* SIDEBAR */
   .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1000; opacity: 0; visibility: hidden; transition: .3s; }
   .sidebar-overlay.open { opacity: 1; visibility: visible; }
-  .sidebar { position: fixed; top: 0; bottom: 0; width: 280px; background: #0e1018; z-index: 1001; transition: transform .3s cubic-bezier(0.2, 0.7, 0.2, 1); display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.9); }
+  .sidebar { position: fixed; top: 0; bottom: 0; width: 300px; background: #0e1018; z-index: 1001; transition: transform .3s cubic-bezier(0.2, 0.7, 0.2, 1); display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.9); }
   html[dir="rtl"] .sidebar { left: 0; right: auto; transform: translateX(-100%); border-right: 1px solid var(--border); }
   html[dir="rtl"] .sidebar.open { transform: translateX(0); }
   html[dir="ltr"] .sidebar { right: 0; left: auto; transform: translateX(100%); border-left: 1px solid var(--border); }
@@ -141,7 +129,6 @@
   .sidebar-footer { padding: 20px; border-top: 1px solid var(--border); }
   .btn-logout-sidebar { width: 100%; padding: 12px; border-radius: 12px; background: rgba(248,113,113,.1); color: var(--red); font-weight: 700; text-align: center; border: 1px solid rgba(248,113,113,.3); transition: .3s; cursor: pointer; }
 
-  /* MODALS */
   .modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.35s;}
   .modal.open{opacity:1;visibility:visible}
   .modal-backdrop{position:absolute;inset:0;background:rgba(2,3,6,.85);backdrop-filter:blur(10px);}
@@ -156,7 +143,6 @@
   .step h3{font-size:22px;font-weight:800;margin-bottom:6px;text-align:center}
   .step .sub{color:var(--muted);font-size:14px;text-align:center;margin-bottom:24px}
 
-  /* Forms */
   .google-btn{display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:12px; background:#fff; color:#333; border-radius:12px; font-weight:700; margin-bottom:15px; cursor:pointer; transition:.3s;}
   .google-btn:hover{background:#f1f1f1;}
   .google-btn img{width:20px; height:20px;}
@@ -168,7 +154,6 @@
   .field input{width:100%;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none; transition:.3s;}
   .field input:focus{border-color:var(--gold);}
 
-  /* Selectors */
   .selector-group{margin-bottom:20px;}
   .selector-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
   .selector-header label{font-size:14px;font-weight:700;color:#fff;}
@@ -176,6 +161,7 @@
   .input-wrapper input{width:65px; background:transparent; border:none; color:var(--gold); font-size:16px; font-weight:900; font-family:inherit; text-align:center; outline:none;}
   .input-wrapper input::-webkit-outer-spin-button, .input-wrapper input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
   .input-wrapper span{font-size:12px; color:var(--muted); font-weight:700;}
+  
   input[type=range]{width:100%;-webkit-appearance:none;background:transparent; margin-top:5px;}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:20px;width:20px;border-radius:50%;background:var(--gold);cursor:pointer;margin-top:-8px;box-shadow:0 0 10px rgba(245,197,66,.5);}
   input[type=range]::-webkit-slider-runnable-track{width:100%;height:4px;cursor:pointer;background:rgba(255,255,255,.1);border-radius:2px;}
@@ -185,7 +171,6 @@
   .custom-file-upload { display: inline-block; padding: 8px 16px; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--gold); transition: .3s; }
   #avatarFileInput { display: none; }
 
-  /* Dashboard Cards */
   .order-card{background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:15px; position:relative;}
   .order-card.active-card { border-color: rgba(52,211,153,.4); }
   .order-card.expired-card { border-color: rgba(248,113,113,.4); opacity: .7; }
@@ -202,8 +187,8 @@
   .copy-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:12px;font-weight:700;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:var(--green); cursor:pointer;}
   .loading-wrap{text-align:center;padding:30px 0}
   .spinner{width:60px;height:60px;border-radius:50%;margin:0 auto 22px;border:3px solid rgba(245,197,66,.15);border-top-color:var(--gold);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* CUSTOM ALERT */
   .alert-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 9998; opacity: 0; visibility: hidden; transition: .3s; }
   .alert-backdrop.show { opacity: 1; visibility: visible; }
   .custom-alert { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: linear-gradient(180deg, #1a1e29, #0e1018); border: 1px solid rgba(255,255,255,.15); border-radius: 24px; padding: 30px; width: 90%; max-width: 400px; z-index: 9999; text-align: center; opacity: 0; visibility: hidden; transition: .3s cubic-bezier(.34,1.56,.64,1); box-shadow: 0 20px 60px -10px rgba(0,0,0,0.8); }
@@ -212,7 +197,6 @@
   .alert-icon.error { color: var(--red); border-color: var(--red); background: rgba(248,113,113,.1); }
   .alert-icon.success { color: var(--green); border-color: var(--green); background: rgba(52,211,153,.1); }
 
-  /* 🚀 RESPONSIVE DESIGN FOR MOBILE 🚀 */
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .menu-toggle { display: block; }
@@ -310,6 +294,21 @@
       <div class="container">
         <div class="section-head"><h2 data-i18n="plansTitle">اختر باقتك</h2><p data-i18n="plans_sub">أسعار تنافسية وبدون رسوم خفية.</p></div>
         <div class="pricing-grid">
+          
+          <!-- كارت الكونفيج المجاني الجديد -->
+          <div class="plan" style="border: 1px solid rgba(52,211,153,.5); background: linear-gradient(180deg, rgba(52,211,153,.05), transparent);">
+            <div class="pop-badge" style="background: var(--green); color: #000;">🎁 Free Trial</div>
+            <div class="plan-name" data-i18n="plan_free">FREE (24 Hours)</div>
+            <div class="plan-price"><b>0</b><span data-i18n="egp">EGP</span></div>
+            <ul class="plan-list">
+              <li>✓ <span data-i18n="plan_free_gb">1 GB</span></li>
+              <li>✓ <span data-i18n="plan_free_days">24 Hours</span></li>
+              <li>✓ <span data-i18n="prot">VLESS + VMess</span></li>
+              <li>✓ <span data-i18n="watch_ad">Watch Ad to unlock</span></li>
+            </ul>
+            <button class="btn btn-ghost btn-block" onclick="openFreeModal()" data-i18n="get_free">Get Free Config</button>
+          </div>
+
           <div class="plan">
             <div class="plan-name" data-i18n="plan_trial">TRIAL (5 Days)</div>
             <div class="plan-price"><b>15</b><span data-i18n="egp">EGP</span></div>
@@ -476,6 +475,34 @@
   </div>
 </div>
 
+<!-- 🟢 مودال الكونفيج المجاني -->
+<div class="modal" id="freeModal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" style="text-align: center;">
+    <button class="modal-close" data-close>✕</button>
+    <div style="font-size: 50px; margin-bottom: 15px;">🎁</div>
+    <h3 id="freeTitle">احصل على كونفيج مجاني</h3>
+    <p class="sub" id="freeSub">شاهد إعلاناً قصيراً للحصول على 1 جيجا لمدة 24 ساعة</p>
+    
+    <div id="freeStep1">
+        <button class="btn btn-gold btn-block" onclick="watchAdAndGenerate()" id="watchAdBtn">
+            👀 شاهد الإعلان واحصل على الكونفيج
+        </button>
+    </div>
+
+    <div id="freeStep2" style="display: none;">
+        <div class="loading-wrap"><div class="spinner"></div><p id="freeLoadTxt">جاري تجهيز الكونفيج...</p></div>
+    </div>
+
+    <div id="freeStep3" style="display: none;">
+        <h3 style="color:var(--green); margin-bottom:15px;" id="freeSuccessTitle">✓ تم بنجاح!</h3>
+        <div class="config-box" id="freeConfigBox" style="display: block; text-align: left; direction: ltr;"></div>
+        <button class="copy-btn" onclick="copyToClipboard('freeConfigBox')">📋 نسخ الكونفيج</button>
+    </div>
+  </div>
+</div>
+
+
 <div class="alert-backdrop" id="alertBackdrop" onclick="closeAlert()"></div>
 <div class="custom-alert" id="customAlert">
   <div class="alert-icon" id="alertIcon">!</div>
@@ -484,7 +511,6 @@
   <button class="btn btn-gold btn-block" onclick="closeAlert()">OK, Got it</button>
 </div>
 
-<!-- سكريبت الموقع اللي إحنا ظبطناه قبل كده (نفسه بالظبط) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -524,6 +550,7 @@
       how3_title: "استلم الكونفيج", how3_desc: "سيظهر لك الرابط مباشرة، انسخه بضغطة واحدة.",
       how4_title: "اتصل", how4_desc: "استورد الكونفيج في تطبيقك المفضل وابدأ التصفح.",
       plansTitle: "اختر باقتك", plans_sub: "أسعار تنافسية وبدون رسوم خفية.",
+      plan_free: "مجاني (24 ساعة)", plan_free_gb: "1 جيجا", plan_free_days: "24 ساعة", watch_ad: "شاهد إعلان لفتح الباقة", get_free: "احصل على كونفيج مجاني",
       plan_trial: "تجريبي (5 أيام)", plan_trial_gb: "30 جيجا", plan_trial_days: "5 أيام",
       plan_basic: "أساسي (10 أيام)", plan_basic_gb: "60 جيجا", plan_basic_days: "10 أيام",
       plan_std: "متقدم (15 يوم)", plan_std_gb: "120 جيجا", plan_std_days: "15 يوم",
@@ -570,6 +597,7 @@
       how3_title: "Get Config", how3_desc: "The link will appear instantly, copy it with one click.",
       how4_title: "Connect", how4_desc: "Import the config into your app and start browsing.",
       plansTitle: "Choose Your Plan", plans_sub: "Competitive prices with no hidden fees.",
+      plan_free: "FREE (24 Hours)", plan_free_gb: "1 GB", plan_free_days: "24 Hours", watch_ad: "Watch Ad to unlock", get_free: "Get Free Config",
       plan_trial: "TRIAL (5 Days)", plan_trial_gb: "30 GB", plan_trial_days: "5 Days",
       plan_basic: "BASIC (10 Days)", plan_basic_gb: "60 GB", plan_basic_days: "10 Days",
       plan_std: "STANDARD (15 Days)", plan_std_gb: "120 GB", plan_std_days: "15 Days",
@@ -646,6 +674,12 @@
     document.getElementById('lblDuration').textContent = translations[currentLang].lblDuration;
     document.getElementById('lblTotal').textContent = translations[currentLang].lblTotal;
     document.getElementById('unitDays').textContent = translations[currentLang].unitDays;
+    
+    document.getElementById('freeTitle').textContent = translations[currentLang].plan_free;
+    document.getElementById('freeSub').textContent = translations[currentLang].watch_ad;
+    document.getElementById('watchAdBtn').textContent = "👀 " + translations[currentLang].watch_ad;
+    document.getElementById('freeLoadTxt').textContent = translations[currentLang].ordLoading;
+    document.getElementById('freeSuccessTitle').textContent = translations[currentLang].ordSuccess;
     
     updateCustomPrice();
   }
@@ -906,6 +940,67 @@
         document.querySelector('#orderModal .step[data-step="3"]').classList.remove('active');
       }
     } catch (err) { showAlert('خطأ في الاتصال', 'تعذر الاتصال بالسيرفر.', 'error'); }
+  }
+
+  // 🟢 دوال الكونفيج المجاني
+  window.openFreeModal = function() {
+    if(!currentUser) {
+        showAlert('تسجيل الدخول مطلوب', 'يجب تسجيل الدخول للحصول على الكونفيج المجاني.', 'error');
+        openAuthModal();
+        return;
+    }
+
+    // فحص لو العميل خد كونفيج مجاني في آخر 24 ساعة
+    const lastFree = localStorage.getItem('lastFreeConfig');
+    if (lastFree) {
+        const timePassed = Date.now() - parseInt(lastFree);
+        const hoursPassed = timePassed / (1000 * 60 * 60);
+        if (hoursPassed < 24) {
+            showAlert('انتظر قليلاً', `لقد حصلت على كونفيج مجاني مؤخراً. يرجى المحاولة بعد ${Math.ceil(24 - hoursPassed)} ساعة.`, 'error');
+            return;
+        }
+    }
+
+    document.getElementById('freeStep1').style.display = 'block';
+    document.getElementById('freeStep2').style.display = 'none';
+    document.getElementById('freeStep3').style.display = 'none';
+    document.getElementById('freeModal').classList.add('open');
+  }
+
+  window.watchAdAndGenerate = function() {
+    // 🚨 ضع لينك الإعلانات بتاعك هنا 🚨
+    const adLink = "monetag_link_here"; 
+    
+    // نفتح لينك الإعلان في نافذة جديدة
+    window.open(adLink, '_blank');
+
+    // بعد ما العميل يرجع، نبدأ نعمل الكونفيج
+    document.getElementById('freeStep1').style.display = 'none';
+    document.getElementById('freeStep2').style.display = 'block';
+
+    fetch('/api/create-free-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: currentUser.displayName || 'User', email: currentUser.email })
+    })
+    .then(res => res.json())
+    .then(result => {
+        if (result.success) {
+            document.getElementById('freeStep2').style.display = 'none';
+            document.getElementById('freeStep3').style.display = 'block';
+            document.getElementById('freeConfigBox').textContent = result.data.vless;
+            
+            // نحفظ الوقت عشان نمنعه لمدة 24 ساعة
+            localStorage.setItem('lastFreeConfig', Date.now().toString());
+        } else {
+            showAlert('خطأ', result.message, 'error');
+            document.getElementById('freeModal').classList.remove('open');
+        }
+    })
+    .catch(err => {
+        showAlert('خطأ', 'تعذر الاتصال بالسيرفر.', 'error');
+        document.getElementById('freeModal').classList.remove('open');
+    });
   }
 
   window.openMyAccount = async function() {
