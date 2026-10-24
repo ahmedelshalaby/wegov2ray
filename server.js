@@ -61,15 +61,15 @@ app.post('/api/create-order', async (req, res) => {
     }
 });
 
-// 2. مسار جلب اشتراكات المستخدم
-app.get('/api/my-orders/:email', async (req, res) => {
-    const { email } = req.params;
+// 🟢 2. مسار جلب اشتراكات المستخدم (تم تحويله لـ POST لحل مشكلة Vercel)
+app.post('/api/my-orders', async (req, res) => {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ success: false, message: 'إيميل غير صحيح' });
+
     try {
-        console.log("Fetching orders for:", email);
         const response = await axios.get(`${NEXORA_API}/users`, {
             headers: { 'Authorization': `Bearer ${TOKEN}`, 'Accept': 'application/json' }, 
-            httpsAgent,
-            timeout: 8000
+            httpsAgent, timeout: 8000
         });
         
         const allUsers = response.data.users || response.data || [];
@@ -85,8 +85,7 @@ app.get('/api/my-orders/:email', async (req, res) => {
         formattedData.sort((a, b) => b.expiry - a.expiry);
         res.json({ success: true, data: formattedData });
     } catch (error) { 
-        console.error("Error fetching from Nexora:", error.message);
-        res.status(500).json({ success: false, message: 'Nexora Error: ' + error.message }); 
+        res.status(500).json({ success: false, message: 'Error fetching data' }); 
     }
 });
 
@@ -102,7 +101,7 @@ app.post('/api/get-config', async (req, res) => {
     } catch (error) { res.status(500).json({ success: false, message: 'خطأ' }); }
 });
 
-// 4. مسار لوحة التحكم (الأدمن)
+// 4. مسار لوحة التحكم
 app.post('/api/admin/orders', async (req, res) => {
     const { password } = req.body;
     if (password !== ADMIN_PASS) return res.status(401).json({ success: false, message: 'Wrong Password' });
