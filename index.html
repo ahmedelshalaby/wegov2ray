@@ -899,7 +899,7 @@
     document.getElementById('loadingWrap').style.display = 'block';
     document.getElementById('configResult').style.display = 'none';
     try {
-      const res = await fetch('http://localhost:3000/api/create-order', {
+      const res = await fetch('/api/create-order', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: currentUser.displayName || 'User', email: currentUser.email, volumeGB: currentVolume, durationDays: currentDays })
       });
