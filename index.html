@@ -4,7 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WEGOV2Ray</title>
+<!-- 🟢 كود تحقق Monetag -->
 <meta name="monetag" content="b693e4810151223c1f6cada2d8b03eb6">
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23f5c542'/><text x='50' y='50' font-size='65' font-family='Arial' font-weight='bold' fill='%230a0a0a' dominant-baseline='central' text-anchor='middle'>W</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -296,7 +298,7 @@
         <div class="section-head"><h2 data-i18n="plansTitle">اختر باقتك</h2><p data-i18n="plans_sub">أسعار تنافسية وبدون رسوم خفية.</p></div>
         <div class="pricing-grid">
           
-          <!-- كارت الكونفيج المجاني الجديد -->
+          <!-- كارت الكونفيج المجاني -->
           <div class="plan" style="border: 1px solid rgba(52,211,153,.5); background: linear-gradient(180deg, rgba(52,211,153,.05), transparent);">
             <div class="pop-badge" style="background: var(--green); color: #000;">🎁 Free Trial</div>
             <div class="plan-name" data-i18n="plan_free">FREE (24 Hours)</div>
@@ -943,23 +945,12 @@
     } catch (err) { showAlert('خطأ في الاتصال', 'تعذر الاتصال بالسيرفر.', 'error'); }
   }
 
-  // 🟢 دوال الكونفيج المجاني
+  // 🟢 دوال الكونفيج المجاني (بدون تأخير ولا شروط)
   window.openFreeModal = function() {
     if(!currentUser) {
         showAlert('تسجيل الدخول مطلوب', 'يجب تسجيل الدخول للحصول على الكونفيج المجاني.', 'error');
         openAuthModal();
         return;
-    }
-
-    // فحص لو العميل خد كونفيج مجاني في آخر 24 ساعة
-    const lastFree = localStorage.getItem('lastFreeConfig');
-    if (lastFree) {
-        const timePassed = Date.now() - parseInt(lastFree);
-        const hoursPassed = timePassed / (1000 * 60 * 60);
-        if (hoursPassed < 24) {
-            showAlert('انتظر قليلاً', `لقد حصلت على كونفيج مجاني مؤخراً. يرجى المحاولة بعد ${Math.ceil(24 - hoursPassed)} ساعة.`, 'error');
-            return;
-        }
     }
 
     document.getElementById('freeStep1').style.display = 'block';
@@ -969,16 +960,17 @@
   }
 
   window.watchAdAndGenerate = function() {
-    // 🚨 ضع لينك الإعلانات بتاعك هنا 🚨
+    // 🚨 اللينك بتاعك 🚨
     const adLink = "https://uplcm.com/4/12114559"; 
     
     // نفتح لينك الإعلان في نافذة جديدة
     window.open(adLink, '_blank');
 
-    // بعد ما العميل يرجع، نبدأ نعمل الكونفيج
+    // نغير الشاشة لشاشة التحميل فوراً
     document.getElementById('freeStep1').style.display = 'none';
     document.getElementById('freeStep2').style.display = 'block';
 
+    // بنعمل الكونفيج فوراً من غير أي تأخير
     fetch('/api/create-free-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -990,9 +982,6 @@
             document.getElementById('freeStep2').style.display = 'none';
             document.getElementById('freeStep3').style.display = 'block';
             document.getElementById('freeConfigBox').textContent = result.data.vless;
-            
-            // نحفظ الوقت عشان نمنعه لمدة 24 ساعة
-            localStorage.setItem('lastFreeConfig', Date.now().toString());
         } else {
             showAlert('خطأ', result.message, 'error');
             document.getElementById('freeModal').classList.remove('open');
