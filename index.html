@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WEGOV2Ray</title>
 
-<!-- 🟢 أكواد التحقق (Monetag و AdsCompass) -->
 <meta name="monetag" content="b693e4810151223c1f6cada2d8b03eb6">
 <meta name="verified-code" content="d2e9343d-f693-4995-8f0d-dc4984be3079">
 
@@ -636,6 +635,10 @@
   let isSignupMode = false;
   let currentVolume = 30, currentDays = 5, currentPrice = 15;
   let newAvatarBase64 = null;
+  
+  // 🟢 متغيرات التحكم في عداد الكونفيج المجاني
+  let freeTimerInterval = null;
+  let isGeneratingFree = false;
 
   function applyLanguage() {
     document.getElementById('htmlRoot').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
@@ -947,7 +950,7 @@
     } catch (err) { showAlert('خطأ في الاتصال', 'تعذر الاتصال بالسيرفر.', 'error'); }
   }
 
-  // 🟢 دوال الكونفيج المجاني (مع العداد التنازلي 60 ثانية)
+  // 🟢 دوال الكونفيج المجاني (مع العداد التنازلي والحماية من التكرار)
   window.openFreeModal = function() {
     if(!currentUser) {
         showAlert('تسجيل الدخول مطلوب', 'يجب تسجيل الدخول للحصول على الكونفيج المجاني.', 'error');
@@ -955,13 +958,25 @@
         return;
     }
 
-    document.getElementById('freeStep1').style.display = 'block';
-    document.getElementById('freeStep2').style.display = 'none';
-    document.getElementById('freeStep3').style.display = 'none';
+    if (isGeneratingFree) {
+        // لو العداد شغال، نعرض شاشة العداد
+        document.getElementById('freeStep1').style.display = 'none';
+        document.getElementById('freeStep2').style.display = 'block';
+        document.getElementById('freeStep3').style.display = 'none';
+    } else {
+        // لو مفيش عداد شغال، نعرض زرار البدء
+        document.getElementById('freeStep1').style.display = 'block';
+        document.getElementById('freeStep2').style.display = 'none';
+        document.getElementById('freeStep3').style.display = 'none';
+    }
+    
     document.getElementById('freeModal').classList.add('open');
   }
 
   window.watchAdAndGenerate = function() {
+    if (isGeneratingFree) return; // منع التكرار لو العداد شغال
+    isGeneratingFree = true;
+    
     // 🚨 اللينك بتاعك (Smartlink من Advertica) 🚨
     const adLink = "https://araplhn.org/4/5fb9751cc59ca942652ce4068aa396d1"; 
     
@@ -977,15 +992,18 @@
 
     timerText.innerHTML = currentLang === 'ar' ? `يرجى الانتظار ${secondsLeft} ثانية...` : `Please wait ${secondsLeft} seconds...`;
 
+    // لو فيه عداد قديم شغال، نقفله الأول عشان ميبقاش فيه عدادين
+    if (freeTimerInterval) clearInterval(freeTimerInterval);
+
     // 🟢 بدء العداد التنازلي
-    const countdown = setInterval(() => {
+    freeTimerInterval = setInterval(() => {
         secondsLeft--;
         
         if (secondsLeft > 0) {
             timerText.innerHTML = currentLang === 'ar' ? `يرجى الانتظار ${secondsLeft} ثانية...` : `Please wait ${secondsLeft} seconds...`;
         } else {
             // لما الوقت يخلص، نوقف العداد ونبدأ نعمل الكونفيج
-            clearInterval(countdown);
+            clearInterval(freeTimerInterval);
             timerText.innerHTML = translations[currentLang].ordLoading; // "جاري تجهيز الكونفيج..."
 
             fetch('/api/create-free-order', {
@@ -1007,6 +1025,9 @@
             .catch(err => {
                 showAlert('خطأ', 'تعذر الاتصال بالسيرفر.', 'error');
                 document.getElementById('freeModal').classList.remove('open');
+            })
+            .finally(() => {
+                isGeneratingFree = false; // إعادة تصفير الحالة بعد الانتهاء
             });
         }
     }, 1000); // كل ثانية
@@ -1109,8 +1130,19 @@
     document.getElementById('customAlert').classList.remove('show');
   }
 
+  // 🟢 تعديل دالة الإغلاق عشان تقفل العداد لو المستخدم قفل المودال
   document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', function() {
-    this.closest('.modal').classList.remove('open');
+    const modal = this.closest('.modal');
+    modal.classList.remove('open');
+    
+    // لو قفلنا مودال الكونفيج المجاني، نوقف العداد ونرجع الحالة الافتراضية
+    if (modal.id === 'freeModal') {
+        if (freeTimerInterval) clearInterval(freeTimerInterval);
+        isGeneratingFree = false;
+        document.getElementById('freeStep1').style.display = 'block';
+        document.getElementById('freeStep2').style.display = 'none';
+        document.getElementById('freeStep3').style.display = 'none';
+    }
   }));
 
   applyLanguage();
