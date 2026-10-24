@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WEGOV2Ray - اتصال مجاني بلا حدود</title>
 
-<!-- 🟢 أيقونة الموقع الجديدة (Favicon) 🟢 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cdefs%3E%3ClinearGradient id='goldGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffdf7a'/%3E%3Cstop offset='50%25' stop-color='%23f5c542'/%3E%3Cstop offset='100%25' stop-color='%23c98f00'/%3E%3C/linearGradient%3E%3ClinearGradient id='darkGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2312141d'/%3E%3Cstop offset='100%25' stop-color='%2305060a'/%3E%3C/linearGradient%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23f5c542' stop-opacity='0.15'/%3E%3Cstop offset='100%25' stop-color='%23f5c542' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='500' height='500' rx='100' fill='url(%23darkGrad)'/%3E%3Ccircle cx='250' cy='250' r='200' fill='url(%23glow)'/%3E%3Crect x='30' y='30' width='440' height='440' rx='80' fill='none' stroke='url(%23goldGrad)' stroke-width='8' opacity='0.8'/%3E%3Cpath d='M250 90 L380 150 L380 280 C380 370 250 420 250 420 C250 420 120 370 120 280 L120 150 Z' fill='none' stroke='url(%23goldGrad)' stroke-width='6' opacity='0.4'/%3E%3Cpath d='M140 180 L190 320 L250 220 L310 320 L360 180' fill='none' stroke='url(%23goldGrad)' stroke-width='22' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M250 110 L220 180 L260 180 L230 250 L280 160 L240 160 Z' fill='url(%23goldGrad)' opacity='0.9'/%3E%3C/svg%3E">
 
 <meta name="monetag" content="b693e4810151223c1f6cada2d8b03eb6">
@@ -28,22 +27,13 @@
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
   ::selection{background:rgba(245,197,66,.35);color:#fff}
 
-  #page-loader {
-    position: fixed; inset: 0; background: var(--bg); z-index: 99999;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    transition: opacity 0.4s ease;
-  }
+  #page-loader { position: fixed; inset: 0; background: var(--bg); z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.4s ease; }
   #page-loader.hidden { opacity: 0; pointer-events: none; }
-  .loader-spinner {
-    width: 50px; height: 50px; border-radius: 50%;
-    border: 3px solid rgba(245,197,66,.15); border-top-color: var(--gold);
-    animation: spin 1s linear infinite; margin-bottom: 15px;
-  }
+  .loader-spinner { width: 50px; height: 50px; border-radius: 50%; border: 3px solid rgba(245,197,66,.15); border-top-color: var(--gold); animation: spin 1s linear infinite; margin-bottom: 15px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .nav{position:fixed;top:0;inset-inline:0;z-index:100;padding:16px 0;transition:.4s; background: rgba(5,6,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);}
   .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
-  
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px; cursor:pointer;}
   .logo-mark{width:45px; height:45px; display:flex; align-items:center; justify-content:center; transition:.4s;}
   .logo:hover .logo-mark{transform:scale(1.1) rotate(5deg);}
@@ -96,7 +86,6 @@
   .step-item h3{font-size:18px; margin-bottom:10px;}
   .step-item p{font-size:14px; color:var(--muted);}
 
-  /* 🟢 تصميم كارت الباقة المجانية الجديد 🟢 */
   .free-plan-wrapper { max-width: 600px; margin: 0 auto; }
   .free-plan-card { position: relative; padding: 50px 40px; border-radius: var(--r-lg); border: 2px solid rgba(52,211,153,.6); background: linear-gradient(180deg, rgba(52,211,153,.1), rgba(52,211,153,.02)); box-shadow: 0 20px 80px -20px rgba(52,211,153,.3); text-align: center; }
   .free-plan-badge { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); padding: 8px 24px; border-radius: 100px; background: var(--green); color: #000; font-size: 14px; font-weight: 900; box-shadow: 0 10px 20px -5px rgba(52,211,153,.5); }
@@ -221,7 +210,6 @@
 <div id="mainSite">
     <header class="nav" id="nav">
       <div class="nav-inner">
-        
         <div class="logo" onclick="scrollToSection('home')">
           <span class="logo-mark">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
@@ -271,7 +259,7 @@
     <section id="home" class="hero">
       <div class="hero-inner">
         <h1 data-i18n="heroTitle">اتصال <span class="grad">فائق السرعة</span><br>مجاني 100% للجميع</h1>
-        <p data-i18n="heroSub">سيرفرات V2Ray احترافية على بروتوكولات VLESS و VMess — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.</p>
+        <p data-i18n="heroSub">سيرفرات احترافية بكل البروتوكولات (V2Ray, SSH, Trojan, WebSocket) — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.</p>
         <button class="btn btn-gold" style="padding:16px 40px; font-size:18px;" onclick="scrollToSection('pricing')" data-i18n="heroBtn">🎁 احصل على كونفيجك المجاني</button>
         
         <div class="stats-grid">
@@ -290,7 +278,7 @@
         </div>
         <div class="features-grid">
           <div class="feature-card"><div class="feat-icon">⚡</div><h3 data-i18n="feat1_title">سرعة فائقة</h3><p data-i18n="feat1_desc">سيرفرات بأحدث الأجهزة لضمان أعلى سرعة تحميل وتصفح بدون تقطيع.</p></div>
-          <div class="feature-card"><div class="feat-icon">🛡️</div><h3 data-i18n="feat2_title">تشفير قوي</h3><p data-i18n="feat2_desc">حماية كاملة لبياناتك باستخدام بروتوكولات VLESS و VMess مع تشفير TLS.</p></div>
+          <div class="feature-card"><div class="feat-icon">🛡️</div><h3 data-i18n="feat2_title">تشفير قوي</h3><p data-i18n="feat2_desc">حماية كاملة لبياناتك باستخدام بروتوكولات متعددة مع تشفير TLS.</p></div>
           <div class="feature-card"><div class="feat-icon">📱</div><h3 data-i18n="feat3_title">كل الأجهزة</h3><p data-i18n="feat3_desc">يعمل على أندرويد، آيفون، ويندوز، وماك بكونفيج واحد جاهز للاستخدام.</p></div>
           <div class="feature-card"><div class="feat-icon">⏱️</div><h3 data-i18n="feat4_title">تسليم فوري</h3><p data-i18n="feat4_desc">بمجرد مشاهدة إعلان قصير، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.</p></div>
           <div class="feature-card"><div class="feat-icon">🎧</div><h3 data-i18n="feat5_title">دعم حقيقي</h3><p data-i18n="feat5_desc">فريق دعم متاح 24/7 لمساعدتك في إعداد الكونفيج خطوة بخطوة.</p></div>
@@ -304,8 +292,8 @@
         <div class="section-head"><h2 data-i18n="how_title">كيف تحصل عليه؟</h2><p data-i18n="how_sub">3 خطوات بسيطة تفصلك عن اتصال بلا قيود.</p></div>
         <div class="steps-grid">
           <div class="step-item"><div class="step-num">1</div><h3 data-i18n="how1_title">سجل دخولك</h3><p data-i18n="how1_desc">استخدم حساب جوجل أو الإيميل بضغطة واحدة.</p></div>
-          <div class="step-item"><div class="step-num">2</div><h3 data-i18n="how2_title">شاهد الإعلان</h3><p data-i18n="how2_desc">شاهد إعلاناً قصيراً لدعم استمرارية الخدمة المجانية.</p></div>
-          <div class="step-item"><div class="step-num">3</div><h3 data-i18n="how3_title">استلم الكونفيج</h3><p data-i18n="how3_desc">سيظهر لك الرابط مباشرة، انسخه واستورده في تطبيقك.</p></div>
+          <div class="step-item"><div class="step-num">2</div><h3 data-i18n="how2_title">اختر البروتوكول</h3><p data-i18n="how2_desc">حدد البروتوكول اللي يناسب جهازك (V2Ray, SSH, Trojan).</p></div>
+          <div class="step-item"><div class="step-num">3</div><h3 data-i18n="how3_title">شاهد الإعلان واستلم</h3><p data-i18n="how3_desc">شاهد إعلاناً قصيراً وسيظهر لك الرابط مباشرة.</p></div>
         </div>
       </div>
     </section>
@@ -320,9 +308,9 @@
             <h3 data-i18n="plan_free">الباقة المجانية</h3>
             <div class="price">0 <span data-i18n="egp">ج.م</span></div>
             <ul>
-              <li><i>✓</i> <span data-i18n="plan_free_gb">1 جيجا بايت</span></li>
-              <li><i>✓</i> <span data-i18n="plan_free_days">24 ساعة</span></li>
-              <li><i>✓</i> <span data-i18n="prot">بروتوكولات VLESS + VMess</span></li>
+              <li><i>✓</i> <span data-i18n="plan_free_gb">مساحة تصل لـ 20 جيجا (حسب المدة)</span></li>
+              <li><i>✓</i> <span data-i18n="plan_free_days">مدة تختارها بنفسك (3، 7، 10 أيام)</span></li>
+              <li><i>✓</i> <span data-i18n="prot">كل البروتوكولات (V2Ray, SSH, Trojan, WebSocket)</span></li>
               <li><i>✓</i> <span data-i18n="watch_ad">شاهد إعلان لفتح الباقة</span></li>
             </ul>
             <button class="btn btn-gold btn-block" style="padding: 20px; font-size: 20px;" onclick="openFreeModal()" data-i18n="get_free">🚀 احصل على كونفيجك المجاني الآن</button>
@@ -419,17 +407,38 @@
   </div>
 </div>
 
-<!-- 🟢 مودال الكونفيج المجاني (مش محتاج مودال دفع خلاص) 🟢 -->
+<!-- 🟢 مودال الكونفيج المجاني المطور (شاشة اختيار البروتوكول والمدة) 🟢 -->
 <div class="modal" id="freeModal">
   <div class="modal-backdrop" data-close></div>
   <div class="modal-panel" style="text-align: center;">
     <button class="modal-close" data-close>✕</button>
     <div style="font-size: 50px; margin-bottom: 15px;">🎁</div>
     <h3 id="freeTitle">احصل على كونفيج مجاني</h3>
-    <p class="sub" id="freeSub">شاهد إعلاناً قصيراً للحصول على 1 جيجا لمدة 24 ساعة</p>
     
+    <!-- شاشة اختيار البروتوكول والمدة -->
     <div id="freeStep1">
-        <button class="btn btn-gold btn-block" onclick="watchAdAndGenerate()" id="watchAdBtn">
+        <p class="sub" style="margin-bottom: 20px;">اختر البروتوكول والمدة اللي تناسبك</p>
+        
+        <div style="text-align: right; margin-bottom: 15px;">
+            <label style="display:block; font-size:14px; font-weight:700; margin-bottom:10px; color:#fff;" data-i18n="choose_protocol">1. اختر البروتوكول</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button class="btn btn-ghost protocol-btn" data-protocol="v2ray" onclick="selectProtocol(this)" style="border-color:var(--gold); color:var(--gold);">V2Ray (VLESS)</button>
+                <button class="btn btn-ghost protocol-btn" data-protocol="v2ray_ws" onclick="selectProtocol(this)">V2Ray (WS)</button>
+                <button class="btn btn-ghost protocol-btn" data-protocol="trojan" onclick="selectProtocol(this)">Trojan</button>
+                <button class="btn btn-ghost protocol-btn" data-protocol="ssh" onclick="selectProtocol(this)">SSH</button>
+            </div>
+        </div>
+
+        <div style="text-align: right; margin-bottom: 25px;">
+            <label style="display:block; font-size:14px; font-weight:700; margin-bottom:10px; color:#fff;" data-i18n="choose_duration">2. اختر المدة</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                <button class="btn btn-ghost duration-btn" data-days="3" onclick="selectDuration(this)">3 أيام</button>
+                <button class="btn btn-ghost duration-btn" data-days="7" onclick="selectDuration(this)">7 أيام</button>
+                <button class="btn btn-ghost duration-btn" data-days="10" onclick="selectDuration(this)">10 أيام</button>
+            </div>
+        </div>
+
+        <button class="btn btn-gold btn-block" onclick="watchAdAndGenerate()" id="watchAdBtn" style="padding: 16px; font-size: 16px;">
             👀 شاهد الإعلان واحصل على الكونفيج
         </button>
     </div>
@@ -478,23 +487,23 @@
       nav_home: "الرئيسية", nav_features: "المميزات", nav_pricing: "الباقة المجانية", nav_faq: "الأسئلة الشائعة",
       langBtn: "English", login: "تسجيل الدخول", 
       heroTitle: "اتصال <span class='grad'>فائق السرعة</span><br>مجاني 100% للجميع", 
-      heroSub: "سيرفرات V2Ray احترافية على بروتوكولات VLESS و VMess — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.", 
+      heroSub: "سيرفرات احترافية بكل البروتوكولات (V2Ray, SSH, Trojan, WebSocket) — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.", 
       heroBtn: "🎁 احصل على كونفيجك المجاني", 
       stat_users: "مستخدم نشط", stat_uptime: "وقت التشغيل", stat_free: "مجاني للجميع",
       feat_title: "لماذا تختارنا؟", feat_sub: "نقدم لك أفضل تجربة تصفح مجانية بأعلى معايير الأمان والسرعة.",
       feat1_title: "سرعة فائقة", feat1_desc: "سيرفرات بأحدث الأجهزة لضمان أعلى سرعة تحميل وتصفح بدون تقطيع.",
-      feat2_title: "تشفير قوي", feat2_desc: "حماية كاملة لبياناتك باستخدام بروتوكولات VLESS و VMess مع تشفير TLS.",
+      feat2_title: "تشفير قوي", feat2_desc: "حماية كاملة لبياناتك باستخدام بروتوكولات متعددة مع تشفير TLS.",
       feat3_title: "كل الأجهزة", feat3_desc: "يعمل على أندرويد، آيفون، ويندوز، وماك بكونفيج واحد جاهز للاستخدام.",
       feat4_title: "تسليم فوري", feat4_desc: "بمجرد مشاهدة إعلان قصير، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.",
       feat5_title: "دعم حقيقي", feat5_desc: "فريق دعم متاح 24/7 لمساعدتك في إعداد الكونفيج خطوة بخطوة.",
       feat6_title: "بدون تسجيل معقد", feat6_desc: "سجل دخول بجوجل أو الإيميل في ثوانٍ، واحصل على كونفيجك وابدأ فوراً.",
       how_title: "كيف تحصل عليه؟", how_sub: "3 خطوات بسيطة تفصلك عن اتصال بلا قيود.",
       how1_title: "سجل دخولك", how1_desc: "استخدم حساب جوجل أو الإيميل بضغطة واحدة.",
-      how2_title: "شاهد الإعلان", how2_desc: "شاهد إعلاناً قصيراً لدعم استمرارية الخدمة المجانية.",
-      how3_title: "استلم الكونفيج", how3_desc: "سيظهر لك الرابط مباشرة، انسخه واستورده في تطبيقك.",
+      how2_title: "اختر البروتوكول", how2_desc: "حدد البروتوكول اللي يناسب جهازك (V2Ray, SSH, Trojan).",
+      how3_title: "شاهد الإعلان واستلم", how3_desc: "شاهد إعلاناً قصيراً وسيظهر لك الرابط مباشرة.",
       plansTitle: "الباقة المجانية", plans_sub: "100% مجانية، مدعومة بالإعلانات لدعم استمرارية الخدمة.",
-      plan_free: "الباقة المجانية", plan_free_gb: "1 جيجا بايت", plan_free_days: "24 ساعة", watch_ad: "شاهد إعلان لفتح الباقة", get_free: "🚀 احصل على كونفيجك المجاني الآن",
-      egp: "ج.م", prot: "بروتوكولات VLESS + VMess",
+      plan_free: "الباقة المجانية", plan_free_gb: "مساحة تصل لـ 20 جيجا (حسب المدة)", plan_free_days: "مدة تختارها بنفسك (3، 7، 10 أيام)", watch_ad: "شاهد إعلان لفتح الباقة", get_free: "🚀 احصل على كونفيجك المجاني الآن",
+      egp: "ج.م", prot: "كل البروتوكولات (V2Ray, SSH, Trojan, WebSocket)",
       faq_title: "الأسئلة الشائعة",
       faq1_q: "هل الكونفيج يعمل على جميع الأجهزة؟", faq1_a: "نعم، الكونفيج متوافق مع تطبيقات V2Ray على أندرويد، آيفون، ويندوز، وماك.",
       faq2_q: "هل الخدمة مجانية بالكامل؟", faq2_a: "نعم، الخدمة مجانية 100%. نحن نعتمد على أرباح الإعلانات لتغطية تكاليف السيرفرات وتقديم الخدمة لك مجاناً.",
@@ -510,29 +519,30 @@
       setTitle: "إعدادات الحساب", setSub: "تحديث بياناتك الشخصية", setName: "الاسم (اسم المستخدم)",
       setSave: "حفظ التعديلات", uploadLabel: "📷 رفع صورة جديدة",
       myAccTitle: "اشتراكاتي", myAccVerify: "⚠️ إيميلك غير مُفعل. يرجى التحقق من بريدك.", myAccResend: "إعادة إرسال الرابط",
-      myAccCopy: "📋 نسخ الكونفيج", myAccClear: "مسح الكونفيج"
+      myAccCopy: "📋 نسخ الكونفيج", myAccClear: "مسح الكونفيج",
+      choose_protocol: "1. اختر البروتوكول", choose_duration: "2. اختر المدة"
     },
     en: {
       nav_home: "Home", nav_features: "Features", nav_pricing: "Free Plan", nav_faq: "FAQ",
       langBtn: "عربي", login: "Login", 
       heroTitle: "Blazing <span class='grad'>Fast Connection</span><br>100% Free for Everyone", 
-      heroSub: "Professional V2Ray servers on VLESS & VMess — High stability, maximum speed, and zero cost. Start for free.", 
+      heroSub: "Professional servers with all protocols (V2Ray, SSH, Trojan, WebSocket) — High stability, maximum speed, and zero cost. Start for free.", 
       heroBtn: "🎁 Get Your Free Config", 
       stat_users: "Active Users", stat_uptime: "Uptime", stat_free: "100% Free",
       feat_title: "Why Choose Us?", feat_sub: "We provide the best free browsing experience with top security and speed.",
       feat1_title: "Blazing Speed", feat1_desc: "Latest hardware to ensure maximum download and browsing speed without buffering.",
-      feat2_title: "Strong Encryption", feat2_desc: "Full protection of your data using VLESS & VMess with TLS encryption.",
+      feat2_title: "Strong Encryption", feat2_desc: "Full protection of your data using multiple protocols with TLS encryption.",
       feat3_title: "All Devices", feat3_desc: "Works on Android, iOS, Windows, and Mac with one ready-to-use config.",
       feat4_title: "Instant Delivery", feat4_desc: "Once you watch a short ad, the config appears on your screen instantly, ready to copy.",
       feat5_title: "Real Support", feat5_desc: "Support team available 24/7 to help you set up your config step-by-step.",
       feat6_title: "Easy Signup", feat6_desc: "Login with Google or Email in seconds, get your config, and start.",
       how_title: "How to Get it?", how_sub: "3 simple steps away from a limitless connection.",
       how1_title: "Login", how1_desc: "Use your Google or Email account with one click.",
-      how2_title: "Watch Ad", how2_desc: "Watch a short ad to support our free service.",
-      how3_title: "Get Config", how3_desc: "The link will appear instantly, copy and import it into your app.",
+      how2_title: "Choose Protocol", how2_desc: "Select the protocol that fits your device (V2Ray, SSH, Trojan).",
+      how3_title: "Watch Ad & Get it", how3_desc: "Watch a short ad and the link will appear instantly.",
       plansTitle: "Free Plan", plans_sub: "100% Free, ad-supported to keep the service running.",
-      plan_free: "Free Plan", plan_free_gb: "1 GB", plan_free_days: "24 Hours", watch_ad: "Watch Ad to unlock", get_free: "🚀 Get Your Free Config Now",
-      egp: "EGP", prot: "VLESS + VMess",
+      plan_free: "Free Plan", plan_free_gb: "Up to 20 GB (based on duration)", plan_free_days: "Choose your duration (3, 7, 10 days)", watch_ad: "Watch Ad to unlock", get_free: "🚀 Get Your Free Config Now",
+      egp: "EGP", prot: "All Protocols (V2Ray, SSH, Trojan, WebSocket)",
       faq_title: "Frequently Asked Questions",
       faq1_q: "Does the config work on all devices?", faq1_a: "Yes, the config is compatible with V2Ray apps on Android, iOS, Windows, and Mac.",
       faq2_q: "Is the service completely free?", faq2_a: "Yes, 100% free. We rely on ad revenue to cover server costs and provide this service to you for free.",
@@ -548,7 +558,8 @@
       setTitle: "Account Settings", setSub: "Update your profile information", setName: "Display Name",
       setSave: "Save Changes", uploadLabel: "📷 Upload New Picture",
       myAccTitle: "My Subscriptions", myAccVerify: "⚠️ Email not verified. Please check your inbox.", myAccResend: "Resend Link",
-      myAccCopy: "📋 Copy Config", myAccClear: "Clear Config"
+      myAccCopy: "📋 Copy Config", myAccClear: "Clear Config",
+      choose_protocol: "1. Choose Protocol", choose_duration: "2. Choose Duration"
     }
   };
 
@@ -556,6 +567,10 @@
   let currentUser = null;
   let isSignupMode = false;
   let newAvatarBase64 = null;
+  
+  // 🟢 متغيرات اختيار البروتوكول والمدة
+  let selectedProtocol = 'v2ray';
+  let selectedDuration = 3;
   
   let freeTimerInterval = null;
   let isGeneratingFree = false;
@@ -591,10 +606,12 @@
     document.getElementById('myAccResend').textContent = translations[currentLang].myAccResend;
     
     document.getElementById('freeTitle').textContent = translations[currentLang].plan_free;
-    document.getElementById('freeSub').textContent = translations[currentLang].watch_ad;
-    document.getElementById('watchAdBtn').textContent = "👀 " + translations[currentLang].watch_ad;
     document.getElementById('freeLoadTxt').textContent = currentLang === 'ar' ? 'جاري تجهيز الكونفيج...' : 'Generating Config...';
     document.getElementById('freeSuccessTitle').textContent = currentLang === 'ar' ? '✓ تم بنجاح!' : '✓ Success!';
+    
+    // ترجمة خيارات البروتوكول والمدة
+    document.querySelector('label[data-i18n="choose_protocol"]').textContent = translations[currentLang].choose_protocol;
+    document.querySelector('label[data-i18n="choose_duration"]').textContent = translations[currentLang].choose_duration;
   }
 
   window.toggleLanguage = function() {
@@ -765,7 +782,28 @@
     }
   }
 
-  // 🟢 دوال الكونفيج المجاني (مع العداد التنازلي والحماية من التكرار)
+  // 🟢 دوال اختيار البروتوكول والمدة
+  window.selectProtocol = function(btn) {
+    document.querySelectorAll('.protocol-btn').forEach(b => {
+        b.style.borderColor = 'var(--border)';
+        b.style.color = 'var(--text)';
+    });
+    btn.style.borderColor = 'var(--gold)';
+    btn.style.color = 'var(--gold)';
+    selectedProtocol = btn.dataset.protocol;
+  }
+
+  window.selectDuration = function(btn) {
+    document.querySelectorAll('.duration-btn').forEach(b => {
+        b.style.borderColor = 'var(--border)';
+        b.style.color = 'var(--text)';
+    });
+    btn.style.borderColor = 'var(--gold)';
+    btn.style.color = 'var(--gold)';
+    selectedDuration = btn.dataset.days;
+  }
+
+  // 🟢 دوال الكونفيج المجاني
   window.openFreeModal = function() {
     if(!currentUser) {
         showAlert('تسجيل الدخول مطلوب', 'يجب تسجيل الدخول للحصول على الكونفيج المجاني.', 'error');
@@ -814,10 +852,16 @@
             clearInterval(freeTimerInterval);
             timerText.innerHTML = currentLang === 'ar' ? 'جاري تجهيز الكونفيج...' : 'Generating Config...';
 
-            fetch('/api/create-free-order', {
+            // 🟢 نرسل البروتوكول والمدة المختارة
+            fetch('/api/create-custom-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: currentUser.displayName || 'User', email: currentUser.email })
+                body: JSON.stringify({ 
+                    name: currentUser.displayName || 'User', 
+                    email: currentUser.email,
+                    protocol: selectedProtocol,
+                    durationDays: selectedDuration
+                })
             })
             .then(res => res.json())
             .then(result => {
@@ -952,11 +996,8 @@
   }));
 
   applyLanguage();
-  // Fallback for old variables if they exist in the DOM
-  if(document.getElementById('numGb')) document.getElementById('numGb').addEventListener('input', () => {}); 
 </script>
 
-<!-- 🟢 كود إعلانات Advertica Social Bar 🟢 -->
 <script data-cfasync="false" src="https://bauval.org/14/1f69a2cd2e8703075a82eda209a42d0f"></script>
 
 </body>
