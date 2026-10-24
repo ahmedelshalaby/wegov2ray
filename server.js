@@ -15,6 +15,29 @@ const TOKEN = process.env.NEXORA_TOKEN;
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'wego123456';
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
+// 🟢 دالة إرسال إشعار التليجرام
+async function sendTelegramNotification(message) {
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    
+    if (!botToken || !chatId) {
+        console.log("⚠️ Telegram bot not configured.");
+        return;
+    }
+
+    try {
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        await axios.post(url, {
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'HTML'
+        });
+        console.log("✅ Telegram notification sent.");
+    } catch (error) {
+        console.error("❌ Failed to send Telegram message:", error.message);
+    }
+}
+
 // 1. مسار إنشاء الأوردر
 app.post('/api/create-order', async (req, res) => {
     const { name, email, volumeGB, durationDays } = req.body;
@@ -55,13 +78,18 @@ app.post('/api/create-order', async (req, res) => {
                 lines.forEach(line => { if (line.startsWith('vless://')) vlessLink = line.trim(); });
             } catch (err) {}
         }
+
+        // 🟢 إرسال إشعار التليجرام بعد نجاح العملية
+        const tgMessage = `🛒 <b>أوردر جديد تم بنجاح!</b>\n\n👤 <b>الاسم:</b> ${name}\n📧 <b>الإيميل:</b> ${email}\n📦 <b>المساحة:</b> ${volumeGB === 0 ? 'غير محدود' : volumeGB + ' GB'}\n⏱️ <b>المدة:</b> ${durationDays} يوم\n\n✅ <b>تم إنشاء الكونفيج تلقائياً.</b>`;
+        await sendTelegramNotification(tgMessage);
+
         res.json({ success: true, data: { vless: vlessLink } });
     } catch (error) {
         res.status(500).json({ success: false, message: 'حدث خطأ في لوحة التحكم' });
     }
 });
 
-// 🟢 2. مسار جلب اشتراكات المستخدم (تم تحويله لـ POST لحل مشكلة Vercel)
+// 2. مسار جلب اشتراكات المستخدم
 app.post('/api/my-orders', async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, message: 'إيميل غير صحيح' });
