@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WEGOV2Ray</title>
+<title>WEGOV2Ray - اتصال مجاني بلا حدود</title>
 
 <!-- 🟢 أيقونة الموقع الجديدة (Favicon) 🟢 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cdefs%3E%3ClinearGradient id='goldGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffdf7a'/%3E%3Cstop offset='50%25' stop-color='%23f5c542'/%3E%3Cstop offset='100%25' stop-color='%23c98f00'/%3E%3C/linearGradient%3E%3ClinearGradient id='darkGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2312141d'/%3E%3Cstop offset='100%25' stop-color='%2305060a'/%3E%3C/linearGradient%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23f5c542' stop-opacity='0.15'/%3E%3Cstop offset='100%25' stop-color='%23f5c542' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='500' height='500' rx='100' fill='url(%23darkGrad)'/%3E%3Ccircle cx='250' cy='250' r='200' fill='url(%23glow)'/%3E%3Crect x='30' y='30' width='440' height='440' rx='80' fill='none' stroke='url(%23goldGrad)' stroke-width='8' opacity='0.8'/%3E%3Cpath d='M250 90 L380 150 L380 280 C380 370 250 420 250 420 C250 420 120 370 120 280 L120 150 Z' fill='none' stroke='url(%23goldGrad)' stroke-width='6' opacity='0.4'/%3E%3Cpath d='M140 180 L190 320 L250 220 L310 320 L360 180' fill='none' stroke='url(%23goldGrad)' stroke-width='22' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M250 110 L220 180 L260 180 L230 250 L280 160 L240 160 Z' fill='url(%23goldGrad)' opacity='0.9'/%3E%3C/svg%3E">
 
-<!-- أكواد التحقق -->
 <meta name="monetag" content="b693e4810151223c1f6cada2d8b03eb6">
 <meta name="verified-code" content="d2e9343d-f693-4995-8f0d-dc4984be3079">
 
@@ -42,16 +41,13 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* NAV */
   .nav{position:fixed;top:0;inset-inline:0;z-index:100;padding:16px 0;transition:.4s; background: rgba(5,6,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);}
   .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
   
-  /* 🟢 تحديث شكل اللوجو عشان يستقبل الصورة الجديدة 🟢 */
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px; cursor:pointer;}
   .logo-mark{width:45px; height:45px; display:flex; align-items:center; justify-content:center; transition:.4s;}
   .logo:hover .logo-mark{transform:scale(1.1) rotate(5deg);}
   .logo-mark svg { width: 100%; height: 100%; }
-  
   .logo b{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;color:transparent}
   
   .nav-links{display:flex;gap:20px; align-items:center;}
@@ -71,7 +67,7 @@
   .menu-toggle { font-size: 24px; color: #fff; cursor: pointer; display: none; transition: .3s; padding: 5px; }
   .menu-toggle:hover { color: var(--gold); }
 
-  .hero{position:relative;min-height:90vh;display:flex;align-items:center;padding:160px 24px 80px;text-align:center; background: radial-gradient(circle at top right, rgba(124,58,237,.15), transparent 40%), radial-gradient(circle at bottom left, rgba(245,197,66,.1), transparent 40%);}
+  .hero{position:relative;min-height:85vh;display:flex;align-items:center;padding:160px 24px 80px;text-align:center; background: radial-gradient(circle at top right, rgba(124,58,237,.15), transparent 40%), radial-gradient(circle at bottom left, rgba(245,197,66,.1), transparent 40%);}
   .hero-inner{position:relative;max-width:900px;margin:0 auto;z-index:2}
   .hero h1{font-size:clamp(34px,6vw,68px);font-weight:900;line-height:1.15;margin-bottom:22px;}
   .grad{background:linear-gradient(120deg,#f5c542,#ffdf7a,#f5c542);-webkit-background-clip:text;color:transparent;}
@@ -100,17 +96,16 @@
   .step-item h3{font-size:18px; margin-bottom:10px;}
   .step-item p{font-size:14px; color:var(--muted);}
 
-  .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;align-items:stretch;}
-  .plan{position:relative;padding: 40px 25px; border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid var(--border);display:flex;flex-direction:column;transition:.4s;}
-  .plan:hover{transform:translateY(-8px);border-color:rgba(255,255,255,.18)}
-  .plan.popular{border:1px solid rgba(245,197,66,.5);background:linear-gradient(180deg,rgba(245,197,66,.08),rgba(245,197,66,.02));}
-  .pop-badge{position:absolute;top:-14px;right:30px;padding:6px 16px;border-radius:100px;background:linear-gradient(135deg,var(--gold),#e0a800);color:#0a0a0a;font-size:12px;font-weight:900;}
-  .plan-name{font-size:15px;font-weight:800;color:var(--muted);letter-spacing:1px;margin-bottom:15px}
-  .plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:25px} 
-  .plan-price b{font-size:45px;font-weight:900;}
-  .plan-price span{color:var(--muted);font-size:15px;}
-  .plan-list{list-style:none;margin:0 0 30px 0;flex:1;} 
-  .plan-list li{display:flex;align-items:center;gap:12px;padding:14px 0;font-size:15px;color:#c9cbd6;border-bottom:1px solid rgba(255,255,255,.05);} 
+  /* 🟢 تصميم كارت الباقة المجانية الجديد 🟢 */
+  .free-plan-wrapper { max-width: 600px; margin: 0 auto; }
+  .free-plan-card { position: relative; padding: 50px 40px; border-radius: var(--r-lg); border: 2px solid rgba(52,211,153,.6); background: linear-gradient(180deg, rgba(52,211,153,.1), rgba(52,211,153,.02)); box-shadow: 0 20px 80px -20px rgba(52,211,153,.3); text-align: center; }
+  .free-plan-badge { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); padding: 8px 24px; border-radius: 100px; background: var(--green); color: #000; font-size: 14px; font-weight: 900; box-shadow: 0 10px 20px -5px rgba(52,211,153,.5); }
+  .free-plan-card h3 { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+  .free-plan-card .price { font-size: 60px; font-weight: 900; color: var(--green); margin-bottom: 20px; line-height: 1; }
+  .free-plan-card .price span { font-size: 24px; color: var(--muted); }
+  .free-plan-card ul { list-style: none; margin-bottom: 30px; text-align: right; display: inline-block; }
+  .free-plan-card ul li { font-size: 16px; margin-bottom: 15px; color: #c9cbd6; display: flex; align-items: center; gap: 10px; }
+  .free-plan-card ul li i { color: var(--green); font-style: normal; font-size: 18px; }
 
   .faq-list{max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;}
   .faq-item{background:var(--card); border:1px solid var(--border); border-radius: 16px; overflow: hidden;}
@@ -167,18 +162,6 @@
   .field input{width:100%;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none; transition:.3s;}
   .field input:focus{border-color:var(--gold);}
 
-  .selector-group{margin-bottom:20px;}
-  .selector-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-  .selector-header label{font-size:14px;font-weight:700;color:#fff;}
-  .input-wrapper{display:flex; align-items:center; gap:5px; background:rgba(245,197,66,.1); border:1px solid rgba(245,197,66,.3); padding:4px 10px; border-radius:8px;}
-  .input-wrapper input{width:65px; background:transparent; border:none; color:var(--gold); font-size:16px; font-weight:900; font-family:inherit; text-align:center; outline:none;}
-  .input-wrapper input::-webkit-outer-spin-button, .input-wrapper input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
-  .input-wrapper span{font-size:12px; color:var(--muted); font-weight:700;}
-  
-  input[type=range]{width:100%;-webkit-appearance:none;background:transparent; margin-top:5px;}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:20px;width:20px;border-radius:50%;background:var(--gold);cursor:pointer;margin-top:-8px;box-shadow:0 0 10px rgba(245,197,66,.5);}
-  input[type=range]::-webkit-slider-runnable-track{width:100%;height:4px;cursor:pointer;background:rgba(255,255,255,.1);border-radius:2px;}
-
   .avatar-upload-wrapper { text-align: center; margin-bottom: 20px; }
   .avatar-preview { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; margin-bottom: 10px; background: #000; }
   .custom-file-upload { display: inline-block; padding: 8px 16px; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--gold); transition: .3s; }
@@ -221,8 +204,7 @@
     .stat-item h4 { font-size: 24px; }
     section { padding: 60px 15px; }
     .section-head h2 { font-size: 28px; }
-    .features-grid, .pricing-grid { grid-template-columns: 1fr; }
-    .plan { padding: 30px 20px; }
+    .free-plan-card { padding: 30px 20px; }
     .modal-panel { padding: 24px 20px; width: 95%; margin: auto; }
     .order-name { padding-left: 60px; font-size: 14px; }
     html[dir="ltr"] .order-name { padding-right: 60px; padding-left: 0; }
@@ -240,7 +222,6 @@
     <header class="nav" id="nav">
       <div class="nav-inner">
         
-        <!-- 🟢 اللوجو الجديد هنا 🟢 -->
         <div class="logo" onclick="scrollToSection('home')">
           <span class="logo-mark">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
@@ -273,7 +254,7 @@
         <nav class="nav-links" id="navLinks">
           <span onclick="scrollToSection('home')" data-i18n="nav_home">الرئيسية</span>
           <span onclick="scrollToSection('features')" data-i18n="nav_features">المميزات</span>
-          <span onclick="scrollToSection('pricing')" data-i18n="nav_pricing">الباقات</span>
+          <span onclick="scrollToSection('pricing')" data-i18n="nav_pricing">الباقة المجانية</span>
           <span onclick="scrollToSection('faq')" data-i18n="nav_faq">الأسئلة الشائعة</span>
         </nav>
 
@@ -289,14 +270,14 @@
 
     <section id="home" class="hero">
       <div class="hero-inner">
-        <h1 data-i18n="heroTitle">اتصال <span class="grad">فائق السرعة</span><br>بلا رقابة وبلا حدود</h1>
-        <p data-i18n="heroSub">سيرفرات V2Ray احترافية على بروتوكولات VLESS و VMess — استقر عالي، سرعة قصوى، وتشغيل بدون إعدادات معقدة.</p>
-        <button class="btn btn-gold" style="padding:16px 40px; font-size:18px;" onclick="scrollToSection('pricing')" data-i18n="heroBtn">🚀 ابدأ الآن</button>
+        <h1 data-i18n="heroTitle">اتصال <span class="grad">فائق السرعة</span><br>مجاني 100% للجميع</h1>
+        <p data-i18n="heroSub">سيرفرات V2Ray احترافية على بروتوكولات VLESS و VMess — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.</p>
+        <button class="btn btn-gold" style="padding:16px 40px; font-size:18px;" onclick="scrollToSection('pricing')" data-i18n="heroBtn">🎁 احصل على كونفيجك المجاني</button>
         
         <div class="stats-grid">
-          <div class="stat-item"><h4>12K+</h4><p data-i18n="stat_users">عميل نشط</p></div>
+          <div class="stat-item"><h4>25K+</h4><p data-i18n="stat_users">مستخدم نشط</p></div>
           <div class="stat-item"><h4>99%</h4><p data-i18n="stat_uptime">وقت التشغيل</p></div>
-          <div class="stat-item"><h4>24/7</h4><p data-i18n="stat_support">دعم فني</p></div>
+          <div class="stat-item"><h4>100%</h4><p data-i18n="stat_free">مجاني للجميع</p></div>
         </div>
       </div>
     </section>
@@ -305,76 +286,49 @@
       <div class="container">
         <div class="section-head">
           <h2 data-i18n="feat_title">لماذا تختارنا؟</h2>
-          <p data-i18n="feat_sub">نقدم لك أفضل تجربة تصفح بأعلى معايير الأمان والسرعة.</p>
+          <p data-i18n="feat_sub">نقدم لك أفضل تجربة تصفح مجانية بأعلى معايير الأمان والسرعة.</p>
         </div>
         <div class="features-grid">
           <div class="feature-card"><div class="feat-icon">⚡</div><h3 data-i18n="feat1_title">سرعة فائقة</h3><p data-i18n="feat1_desc">سيرفرات بأحدث الأجهزة لضمان أعلى سرعة تحميل وتصفح بدون تقطيع.</p></div>
           <div class="feature-card"><div class="feat-icon">🛡️</div><h3 data-i18n="feat2_title">تشفير قوي</h3><p data-i18n="feat2_desc">حماية كاملة لبياناتك باستخدام بروتوكولات VLESS و VMess مع تشفير TLS.</p></div>
           <div class="feature-card"><div class="feat-icon">📱</div><h3 data-i18n="feat3_title">كل الأجهزة</h3><p data-i18n="feat3_desc">يعمل على أندرويد، آيفون، ويندوز، وماك بكونفيج واحد جاهز للاستخدام.</p></div>
-          <div class="feature-card"><div class="feat-icon">⏱️</div><h3 data-i18n="feat4_title">تسليم فوري</h3><p data-i18n="feat4_desc">بمجرد الدفع، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.</p></div>
+          <div class="feature-card"><div class="feat-icon">⏱️</div><h3 data-i18n="feat4_title">تسليم فوري</h3><p data-i18n="feat4_desc">بمجرد مشاهدة إعلان قصير، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.</p></div>
           <div class="feature-card"><div class="feat-icon">🎧</div><h3 data-i18n="feat5_title">دعم حقيقي</h3><p data-i18n="feat5_desc">فريق دعم متاح 24/7 لمساعدتك في إعداد الكونفيج خطوة بخطوة.</p></div>
-          <div class="feature-card"><div class="feat-icon">💎</div><h3 data-i18n="feat6_title">بدون تسجيل معقد</h3><p data-i18n="feat6_desc">سجل دخول بجوجل أو الإيميل في ثوانٍ، واختر باقتك وابدأ فوراً.</p></div>
+          <div class="feature-card"><div class="feat-icon">💎</div><h3 data-i18n="feat6_title">بدون تسجيل معقد</h3><p data-i18n="feat6_desc">سجل دخول بجوجل أو الإيميل في ثوانٍ، واحصل على كونفيجك وابدأ فوراً.</p></div>
         </div>
       </div>
     </section>
 
     <section id="how">
       <div class="container">
-        <div class="section-head"><h2 data-i18n="how_title">كيف تشتري؟</h2><p data-i18n="how_sub">4 خطوات بسيطة تفصلك عن اتصال بلا قيود.</p></div>
+        <div class="section-head"><h2 data-i18n="how_title">كيف تحصل عليه؟</h2><p data-i18n="how_sub">3 خطوات بسيطة تفصلك عن اتصال بلا قيود.</p></div>
         <div class="steps-grid">
-          <div class="step-item"><div class="step-num">1</div><h3 data-i18n="how1_title">اختر الباقة</h3><p data-i18n="how1_desc">تصفح الباقات واختر ما يناسبك (مساحة ومدة).</p></div>
-          <div class="step-item"><div class="step-num">2</div><h3 data-i18n="how2_title">ادفع بأمان</h3><p data-i18n="how2_desc">حول المبلغ عبر فودافون كاش أو إنستاباي.</p></div>
-          <div class="step-item"><div class="step-num">3</div><h3 data-i18n="how3_title">استلم الكونفيج</h3><p data-i18n="how3_desc">سيظهر لك الرابط مباشرة، انسخه بضغطة واحدة.</p></div>
-          <div class="step-item"><div class="step-num">4</div><h3 data-i18n="how4_title">اتصل</h3><p data-i18n="how4_desc">استورد الكونفيج في تطبيقك المفضل وابدأ التصفح.</p></div>
+          <div class="step-item"><div class="step-num">1</div><h3 data-i18n="how1_title">سجل دخولك</h3><p data-i18n="how1_desc">استخدم حساب جوجل أو الإيميل بضغطة واحدة.</p></div>
+          <div class="step-item"><div class="step-num">2</div><h3 data-i18n="how2_title">شاهد الإعلان</h3><p data-i18n="how2_desc">شاهد إعلاناً قصيراً لدعم استمرارية الخدمة المجانية.</p></div>
+          <div class="step-item"><div class="step-num">3</div><h3 data-i18n="how3_title">استلم الكونفيج</h3><p data-i18n="how3_desc">سيظهر لك الرابط مباشرة، انسخه واستورده في تطبيقك.</p></div>
         </div>
       </div>
     </section>
 
     <section id="pricing" style="background:var(--bg2);">
       <div class="container">
-        <div class="section-head"><h2 data-i18n="plansTitle">اختر باقتك</h2><p data-i18n="plans_sub">أسعار تنافسية وبدون رسوم خفية.</p></div>
-        <div class="pricing-grid">
-          
-          <!-- كارت الكونفيج المجاني -->
-          <div class="plan" style="border: 1px solid rgba(52,211,153,.5); background: linear-gradient(180deg, rgba(52,211,153,.05), transparent);">
-            <div class="pop-badge" style="background: var(--green); color: #000;">🎁 Free Trial</div>
-            <div class="plan-name" data-i18n="plan_free">FREE (24 Hours)</div>
-            <div class="plan-price"><b>0</b><span data-i18n="egp">EGP</span></div>
-            <ul class="plan-list">
-              <li>✓ <span data-i18n="plan_free_gb">1 GB</span></li>
-              <li>✓ <span data-i18n="plan_free_days">24 Hours</span></li>
-              <li>✓ <span data-i18n="prot">VLESS + VMess</span></li>
-              <li>✓ <span data-i18n="watch_ad">Watch Ad to unlock</span></li>
+        <div class="section-head"><h2 data-i18n="plansTitle">الباقة المجانية</h2><p data-i18n="plans_sub">100% مجانية، مدعومة بالإعلانات لدعم استمرارية الخدمة.</p></div>
+        
+        <div class="free-plan-wrapper">
+          <div class="free-plan-card">
+            <div class="free-plan-badge">🎁 عرض مجاني</div>
+            <h3 data-i18n="plan_free">الباقة المجانية</h3>
+            <div class="price">0 <span data-i18n="egp">ج.م</span></div>
+            <ul>
+              <li><i>✓</i> <span data-i18n="plan_free_gb">1 جيجا بايت</span></li>
+              <li><i>✓</i> <span data-i18n="plan_free_days">24 ساعة</span></li>
+              <li><i>✓</i> <span data-i18n="prot">بروتوكولات VLESS + VMess</span></li>
+              <li><i>✓</i> <span data-i18n="watch_ad">شاهد إعلان لفتح الباقة</span></li>
             </ul>
-            <button class="btn btn-ghost btn-block" onclick="openFreeModal()" data-i18n="get_free">Get Free Config</button>
-          </div>
-
-          <div class="plan">
-            <div class="plan-name" data-i18n="plan_trial">TRIAL (5 Days)</div>
-            <div class="plan-price"><b>15</b><span data-i18n="egp">EGP</span></div>
-            <ul class="plan-list"><li>✓ <span data-i18n="plan_trial_gb">30 GB</span></li><li>✓ <span data-i18n="plan_trial_days">5 Days</span></li><li>✓ <span data-i18n="prot">VLESS + VMess</span></li></ul>
-            <button class="btn btn-ghost btn-block" onclick="checkAuthAndOrder(30, 5)" data-i18n="buy_now">Buy Now</button>
-          </div>
-          <div class="plan">
-            <div class="plan-name" data-i18n="plan_basic">BASIC (10 Days)</div>
-            <div class="plan-price"><b>25</b><span data-i18n="egp">EGP</span></div>
-            <ul class="plan-list"><li>✓ <span data-i18n="plan_basic_gb">60 GB</span></li><li>✓ <span data-i18n="plan_basic_days">10 Days</span></li><li>✓ <span data-i18n="prot">VLESS + VMess</span></li></ul>
-            <button class="btn btn-ghost btn-block" onclick="checkAuthAndOrder(60, 10)" data-i18n="buy_now">Buy Now</button>
-          </div>
-          <div class="plan">
-            <div class="plan-name" data-i18n="plan_std">STANDARD (15 Days)</div>
-            <div class="plan-price"><b>35</b><span data-i18n="egp">EGP</span></div>
-            <ul class="plan-list"><li>✓ <span data-i18n="plan_std_gb">120 GB</span></li><li>✓ <span data-i18n="plan_std_days">15 Days</span></li><li>✓ <span data-i18n="prot">VLESS + VMess</span></li></ul>
-            <button class="btn btn-ghost btn-block" onclick="checkAuthAndOrder(120, 15)" data-i18n="buy_now">Buy Now</button>
-          </div>
-          <div class="plan popular">
-            <div class="pop-badge" data-i18n="most_flex">⭐ Most Flexible</div>
-            <div class="plan-name" data-i18n="plan_custom">CUSTOM</div>
-            <div class="plan-price"><b style="font-size: 26px; color: var(--gold);" data-i18n="choose">Choose</b></div>
-            <ul class="plan-list"><li>✓ <span data-i18n="up_to_1tb">Up to 1 TB</span></li><li>✓ <span data-i18n="up_to_30d">Up to 30 Days</span></li><li>✓ <span data-i18n="full_control">Full Price Control</span></li></ul>
-            <button class="btn btn-gold btn-block" onclick="checkAuthAndOrder(0, 0, true)" data-i18n="customize_now">Customize Now</button>
+            <button class="btn btn-gold btn-block" style="padding: 20px; font-size: 20px;" onclick="openFreeModal()" data-i18n="get_free">🚀 احصل على كونفيجك المجاني الآن</button>
           </div>
         </div>
+        
       </div>
     </section>
 
@@ -383,15 +337,15 @@
         <div class="section-head"><h2 data-i18n="faq_title">الأسئلة الشائعة</h2></div>
         <div class="faq-list">
           <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq1_q">هل الكونفيج يعمل على جميع الأجهزة؟</div><div class="faq-a" data-i18n="faq1_a">نعم، الكونفيج متوافق مع تطبيقات V2Ray على أندرويد، آيفون، ويندوز، وماك.</div></div>
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq2_q">ماذا يحدث إذا انتهت مدة الاشتراك؟</div><div class="faq-a" data-i18n="faq2_a">سيتوقف الاتصال تلقائياً. يمكنك شراء باقة جديدة في أي وقت واستلام كونفيج جديد.</div></div>
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq3_q">كيف أقوم بالدفع؟</div><div class="faq-a" data-i18n="faq3_a">ندعم الدفع عبر فودافون كاش، اتصالات كاش، وإنستاباي. بعد التحويل تضغط على 'تم الدفع'.</div></div>
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq4_q">هل هناك ضمان لاسترداد الأموال؟</div><div class="faq-a" data-i18n="faq4_a">نعم، إذا واجهت أي مشكلة تقنية خلال أول 24 ساعة ولم نتمكن من حلها، سنعيد لك أموالك.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq2_q">هل الخدمة مجانية بالكامل؟</div><div class="faq-a" data-i18n="faq2_a">نعم، الخدمة مجانية 100%. نحن نعتمد على أرباح الإعلانات لتغطية تكاليف السيرفرات وتقديم الخدمة لك مجاناً.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq3_q">لماذا يجب أن أشاهد إعلاناً؟</div><div class="faq-a" data-i18n="faq3_a">مشاهدة الإعلان القصير (حوالي دقيقة) هي الطريقة الوحيدة التي تدعمنا بها للحفاظ على السيرفرات تعمل وتقديم الكونفيج لك مجاناً.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq4_q">ماذا يحدث إذا انتهت مدة الاشتراك؟</div><div class="faq-a" data-i18n="faq4_a">سيتوقف الاتصال تلقائياً. يمكنك الحصول على كونفيج مجاني جديد في أي وقت باتباع نفس الخطوات.</div></div>
         </div>
       </div>
     </section>
 
     <footer>
-      <p data-i18n="footer_txt">© 2025 WEGO V2Ray. جميع الحقوق محفوظة.</p>
+      <p data-i18n="footer_txt">© 2025 WEGO V2Ray. خدمة مجانية 100% مدعومة بالإعلانات.</p>
     </footer>
 </div>
 
@@ -465,57 +419,7 @@
   </div>
 </div>
 
-<div class="modal" id="orderModal">
-  <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel">
-    <button class="modal-close" data-close>✕</button>
-    <div class="step active" data-step="1">
-      <h3 id="modalTitle">Confirm Plan</h3>
-      <p class="sub" id="modalSub">Review your plan details</p>
-      <div id="customSection" style="display:none;">
-        <div class="selector-group">
-          <div class="selector-header">
-            <label id="lblData">Data (GB)</label>
-            <div class="input-wrapper">
-              <input type="number" id="numGb" min="1" max="1024" value="10" oninput="handleInput('gb')">
-              <span>GB</span>
-            </div>
-          </div>
-          <input type="range" id="rangeGb" min="1" max="1024" value="10" oninput="handleSlider('gb')">
-        </div>
-        <div class="selector-group">
-          <div class="selector-header">
-            <label id="lblDuration">Duration (Days)</label>
-            <div class="input-wrapper">
-              <input type="number" id="numDays" min="1" max="30" value="10" oninput="handleInput('days')">
-              <span id="unitDays">Days</span>
-            </div>
-          </div>
-          <input type="range" id="rangeDays" min="1" max="30" value="10" oninput="handleSlider('days')">
-        </div>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:15px;border-radius:12px;background:rgba(245,197,66,.1);margin-bottom:20px; margin-top:20px;">
-        <span id="lblTotal">Total:</span><b id="totalPrice" style="color:var(--gold);">15 EGP</b>
-      </div>
-      <button class="btn btn-gold btn-block" onclick="goToPaymentStep()" id="btnProceed">Proceed to Payment</button>
-    </div>
-    <div class="step" data-step="2">
-      <h3 id="payTitle">Payment Method</h3>
-      <p class="sub" id="paySub">Transfer <b id="payAmount" style="color:var(--gold)">15</b> EGP to: <br><span style="color:var(--gold); font-size:18px;">01012345678</span></p>
-      <button class="btn btn-gold btn-block" onclick="submitOrder()" style="margin-top:20px;" id="btnPaid">I Have Paid ✅</button>
-    </div>
-    <div class="step" data-step="3">
-      <div class="loading-wrap" id="loadingWrap"><div class="spinner"></div><p id="loadTxt">Generating Config...</p></div>
-      <div id="configResult" style="display:none">
-        <h3 style="color:var(--green); text-align:center; margin-bottom:20px;" id="successTitle">✓ Success!</h3>
-        <div class="config-box" id="configBox" style="display:block;"></div>
-        <button class="copy-btn" onclick="copyToClipboard('configBox')" id="btnCopyConfig"><span>📋</span> Copy Config</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 🟢 مودال الكونفيج المجاني -->
+<!-- 🟢 مودال الكونفيج المجاني (مش محتاج مودال دفع خلاص) 🟢 -->
 <div class="modal" id="freeModal">
   <div class="modal-backdrop" data-close></div>
   <div class="modal-panel" style="text-align: center;">
@@ -571,38 +475,32 @@
 
   const translations = {
     ar: {
-      nav_home: "الرئيسية", nav_features: "المميزات", nav_pricing: "الباقات", nav_faq: "الأسئلة الشائعة",
+      nav_home: "الرئيسية", nav_features: "المميزات", nav_pricing: "الباقة المجانية", nav_faq: "الأسئلة الشائعة",
       langBtn: "English", login: "تسجيل الدخول", 
-      heroTitle: "اتصال <span class='grad'>فائق السرعة</span><br>بلا رقابة وبلا حدود", 
-      heroSub: "سيرفرات V2Ray احترافية على بروتوكولات VLESS و VMess — استقر عالي، سرعة قصوى، وتشغيل بدون إعدادات معقدة.", 
-      heroBtn: "🚀 ابدأ الآن", 
-      stat_users: "عميل نشط", stat_uptime: "وقت التشغيل", stat_support: "دعم فني",
-      feat_title: "لماذا تختارنا؟", feat_sub: "نقدم لك أفضل تجربة تصفح بأعلى معايير الأمان والسرعة.",
+      heroTitle: "اتصال <span class='grad'>فائق السرعة</span><br>مجاني 100% للجميع", 
+      heroSub: "سيرفرات V2Ray احترافية على بروتوكولات VLESS و VMess — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.", 
+      heroBtn: "🎁 احصل على كونفيجك المجاني", 
+      stat_users: "مستخدم نشط", stat_uptime: "وقت التشغيل", stat_free: "مجاني للجميع",
+      feat_title: "لماذا تختارنا؟", feat_sub: "نقدم لك أفضل تجربة تصفح مجانية بأعلى معايير الأمان والسرعة.",
       feat1_title: "سرعة فائقة", feat1_desc: "سيرفرات بأحدث الأجهزة لضمان أعلى سرعة تحميل وتصفح بدون تقطيع.",
       feat2_title: "تشفير قوي", feat2_desc: "حماية كاملة لبياناتك باستخدام بروتوكولات VLESS و VMess مع تشفير TLS.",
       feat3_title: "كل الأجهزة", feat3_desc: "يعمل على أندرويد، آيفون، ويندوز، وماك بكونفيج واحد جاهز للاستخدام.",
-      feat4_title: "تسليم فوري", feat4_desc: "بمجرد الدفع، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.",
+      feat4_title: "تسليم فوري", feat4_desc: "بمجرد مشاهدة إعلان قصير، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.",
       feat5_title: "دعم حقيقي", feat5_desc: "فريق دعم متاح 24/7 لمساعدتك في إعداد الكونفيج خطوة بخطوة.",
-      feat6_title: "بدون تسجيل معقد", feat6_desc: "سجل دخول بجوجل أو الإيميل في ثوانٍ، واختر باقتك وابدأ فوراً.",
-      how_title: "كيف تشتري؟", how_sub: "4 خطوات بسيطة تفصلك عن اتصال بلا قيود.",
-      how1_title: "اختر الباقة", how1_desc: "تصفح الباقات واختر ما يناسبك (مساحة ومدة).",
-      how2_title: "ادفع بأمان", how2_desc: "حول المبلغ عبر فودافون كاش أو إنستاباي.",
-      how3_title: "استلم الكونفيج", how3_desc: "سيظهر لك الرابط مباشرة، انسخه بضغطة واحدة.",
-      how4_title: "اتصل", how4_desc: "استورد الكونفيج في تطبيقك المفضل وابدأ التصفح.",
-      plansTitle: "اختر باقتك", plans_sub: "أسعار تنافسية وبدون رسوم خفية.",
-      plan_free: "مجاني (24 ساعة)", plan_free_gb: "1 جيجا", plan_free_days: "24 ساعة", watch_ad: "شاهد إعلان لفتح الباقة", get_free: "احصل على كونفيج مجاني",
-      plan_trial: "تجريبي (5 أيام)", plan_trial_gb: "30 جيجا", plan_trial_days: "5 أيام",
-      plan_basic: "أساسي (10 أيام)", plan_basic_gb: "60 جيجا", plan_basic_days: "10 أيام",
-      plan_std: "متقدم (15 يوم)", plan_std_gb: "120 جيجا", plan_std_days: "15 يوم",
-      plan_custom: "مخصص", most_flex: "⭐ الأكثر مرونة", choose: "اختر", 
-      up_to_1tb: "حتى 1 تيرابايت", up_to_30d: "حتى 30 يوم", full_control: "تحكم كامل في السعر",
-      buy_now: "اشترِ الآن", customize_now: "خصص الآن", egp: "ج.م", prot: "VLESS + VMess",
+      feat6_title: "بدون تسجيل معقد", feat6_desc: "سجل دخول بجوجل أو الإيميل في ثوانٍ، واحصل على كونفيجك وابدأ فوراً.",
+      how_title: "كيف تحصل عليه؟", how_sub: "3 خطوات بسيطة تفصلك عن اتصال بلا قيود.",
+      how1_title: "سجل دخولك", how1_desc: "استخدم حساب جوجل أو الإيميل بضغطة واحدة.",
+      how2_title: "شاهد الإعلان", how2_desc: "شاهد إعلاناً قصيراً لدعم استمرارية الخدمة المجانية.",
+      how3_title: "استلم الكونفيج", how3_desc: "سيظهر لك الرابط مباشرة، انسخه واستورده في تطبيقك.",
+      plansTitle: "الباقة المجانية", plans_sub: "100% مجانية، مدعومة بالإعلانات لدعم استمرارية الخدمة.",
+      plan_free: "الباقة المجانية", plan_free_gb: "1 جيجا بايت", plan_free_days: "24 ساعة", watch_ad: "شاهد إعلان لفتح الباقة", get_free: "🚀 احصل على كونفيجك المجاني الآن",
+      egp: "ج.م", prot: "بروتوكولات VLESS + VMess",
       faq_title: "الأسئلة الشائعة",
       faq1_q: "هل الكونفيج يعمل على جميع الأجهزة؟", faq1_a: "نعم، الكونفيج متوافق مع تطبيقات V2Ray على أندرويد، آيفون، ويندوز، وماك.",
-      faq2_q: "ماذا يحدث إذا انتهت مدة الاشتراك؟", faq2_a: "سيتوقف الاتصال تلقائياً. يمكنك شراء باقة جديدة في أي وقت واستلام كونفيج جديد.",
-      faq3_q: "كيف أقوم بالدفع؟", faq3_a: "ندعم الدفع عبر فودافون كاش، اتصالات كاش، وإنستاباي. بعد التحويل تضغط على 'تم الدفع'.",
-      faq4_q: "هل هناك ضمان لاسترداد الأموال؟", faq4_a: "نعم، إذا واجهت أي مشكلة تقنية خلال أول 24 ساعة ولم نتمكن من حلها، سنعيد لك أموالك.",
-      footer_txt: "© 2025 WEGO V2Ray. جميع الحقوق محفوظة.",
+      faq2_q: "هل الخدمة مجانية بالكامل؟", faq2_a: "نعم، الخدمة مجانية 100%. نحن نعتمد على أرباح الإعلانات لتغطية تكاليف السيرفرات وتقديم الخدمة لك مجاناً.",
+      faq3_q: "لماذا يجب أن أشاهد إعلاناً؟", faq3_a: "مشاهدة الإعلان القصير (حوالي دقيقة) هي الطريقة الوحيدة التي تدعمنا بها للحفاظ على السيرفرات تعمل وتقديم الكونفيج لك مجاناً.",
+      faq4_q: "ماذا يحدث إذا انتهت مدة الاشتراك؟", faq4_a: "سيتوقف الاتصال تلقائياً. يمكنك الحصول على كونفيج مجاني جديد في أي وقت باتباع نفس الخطوات.",
+      footer_txt: "© 2025 WEGO V2Ray. خدمة مجانية 100% مدعومة بالإعلانات.",
       menuAccount: "حسابي واشتراكاتي", menuSettings: "الإعدادات", menuLogout: "تسجيل الخروج",
       authTitle: "مرحباً بك في WEGO", authGoogle: "المتابعة باستخدام جوجل", authOr: "أو باستخدام الإيميل",
       authEmail: "البريد الإلكتروني", authPass: "كلمة المرور", authName: "الاسم بالكامل",
@@ -612,44 +510,35 @@
       setTitle: "إعدادات الحساب", setSub: "تحديث بياناتك الشخصية", setName: "الاسم (اسم المستخدم)",
       setSave: "حفظ التعديلات", uploadLabel: "📷 رفع صورة جديدة",
       myAccTitle: "اشتراكاتي", myAccVerify: "⚠️ إيميلك غير مُفعل. يرجى التحقق من بريدك.", myAccResend: "إعادة إرسال الرابط",
-      myAccCopy: "📋 نسخ الكونفيج", myAccClear: "مسح الكونفيج",
-      ordTitle: "تأكيد الباقة", ordProceed: "متابعة الدفع", ordPayTitle: "طريقة الدفع", ordPaid: "تم الدفع ✅",
-      ordLoading: "جاري تجهيز الكونفيج...", ordSuccess: "✓ تم بنجاح!", ordCopy: "📋 نسخ الكونفيج",
-      lblData: "المساحة (جيجا)", lblDuration: "المدة (أيام)", lblTotal: "الإجمالي:", unitDays: "يوم", unitGB: "جيجا"
+      myAccCopy: "📋 نسخ الكونفيج", myAccClear: "مسح الكونفيج"
     },
     en: {
-      nav_home: "Home", nav_features: "Features", nav_pricing: "Pricing", nav_faq: "FAQ",
+      nav_home: "Home", nav_features: "Features", nav_pricing: "Free Plan", nav_faq: "FAQ",
       langBtn: "عربي", login: "Login", 
-      heroTitle: "Blazing <span class='grad'>Fast Connection</span><br>Uncensored & Unlimited", 
-      heroSub: "Professional V2Ray servers on VLESS & VMess — High stability, maximum speed, zero complex setup.", 
-      heroBtn: "🚀 Start Now", 
-      stat_users: "Active Users", stat_uptime: "Uptime", stat_support: "Support",
-      feat_title: "Why Choose Us?", feat_sub: "We provide the best browsing experience with top security and speed.",
+      heroTitle: "Blazing <span class='grad'>Fast Connection</span><br>100% Free for Everyone", 
+      heroSub: "Professional V2Ray servers on VLESS & VMess — High stability, maximum speed, and zero cost. Start for free.", 
+      heroBtn: "🎁 Get Your Free Config", 
+      stat_users: "Active Users", stat_uptime: "Uptime", stat_free: "100% Free",
+      feat_title: "Why Choose Us?", feat_sub: "We provide the best free browsing experience with top security and speed.",
       feat1_title: "Blazing Speed", feat1_desc: "Latest hardware to ensure maximum download and browsing speed without buffering.",
       feat2_title: "Strong Encryption", feat2_desc: "Full protection of your data using VLESS & VMess with TLS encryption.",
       feat3_title: "All Devices", feat3_desc: "Works on Android, iOS, Windows, and Mac with one ready-to-use config.",
-      feat4_title: "Instant Delivery", feat4_desc: "Once paid, the config appears on your screen instantly, ready to copy.",
+      feat4_title: "Instant Delivery", feat4_desc: "Once you watch a short ad, the config appears on your screen instantly, ready to copy.",
       feat5_title: "Real Support", feat5_desc: "Support team available 24/7 to help you set up your config step-by-step.",
-      feat6_title: "Easy Signup", feat6_desc: "Login with Google or Email in seconds, choose your plan, and start.",
-      how_title: "How to Buy?", how_sub: "4 simple steps away from a limitless connection.",
-      how1_title: "Choose Plan", how1_desc: "Browse plans and pick what suits you (data & duration).",
-      how2_title: "Pay Securely", how2_desc: "Transfer via Vodafone Cash or InstaPay.",
-      how3_title: "Get Config", how3_desc: "The link will appear instantly, copy it with one click.",
-      how4_title: "Connect", how4_desc: "Import the config into your app and start browsing.",
-      plansTitle: "Choose Your Plan", plans_sub: "Competitive prices with no hidden fees.",
-      plan_free: "FREE (24 Hours)", plan_free_gb: "1 GB", plan_free_days: "24 Hours", watch_ad: "Watch Ad to unlock", get_free: "Get Free Config",
-      plan_trial: "TRIAL (5 Days)", plan_trial_gb: "30 GB", plan_trial_days: "5 Days",
-      plan_basic: "BASIC (10 Days)", plan_basic_gb: "60 GB", plan_basic_days: "10 Days",
-      plan_std: "STANDARD (15 Days)", plan_std_gb: "120 GB", plan_std_days: "15 Days",
-      plan_custom: "CUSTOM", most_flex: "⭐ Most Flexible", choose: "Choose", 
-      up_to_1tb: "Up to 1 TB", up_to_30d: "Up to 30 Days", full_control: "Full Price Control",
-      buy_now: "Buy Now", customize_now: "Customize Now", egp: "EGP", prot: "VLESS + VMess",
+      feat6_title: "Easy Signup", feat6_desc: "Login with Google or Email in seconds, get your config, and start.",
+      how_title: "How to Get it?", how_sub: "3 simple steps away from a limitless connection.",
+      how1_title: "Login", how1_desc: "Use your Google or Email account with one click.",
+      how2_title: "Watch Ad", how2_desc: "Watch a short ad to support our free service.",
+      how3_title: "Get Config", how3_desc: "The link will appear instantly, copy and import it into your app.",
+      plansTitle: "Free Plan", plans_sub: "100% Free, ad-supported to keep the service running.",
+      plan_free: "Free Plan", plan_free_gb: "1 GB", plan_free_days: "24 Hours", watch_ad: "Watch Ad to unlock", get_free: "🚀 Get Your Free Config Now",
+      egp: "EGP", prot: "VLESS + VMess",
       faq_title: "Frequently Asked Questions",
       faq1_q: "Does the config work on all devices?", faq1_a: "Yes, the config is compatible with V2Ray apps on Android, iOS, Windows, and Mac.",
-      faq2_q: "What happens when the subscription expires?", faq2_a: "The connection will stop automatically. You can buy a new plan anytime.",
-      faq3_q: "How do I pay?", faq3_a: "We support Vodafone Cash, Etisalat Cash, and InstaPay. Click 'I Have Paid' after transferring.",
-      faq4_q: "Is there a money-back guarantee?", faq4_a: "Yes, if you face a technical issue within 24 hours and we can't fix it, we'll refund you.",
-      footer_txt: "© 2025 WEGO V2Ray. All rights reserved.",
+      faq2_q: "Is the service completely free?", faq2_a: "Yes, 100% free. We rely on ad revenue to cover server costs and provide this service to you for free.",
+      faq3_q: "Why do I need to watch an ad?", faq3_a: "Watching a short ad (about a minute) is the only way you support us to keep the servers running and provide your config for free.",
+      faq4_q: "What happens when the subscription expires?", faq4_a: "The connection will stop automatically. You can get a new free config anytime by following the same steps.",
+      footer_txt: "© 2025 WEGO V2Ray. 100% Free service supported by ads.",
       menuAccount: "My Account", menuSettings: "Settings", menuLogout: "Logout",
       authTitle: "Welcome to WEGO", authGoogle: "Continue with Google", authOr: "Or with Email",
       authEmail: "Email Address", authPass: "Password", authName: "Full Name",
@@ -659,20 +548,15 @@
       setTitle: "Account Settings", setSub: "Update your profile information", setName: "Display Name",
       setSave: "Save Changes", uploadLabel: "📷 Upload New Picture",
       myAccTitle: "My Subscriptions", myAccVerify: "⚠️ Email not verified. Please check your inbox.", myAccResend: "Resend Link",
-      myAccCopy: "📋 Copy Config", myAccClear: "Clear Config",
-      ordTitle: "Confirm Plan", ordProceed: "Proceed to Payment", ordPayTitle: "Payment Method", ordPaid: "I Have Paid ✅",
-      ordLoading: "Generating Config...", ordSuccess: "✓ Success!", ordCopy: "📋 Copy Config",
-      lblData: "Data (GB)", lblDuration: "Duration (Days)", lblTotal: "Total:", unitDays: "Days", unitGB: "GB"
+      myAccCopy: "📋 Copy Config", myAccClear: "Clear Config"
     }
   };
 
   let currentLang = localStorage.getItem('wegoLang') || 'ar';
   let currentUser = null;
   let isSignupMode = false;
-  let currentVolume = 30, currentDays = 5, currentPrice = 15;
   let newAvatarBase64 = null;
   
-  // 🟢 متغيرات التحكم في عداد الكونفيج المجاني
   let freeTimerInterval = null;
   let isGeneratingFree = false;
 
@@ -705,27 +589,12 @@
     document.getElementById('myAccTitle').textContent = translations[currentLang].myAccTitle;
     document.getElementById('myAccVerify').textContent = translations[currentLang].myAccVerify;
     document.getElementById('myAccResend').textContent = translations[currentLang].myAccResend;
-
-    document.getElementById('modalTitle').textContent = translations[currentLang].ordTitle;
-    document.getElementById('btnProceed').textContent = translations[currentLang].ordProceed;
-    document.getElementById('payTitle').textContent = translations[currentLang].ordPayTitle;
-    document.getElementById('btnPaid').textContent = translations[currentLang].ordPaid;
-    document.getElementById('loadTxt').textContent = translations[currentLang].ordLoading;
-    document.getElementById('successTitle').textContent = translations[currentLang].ordSuccess;
-    document.getElementById('btnCopyConfig').innerHTML = `<span>📋</span> ${translations[currentLang].ordCopy}`;
-    
-    document.getElementById('lblData').textContent = translations[currentLang].lblData;
-    document.getElementById('lblDuration').textContent = translations[currentLang].lblDuration;
-    document.getElementById('lblTotal').textContent = translations[currentLang].lblTotal;
-    document.getElementById('unitDays').textContent = translations[currentLang].unitDays;
     
     document.getElementById('freeTitle').textContent = translations[currentLang].plan_free;
     document.getElementById('freeSub').textContent = translations[currentLang].watch_ad;
     document.getElementById('watchAdBtn').textContent = "👀 " + translations[currentLang].watch_ad;
-    document.getElementById('freeLoadTxt').textContent = translations[currentLang].ordLoading;
-    document.getElementById('freeSuccessTitle').textContent = translations[currentLang].ordSuccess;
-    
-    updateCustomPrice();
+    document.getElementById('freeLoadTxt').textContent = currentLang === 'ar' ? 'جاري تجهيز الكونفيج...' : 'Generating Config...';
+    document.getElementById('freeSuccessTitle').textContent = currentLang === 'ar' ? '✓ تم بنجاح!' : '✓ Success!';
   }
 
   window.toggleLanguage = function() {
@@ -896,96 +765,6 @@
     }
   }
 
-  window.checkAuthAndOrder = function(vol, days, isCustom = false) {
-    if (!currentUser) {
-      showAlert('تسجيل الدخول مطلوب', 'يجب تسجيل الدخول لشراء الباقة.', 'error');
-      openAuthModal(); return;
-    }
-    openOrderModal(vol, days, isCustom);
-  }
-
-  window.openOrderModal = function(vol, days, isCustom) {
-    document.getElementById('customSection').style.display = isCustom ? 'block' : 'none';
-    currentVolume = vol || 10; currentDays = days || 10;
-    if(!isCustom) {
-      if(vol === 30) currentPrice = 15; else if(vol === 60) currentPrice = 25; else if(vol === 120) currentPrice = 35;
-      document.getElementById('totalPrice').textContent = currentPrice + ' ' + translations[currentLang].egp;
-      document.getElementById('modalSub').textContent = `${vol} ${translations[currentLang].unitGB} | ${days} ${translations[currentLang].unitDays}`;
-    } else { 
-      document.getElementById('numGb').value = currentVolume;
-      document.getElementById('rangeGb').value = currentVolume;
-      document.getElementById('numDays').value = currentDays;
-      document.getElementById('rangeDays').value = currentDays;
-      updateCustomPrice(); 
-    }
-    document.getElementById('payAmount').textContent = currentPrice;
-    document.querySelectorAll('#orderModal .step').forEach(s => s.classList.remove('active'));
-    document.querySelector('#orderModal .step[data-step="1"]').classList.add('active');
-    document.getElementById('orderModal').classList.add('open');
-  }
-
-  window.handleSlider = function(type) {
-    if (type === 'gb') document.getElementById('numGb').value = document.getElementById('rangeGb').value;
-    else document.getElementById('numDays').value = document.getElementById('rangeDays').value;
-    updateCustomPrice();
-  }
-
-  window.handleInput = function(type) {
-    if (type === 'gb') {
-      let val = parseInt(document.getElementById('numGb').value);
-      if (isNaN(val) || val < 1) val = 1;
-      if (val > 1024) val = 1024; 
-      document.getElementById('numGb').value = val;
-      document.getElementById('rangeGb').value = val;
-    } else {
-      let val = parseInt(document.getElementById('numDays').value);
-      if (isNaN(val) || val < 1) val = 1;
-      if (val > 30) val = 30; 
-      document.getElementById('numDays').value = val;
-      document.getElementById('rangeDays').value = val;
-    }
-    updateCustomPrice();
-  }
-
-  window.updateCustomPrice = function() {
-    let gb = parseInt(document.getElementById('numGb').value) || 1;
-    let days = parseInt(document.getElementById('numDays').value) || 1;
-    
-    currentPrice = Math.floor((gb * 0.10) + (days * 1.5) + 5);
-    currentVolume = gb; currentDays = days;
-    
-    document.getElementById('totalPrice').textContent = currentPrice + ' ' + translations[currentLang].egp;
-    document.getElementById('payAmount').textContent = currentPrice;
-  }
-
-  window.goToPaymentStep = function() {
-    document.querySelectorAll('#orderModal .step').forEach(s => s.classList.remove('active'));
-    document.querySelector('#orderModal .step[data-step="2"]').classList.add('active');
-  }
-
-  window.submitOrder = async function() {
-    document.querySelectorAll('#orderModal .step').forEach(s => s.classList.remove('active'));
-    document.querySelector('#orderModal .step[data-step="3"]').classList.add('active');
-    document.getElementById('loadingWrap').style.display = 'block';
-    document.getElementById('configResult').style.display = 'none';
-    try {
-      const res = await fetch('/api/create-order', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: currentUser.displayName || 'User', email: currentUser.email, volumeGB: currentVolume, durationDays: currentDays })
-      });
-      const result = await res.json();
-      if (result.success) {
-        document.getElementById('loadingWrap').style.display = 'none';
-        document.getElementById('configResult').style.display = 'block';
-        document.getElementById('configBox').textContent = result.data.vless;
-      } else {
-        showAlert('تعذر إنشاء الطلب', result.message, 'error');
-        document.querySelector('#orderModal .step[data-step="1"]').classList.add('active');
-        document.querySelector('#orderModal .step[data-step="3"]').classList.remove('active');
-      }
-    } catch (err) { showAlert('خطأ في الاتصال', 'تعذر الاتصال بالسيرفر.', 'error'); }
-  }
-
   // 🟢 دوال الكونفيج المجاني (مع العداد التنازلي والحماية من التكرار)
   window.openFreeModal = function() {
     if(!currentUser) {
@@ -1033,7 +812,7 @@
             timerText.innerHTML = currentLang === 'ar' ? `يرجى الانتظار ${secondsLeft} ثانية...` : `Please wait ${secondsLeft} seconds...`;
         } else {
             clearInterval(freeTimerInterval);
-            timerText.innerHTML = translations[currentLang].ordLoading; 
+            timerText.innerHTML = currentLang === 'ar' ? 'جاري تجهيز الكونفيج...' : 'Generating Config...';
 
             fetch('/api/create-free-order', {
                 method: 'POST',
@@ -1173,8 +952,8 @@
   }));
 
   applyLanguage();
-  document.getElementById('numGb').addEventListener('input', () => handleInput('gb'));
-  document.getElementById('numDays').addEventListener('input', () => handleInput('days'));
+  // Fallback for old variables if they exist in the DOM
+  if(document.getElementById('numGb')) document.getElementById('numGb').addEventListener('input', () => {}); 
 </script>
 
 <!-- 🟢 كود إعلانات Advertica Social Bar 🟢 -->
