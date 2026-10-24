@@ -15,23 +15,17 @@ const TOKEN = process.env.NEXORA_TOKEN;
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'wego123456';
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
-// 🟢 دالة إرسال إشعار التليجرام
 async function sendTelegramNotification(message) {
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
-    
     if (!botToken || !chatId) return;
-
     try {
         await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            chat_id: chatId,
-            text: message,
-            parse_mode: 'HTML'
+            chat_id: chatId, text: message, parse_mode: 'HTML'
         });
     } catch (error) {}
 }
 
-// 1. مسار إنشاء الأوردر المخصص (البروتوكول + المدة)
 app.post('/api/create-custom-order', async (req, res) => {
     const { name, email, protocol, durationDays } = req.body;
     
@@ -43,30 +37,22 @@ app.post('/api/create-custom-order', async (req, res) => {
         const safeName = name.replace(/\s+/g, '_').substring(0, 10);
         const safeEmail = email.replace(/[@.]/g, '_').substring(0, 10);
         const durationInSeconds = Number(durationDays) * 24 * 60 * 60; 
-        
-        // 🟢 تحديد المساحة بناءً على المدة (مثلاً 2 جيجا لكل يوم)
         const volumeInGB = Number(durationDays) * 2; 
         const volumeInBytes = volumeInGB * 1024 * 1024 * 1024;
-
         const uniqueId = crypto.randomBytes(4).toString('hex'); 
 
-        // 🟢 بناء هيكل البيانات ليدعم البروتوكولات المتعددة (مشابه لـ Marzban/3x-ui)
         let proxies = {};
         let inbounds = {};
-        let finalProtocol = protocol;
 
-        if (protocol === 'v2ray_ws') {
-            proxies = { vless: {} };
-            inbounds = { vless: ["VLESS TCP REALITY"] }; // ممكن تغير الاسم ده لاسم الانباوند بتاع الـ WS
-            finalProtocol = 'v2ray_ws';
-        } else if (protocol === 'v2ray') {
+        // 🟢 تحديد البروتوكول بناءً على اختيار العميل
+        if (protocol === 'v2ray' || protocol === 'v2ray_ws') {
             proxies = { vless: {}, vmess: {} };
             inbounds = { vless: ["VLESS TCP REALITY"], vmess: ["VMess TCP"] };
         } else if (protocol === 'trojan') {
             proxies = { trojan: {} };
             inbounds = { trojan: ["TROJAN TCP"] };
         } else if (protocol === 'ssh') {
-            proxies = { ssh: {} }; // ملاحظة: مش كل اللوحات بتدعم SSH مباشرة، لو Nexora بتدعمه هيشتغل
+            proxies = { ssh: {} }; 
             inbounds = { ssh: ["SSH"] };
         }
 
@@ -78,9 +64,8 @@ app.post('/api/create-custom-order', async (req, res) => {
             resetCalendar: "", resetDays: 0, resetPeriod: "", resetStartDay: 1, resetStartMonth: 1,
             speedLimit: 0, subId: crypto.randomUUID(), templateIds: [],
             volume: volumeInBytes, start_on_first_connection: true,
-            note: `Type: Free | Protocol: ${finalProtocol} | Email: ${email} | Name: ${name}`,
-            proxies: proxies,
-            inbounds: inbounds
+            note: `Type: Free | Protocol: ${protocol} | Email: ${email} | Name: ${name}`,
+            proxies: proxies, inbounds: inbounds
         };
 
         const response = await axios.post(`${NEXORA_API}/users`, payload, {
@@ -90,29 +75,41 @@ app.post('/api/create-custom-order', async (req, res) => {
 
         const userData = response.data;
         const subUrl = userData.subUrl;
-        let vlessLink = "لم يتم العثور على VLESS";
+        let configLink = "لم يتم العثور على الكونفيج";
 
         if (subUrl) {
             try {
                 const subRes = await axios.get(subUrl, { httpsAgent });
                 const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
                 const lines = decoded.split('\n');
-                lines.forEach(line => { if (line.startsWith('vless://')) vlessLink = line.trim(); });
-            } catch (err) {}
+                
+                // 🟢 بنجيب الكونفيج حسب البروتوكول اللي إحنا طالبينه
+                lines.forEach(line => {
+                    if (protocol.includes('v2ray') && line.startsWith('vless://')) configLink = line.trim();
+                    if (protocol === 'trojan' && line.startsWith('trojan://')) configLink = line.trim();
+                    if (protocol === 'ssh' && (line.includes('ssh') || line.includes('@'))) configLink = line.trim();
+                });
+
+                // لو ملقاش حاجة، يرجع أول سطر
+                if (configLink === "لم يتم العثور على الكونفيج" && lines.length > 0) {
+                    configLink = lines[0].trim();
+                }
+            } catch (err) {
+                console.error("Error fetching config:", err.message);
+            }
         }
 
-        // 🟢 الشكل التالت للرسالة (المجاني - المختصر)
-        const tgMessage = `🎁 <b>كونفيج مجاني جديد</b>\n👤 <b>الاسم:</b> ${name} | 📧 <b>الإيميل:</b> ${email}\n📦 <b>الباقة:</b> ${finalProtocol} / ${durationDays} يوم\n🔗 <b>اللينك:</b>\n<code>${subUrl}</code>`;
+        const tgMessage = `🎁 <b>كونفيج مجاني جديد</b>\n👤 <b>الاسم:</b> ${name} | 📧 <b>الإيميل:</b> ${email}\n📦 <b>الباقة:</b> ${protocol} / ${durationDays} يوم\n🔗 <b>اللينك:</b>\n<code>${subUrl}</code>`;
         await sendTelegramNotification(tgMessage);
 
-        res.json({ success: true, data: { vless: vlessLink, subUrl: subUrl } });
+        // بنرجع الكونفيج اللي طلع (سواء vless أو ssh أو غيره)
+        res.json({ success: true, data: { configLink: configLink } });
     } catch (error) {
         console.error("Error:", error.response?.data || error.message);
         res.status(500).json({ success: false, message: 'حدث خطأ في لوحة التحكم' });
     }
 });
 
-// 2. مسار جلب اشتراكات المستخدم
 app.post('/api/my-orders', async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, message: 'إيميل غير صحيح' });
@@ -140,19 +137,17 @@ app.post('/api/my-orders', async (req, res) => {
     }
 });
 
-// 3. مسار جلب الكونفيج
 app.post('/api/get-config', async (req, res) => {
     const { subUrl } = req.body;
     try {
         const subRes = await axios.get(subUrl, { httpsAgent });
         const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
-        const vlessLink = decoded.split('\n').find(l => l.startsWith('vless://'));
-        if (vlessLink) res.json({ success: true, vless: vlessLink.trim() });
+        const link = decoded.split('\n').find(l => l.includes('://'));
+        if (link) res.json({ success: true, configLink: link.trim() });
         else res.status(404).json({ success: false, message: 'لا يوجد كونفيج' });
     } catch (error) { res.status(500).json({ success: false, message: 'خطأ' }); }
 });
 
-// 4. مسار لوحة التحكم
 app.post('/api/admin/orders', async (req, res) => {
     const { password } = req.body;
     if (password !== ADMIN_PASS) return res.status(401).json({ success: false, message: 'Wrong Password' });
