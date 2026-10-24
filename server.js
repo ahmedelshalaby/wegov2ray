@@ -7,8 +7,8 @@ const crypto = require('crypto');
 
 const app = express();
 app.use(express.json());
-app.use(cors()); 
-app.set('trust proxy', 1); // مهم جداً لـ Vercel
+app.use(cors());
+app.set('trust proxy', 1); 
 
 const NEXORA_API = process.env.NEXORA_URL;
 const TOKEN = process.env.NEXORA_TOKEN;
@@ -40,7 +40,7 @@ app.post('/api/create-order', async (req, res) => {
 
         const response = await axios.post(`${NEXORA_API}/users`, payload, {
             headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            httpsAgent 
+            httpsAgent, timeout: 8000 
         });
 
         const userData = response.data;
@@ -65,8 +65,11 @@ app.post('/api/create-order', async (req, res) => {
 app.get('/api/my-orders/:email', async (req, res) => {
     const { email } = req.params;
     try {
+        console.log("Fetching orders for:", email);
         const response = await axios.get(`${NEXORA_API}/users`, {
-            headers: { 'Authorization': `Bearer ${TOKEN}`, 'Accept': 'application/json' }, httpsAgent 
+            headers: { 'Authorization': `Bearer ${TOKEN}`, 'Accept': 'application/json' }, 
+            httpsAgent,
+            timeout: 8000
         });
         
         const allUsers = response.data.users || response.data || [];
@@ -82,7 +85,8 @@ app.get('/api/my-orders/:email', async (req, res) => {
         formattedData.sort((a, b) => b.expiry - a.expiry);
         res.json({ success: true, data: formattedData });
     } catch (error) { 
-        res.status(500).json({ success: false, message: 'تعذر جلب البيانات من السيرفر' }); 
+        console.error("Error fetching from Nexora:", error.message);
+        res.status(500).json({ success: false, message: 'Nexora Error: ' + error.message }); 
     }
 });
 
@@ -105,7 +109,7 @@ app.post('/api/admin/orders', async (req, res) => {
 
     try {
         const response = await axios.get(`${NEXORA_API}/users`, {
-            headers: { 'Authorization': `Bearer ${TOKEN}`, 'Accept': 'application/json' }, httpsAgent 
+            headers: { 'Authorization': `Bearer ${TOKEN}`, 'Accept': 'application/json' }, httpsAgent, timeout: 8000
         });
         
         let allUsers = response.data.users || response.data || [];
@@ -129,12 +133,4 @@ app.post('/api/admin/orders', async (req, res) => {
     } catch (error) { res.status(500).json({ success: false, message: 'Server Error' }); }
 });
 
-// 🟢 التصدير الخاص بـ Vercel
 module.exports = app;
-
-// 🟢 التشغيل المحلي
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(process.env.PORT || 3000, () => {
-        console.log(`🚀 السيرفر شغال على بورت ${process.env.PORT || 3000}`);
-    });
-}
