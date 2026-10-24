@@ -15,24 +15,23 @@ const TOKEN = process.env.NEXORA_TOKEN;
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'wego123456';
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
-// 🟢 خريطة الربط: تربط اختيار العميل في الموقع باسم الـ Inbound في لوحة Nexora
-// ⚠️ مهم جداً: غير الأسماء اللي تحت دي زي ما هي مكتوبة بالظبط في لوحة Nexora
+// 🟢 خريطة الربط: تربط اختيار العميل باسم الـ Inbound في لوحة Nexora
 const CONFIG_MAP = {
     'vless_tcp_tls': {
         proxies: { vless: {} },
-        inbounds: { vless: ["VLESS TCP REALITY"] } // غير الاسم ده
+        inbounds: { vless: ["VLESS TCP REALITY"] } 
     },
     'vless_ws_tls': {
         proxies: { vless: {} },
-        inbounds: { vless: ["VLESS WS TLS"] } // غير الاسم ده
+        inbounds: { vless: ["VLESS WS TLS"] } 
     },
     'vmess_ws_tls': {
         proxies: { vmess: {} },
-        inbounds: { vmess: ["VMess WS TLS"] } // غير الاسم ده
+        inbounds: { vmess: ["VMess WS TLS"] } 
     },
     'vmess_tcp_no_tls': {
         proxies: { vmess: {} },
-        inbounds: { vmess: ["VMess TCP"] } // غير الاسم ده
+        inbounds: { vmess: ["VMess TCP"] } 
     }
 };
 
@@ -62,11 +61,12 @@ app.post('/api/create-custom-order', async (req, res) => {
         const volumeInBytes = volumeInGB * 1024 * 1024 * 1024;
         const uniqueId = crypto.randomBytes(4).toString('hex'); 
 
-        // 🟢 بنجيب إعدادات الإنباوند بناءً على اختيار العميل
         const targetConfig = CONFIG_MAP[configType];
         if (!targetConfig) {
             return res.status(400).json({ success: false, message: 'نوع الاتصال غير مدعوم' });
         }
+
+        console.log(`Creating order for: ${name} | Type: ${configType}`);
 
         const payload = {
             adminId: 0, allTemplates: true, autoReset: false,
@@ -83,7 +83,7 @@ app.post('/api/create-custom-order', async (req, res) => {
 
         const response = await axios.post(`${NEXORA_API}/users`, payload, {
             headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            httpsAgent, timeout: 8000 
+            httpsAgent, timeout: 10000 // زودت الوقت لـ 10 ثواني
         });
 
         const userData = response.data;
@@ -92,11 +92,10 @@ app.post('/api/create-custom-order', async (req, res) => {
 
         if (subUrl) {
             try {
-                const subRes = await axios.get(subUrl, { httpsAgent });
+                const subRes = await axios.get(subUrl, { httpsAgent, timeout: 8000 });
                 const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
                 const lines = decoded.split('\n');
                 
-                // بنجيب أول سطر متاح (اللوحة بتدي الكونفيج اللي إحنا طالبينه)
                 if (lines.length > 0) configLink = lines[0].trim();
                 
             } catch (err) {
@@ -110,11 +109,12 @@ app.post('/api/create-custom-order', async (req, res) => {
         res.json({ success: true, data: { configLink: configLink } });
     } catch (error) {
         console.error("Error:", error.response?.data || error.message);
-        res.status(500).json({ success: false, message: 'حدث خطأ في لوحة التحكم' });
+        res.status(500).json({ success: false, message: 'حدث خطأ في لوحة التحكم: ' + (error.response?.data?.detail || error.message) });
     }
 });
 
 // ... (باقي المسارات زي ما هي: my-orders, get-config, admin/orders) ...
+
 app.post('/api/my-orders', async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ success: false, message: 'إيميل غير صحيح' });
