@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WEGOV2Ray</title>
 
+<!-- 🟢 أيقونة الموقع الجديدة (Favicon) 🟢 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cdefs%3E%3ClinearGradient id='goldGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffdf7a'/%3E%3Cstop offset='50%25' stop-color='%23f5c542'/%3E%3Cstop offset='100%25' stop-color='%23c98f00'/%3E%3C/linearGradient%3E%3ClinearGradient id='darkGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2312141d'/%3E%3Cstop offset='100%25' stop-color='%2305060a'/%3E%3C/linearGradient%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23f5c542' stop-opacity='0.15'/%3E%3Cstop offset='100%25' stop-color='%23f5c542' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='500' height='500' rx='100' fill='url(%23darkGrad)'/%3E%3Ccircle cx='250' cy='250' r='200' fill='url(%23glow)'/%3E%3Crect x='30' y='30' width='440' height='440' rx='80' fill='none' stroke='url(%23goldGrad)' stroke-width='8' opacity='0.8'/%3E%3Cpath d='M250 90 L380 150 L380 280 C380 370 250 420 250 420 C250 420 120 370 120 280 L120 150 Z' fill='none' stroke='url(%23goldGrad)' stroke-width='6' opacity='0.4'/%3E%3Cpath d='M140 180 L190 320 L250 220 L310 320 L360 180' fill='none' stroke='url(%23goldGrad)' stroke-width='22' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M250 110 L220 180 L260 180 L230 250 L280 160 L240 160 Z' fill='url(%23goldGrad)' opacity='0.9'/%3E%3C/svg%3E">
+
+<!-- أكواد التحقق -->
 <meta name="monetag" content="b693e4810151223c1f6cada2d8b03eb6">
 <meta name="verified-code" content="d2e9343d-f693-4995-8f0d-dc4984be3079">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23f5c542'/><text x='50' y='50' font-size='65' font-family='Arial' font-weight='bold' fill='%230a0a0a' dominant-baseline='central' text-anchor='middle'>W</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -39,10 +42,16 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* NAV */
   .nav{position:fixed;top:0;inset-inline:0;z-index:100;padding:16px 0;transition:.4s; background: rgba(5,6,10,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);}
   .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
+  
+  /* 🟢 تحديث شكل اللوجو عشان يستقبل الصورة الجديدة 🟢 */
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px; cursor:pointer;}
-  .logo-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),#c98f00);color:#0a0a0a;font-weight:900;font-size:20px;}
+  .logo-mark{width:45px; height:45px; display:flex; align-items:center; justify-content:center; transition:.4s;}
+  .logo:hover .logo-mark{transform:scale(1.1) rotate(5deg);}
+  .logo-mark svg { width: 100%; height: 100%; }
+  
   .logo b{background:linear-gradient(120deg,var(--gold),var(--gold2));-webkit-background-clip:text;color:transparent}
   
   .nav-links{display:flex;gap:20px; align-items:center;}
@@ -230,8 +239,35 @@
 <div id="mainSite">
     <header class="nav" id="nav">
       <div class="nav-inner">
+        
+        <!-- 🟢 اللوجو الجديد هنا 🟢 -->
         <div class="logo" onclick="scrollToSection('home')">
-          <span class="logo-mark">W</span><span>WEGO<b>V2Ray</b></span>
+          <span class="logo-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+              <defs>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffdf7a" />
+                  <stop offset="50%" stop-color="#f5c542" />
+                  <stop offset="100%" stop-color="#c98f00" />
+                </linearGradient>
+                <linearGradient id="darkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#12141d" />
+                  <stop offset="100%" stop-color="#05060a" />
+                </linearGradient>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f5c542" stop-opacity="0.15" />
+                  <stop offset="100%" stop-color="#f5c542" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <rect width="500" height="500" rx="100" fill="url(#darkGrad)"/>
+              <circle cx="250" cy="250" r="200" fill="url(#glow)"/>
+              <rect x="30" y="30" width="440" height="440" rx="80" fill="none" stroke="url(#goldGrad)" stroke-width="8" opacity="0.8"/>
+              <path d="M250 90 L380 150 L380 280 C380 370 250 420 250 420 C250 420 120 370 120 280 L120 150 Z" fill="none" stroke="url(#goldGrad)" stroke-width="6" opacity="0.4"/>
+              <path d="M140 180 L190 320 L250 220 L310 320 L360 180" fill="none" stroke="url(#goldGrad)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M250 110 L220 180 L260 180 L230 250 L280 160 L240 160 Z" fill="url(#goldGrad)" opacity="0.9"/>
+            </svg>
+          </span>
+          <span style="font-size: 22px; margin-right: 10px;">WEGO<b>V2Ray</b></span>
         </div>
         
         <nav class="nav-links" id="navLinks">
@@ -959,12 +995,10 @@
     }
 
     if (isGeneratingFree) {
-        // لو العداد شغال، نعرض شاشة العداد
         document.getElementById('freeStep1').style.display = 'none';
         document.getElementById('freeStep2').style.display = 'block';
         document.getElementById('freeStep3').style.display = 'none';
     } else {
-        // لو مفيش عداد شغال، نعرض زرار البدء
         document.getElementById('freeStep1').style.display = 'block';
         document.getElementById('freeStep2').style.display = 'none';
         document.getElementById('freeStep3').style.display = 'none';
@@ -974,37 +1008,32 @@
   }
 
   window.watchAdAndGenerate = function() {
-    if (isGeneratingFree) return; // منع التكرار لو العداد شغال
+    if (isGeneratingFree) return; 
     isGeneratingFree = true;
     
     // 🚨 اللينك بتاعك (Smartlink من Advertica) 🚨
     const adLink = "https://araplhn.org/4/5fb9751cc59ca942652ce4068aa396d1"; 
     
-    // نفتح لينك الإعلان في نافذة جديدة
     window.open(adLink, '_blank');
 
-    // نغير الشاشة لشاشة التحميل ونظهر العداد
     document.getElementById('freeStep1').style.display = 'none';
     document.getElementById('freeStep2').style.display = 'block';
     
     const timerText = document.getElementById('freeLoadTxt');
-    let secondsLeft = 60; // ⏱️ مدة الانتظار بالثواني
+    let secondsLeft = 60; 
 
     timerText.innerHTML = currentLang === 'ar' ? `يرجى الانتظار ${secondsLeft} ثانية...` : `Please wait ${secondsLeft} seconds...`;
 
-    // لو فيه عداد قديم شغال، نقفله الأول عشان ميبقاش فيه عدادين
     if (freeTimerInterval) clearInterval(freeTimerInterval);
 
-    // 🟢 بدء العداد التنازلي
     freeTimerInterval = setInterval(() => {
         secondsLeft--;
         
         if (secondsLeft > 0) {
             timerText.innerHTML = currentLang === 'ar' ? `يرجى الانتظار ${secondsLeft} ثانية...` : `Please wait ${secondsLeft} seconds...`;
         } else {
-            // لما الوقت يخلص، نوقف العداد ونبدأ نعمل الكونفيج
             clearInterval(freeTimerInterval);
-            timerText.innerHTML = translations[currentLang].ordLoading; // "جاري تجهيز الكونفيج..."
+            timerText.innerHTML = translations[currentLang].ordLoading; 
 
             fetch('/api/create-free-order', {
                 method: 'POST',
@@ -1027,10 +1056,10 @@
                 document.getElementById('freeModal').classList.remove('open');
             })
             .finally(() => {
-                isGeneratingFree = false; // إعادة تصفير الحالة بعد الانتهاء
+                isGeneratingFree = false; 
             });
         }
-    }, 1000); // كل ثانية
+    }, 1000);
   }
 
   window.openMyAccount = async function() {
@@ -1130,12 +1159,10 @@
     document.getElementById('customAlert').classList.remove('show');
   }
 
-  // 🟢 تعديل دالة الإغلاق عشان تقفل العداد لو المستخدم قفل المودال
   document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', function() {
     const modal = this.closest('.modal');
     modal.classList.remove('open');
     
-    // لو قفلنا مودال الكونفيج المجاني، نوقف العداد ونرجع الحالة الافتراضية
     if (modal.id === 'freeModal') {
         if (freeTimerInterval) clearInterval(freeTimerInterval);
         isGeneratingFree = false;
