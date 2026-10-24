@@ -31,7 +31,7 @@ async function sendTelegramNotification(message) {
     } catch (error) {}
 }
 
-// 1. مسار إنشاء الأوردر المدفوع
+// 1. مسار إنشاء الأوردر (تم إيقافه مؤقتاً أو استخدامه كاحتياطي)
 app.post('/api/create-order', async (req, res) => {
     const { name, email, volumeGB, durationDays } = req.body;
     if (!name || !email) return res.status(400).json({ success: false, message: 'بيانات غير صحيحة' });
@@ -67,12 +67,13 @@ app.post('/api/create-order', async (req, res) => {
             try {
                 const subRes = await axios.get(subUrl, { httpsAgent });
                 const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
-                lines = decoded.split('\n');
+                const lines = decoded.split('\n');
                 lines.forEach(line => { if (line.startsWith('vless://')) vlessLink = line.trim(); });
             } catch (err) {}
         }
 
-        const tgMessage = `💳 <b>Paid Order!</b>\n\n👤 <b>Name:</b> ${name}\n📧 <b>Email:</b> ${email}\n🛠️ <b>Plan:</b> ${volumeGB === 0 ? 'Unlimited' : volumeGB + ' GB'} | ${durationDays} Days\n\n🔗 <b>Sub Link:</b>\n<code>${subUrl}</code>`;
+        // 🟢 الشكل التالت للرسالة (المدفوع)
+        const tgMessage = `🟢 <b>عملية شراء جديدة</b>\n👤 <b>الاسم:</b> ${name} | 📧 <b>الإيميل:</b> ${email}\n📦 <b>الباقة:</b> ${volumeGB === 0 ? 'غير محدود' : volumeGB + ' جيجا'} / ${durationDays} أيام\n🔗 <b>اللينك:</b>\n<code>${subUrl}</code>`;
         await sendTelegramNotification(tgMessage);
 
         res.json({ success: true, data: { vless: vlessLink } });
@@ -81,7 +82,7 @@ app.post('/api/create-order', async (req, res) => {
     }
 });
 
-// 🟢 2. مسار إنشاء الأوردر المجاني (Free Trial)
+// 2. مسار إنشاء الأوردر المجاني (هو ده اللي شغال حالياً)
 app.post('/api/create-free-order', async (req, res) => {
     const { name, email } = req.body;
     if (!name || !email) return res.status(400).json({ success: false, message: 'بيانات غير صحيحة' });
@@ -90,9 +91,12 @@ app.post('/api/create-free-order', async (req, res) => {
         const safeName = name.replace(/\s+/g, '_').substring(0, 10);
         const safeEmail = email.replace(/[@.]/g, '_').substring(0, 10);
         
-        // 🛑 الحدود القصوى للنسخة المجانية (1 جيجا، 1 يوم)
-        const durationInSeconds = 1 * 24 * 60 * 60; 
-        const volumeInBytes = 1 * 1024 * 1024 * 1024;
+        // 🛑 هنا بتحدد حدود الباقة المجانية (غير الأرقام زي ما تحب)
+        const freeDays = 1; // 1 يوم
+        const freeGB = 1;   // 1 جيجا
+        
+        const durationInSeconds = freeDays * 24 * 60 * 60; 
+        const volumeInBytes = freeGB * 1024 * 1024 * 1024;
         const uniqueId = crypto.randomBytes(4).toString('hex'); 
 
         const payload = {
@@ -119,12 +123,13 @@ app.post('/api/create-free-order', async (req, res) => {
             try {
                 const subRes = await axios.get(subUrl, { httpsAgent });
                 const decoded = Buffer.from(subRes.data, 'base64').toString('utf-8');
-                lines = decoded.split('\n');
+                const lines = decoded.split('\n');
                 lines.forEach(line => { if (line.startsWith('vless://')) vlessLink = line.trim(); });
             } catch (err) {}
         }
 
-        const tgMessage = `🎁 <b>New FREE Order (Ad Watched)!</b>\n\n👤 <b>Name:</b> ${name}\n📧 <b>Email:</b> ${email}\n🛠️ <b>Plan:</b> 1 GB | 24 Hours\n\n🔗 <b>Sub Link:</b>\n<code>${subUrl}</code>`;
+        // 🟢 الشكل التالت للرسالة (المجاني)
+        const tgMessage = `🎁 <b>كونفيج مجاني جديد</b>\n👤 <b>الاسم:</b> ${name} | 📧 <b>الإيميل:</b> ${email}\n📦 <b>الباقة:</b> ${freeGB} جيجا / ${freeDays} يوم\n🔗 <b>اللينك:</b>\n<code>${subUrl}</code>`;
         await sendTelegramNotification(tgMessage);
 
         res.json({ success: true, data: { vless: vlessLink } });
