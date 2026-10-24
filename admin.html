@@ -12,7 +12,6 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   
-  /* دعم الخط العربي والإنجليزي */
   body{background:var(--bg);color:var(--text);line-height:1.5;transition:0.3s;}
   html[dir="ltr"] body { font-family:'Inter',sans-serif; }
   html[dir="rtl"] body { font-family:'Cairo',sans-serif; }
@@ -20,7 +19,7 @@
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
   ::-webkit-scrollbar{width:8px} ::-webkit-scrollbar-thumb{background:#2a2d3a;border-radius:10px}
 
-  /* Loading Screen (عشان نمنع الجليتش) */
+  /* Loading Screen */
   .loading-screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:999;}
   .spinner{width:50px;height:50px;border-radius:50%;border:3px solid rgba(245,197,66,.1);border-top-color:var(--gold);animation:spin 1s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -52,11 +51,12 @@
   .stat-card h3{font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
   .stat-card b{font-size:28px;color:#fff;font-weight:700;}
 
-  .search-box{width:100%;padding:14px 20px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:#fff;margin-bottom:20px;font-size:15px;outline:none;}
+  .search-box{width:100%;padding:14px 20px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:#fff;margin-bottom:20px;font-size:15px;outline:none;font-family:inherit;}
   .search-box:focus{border-color:var(--gold);}
 
-  .table-container{background:var(--card);border-radius:16px;border:1px solid var(--border);overflow-x:auto;}
-  table{width:100%;border-collapse:collapse;min-width:1000px;}
+  /* 🚀 Responsive Table */
+  .table-container{background:var(--card);border-radius:16px;border:1px solid var(--border); overflow-x: auto; /* سطر سحري بيعمل سكرول على الموبايل */ -webkit-overflow-scrolling: touch;}
+  table{width:100%;border-collapse:collapse;min-width:900px;}
   th, td{padding:16px 20px;border-bottom:1px solid var(--border);font-size:14px;}
   html[dir="ltr"] th, html[dir="ltr"] td { text-align: left; }
   html[dir="rtl"] th, html[dir="rtl"] td { text-align: right; }
@@ -72,6 +72,15 @@
   .action-btn:hover{background:rgba(52,211,153,.2);}
   .action-btn.link-btn{background:rgba(139,92,246,.1);color:#c4b5fd;border-color:rgba(139,92,246,.3);}
   .action-btn.link-btn:hover{background:rgba(139,92,246,.2);}
+
+  /* 🚀 Responsive for Mobile */
+  @media (max-width: 768px) {
+    .dashboard { padding: 15px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .header { flex-direction: column; align-items: flex-start; }
+    .header-actions { width: 100%; justify-content: space-between; margin-top: 10px; }
+    .login-box { width: 90%; padding: 25px; }
+  }
 </style>
 </head>
 <body>
@@ -132,95 +141,42 @@
 </div>
 
 <script>
-  // 🟢 قاموس الترجمة
   const translations = {
     en: {
-      login_title: "WEGO Admin",
-      login_desc: "Enter your admin password to continue",
-      login_btn: "Sign In",
-      login_error: "Incorrect password!",
-      dash_title: "Website Orders",
-      btn_export: "↓ Export CSV",
-      btn_logout: "Logout",
-      stat_total: "Total Orders",
-      stat_active: "Active Orders",
-      stat_expired: "Expired Orders",
-      stat_data: "Total Data Sold",
-      search_placeholder: "🔍 Search by customer name or email...",
-      th_customer: "Customer",
-      th_limit: "Limit",
-      th_used: "Used",
-      th_expiry: "Expiry",
-      th_status: "Status",
-      th_actions: "Actions",
-      status_active: "Active",
-      status_expired: "Expired",
-      expiry_first: "From 1st use",
-      no_orders: "No orders found.",
-      btn_config: "📋 Config",
-      btn_link: "🔗 Link",
-      copy_success: "✅ Copied",
-      loading: "Loading..."
+      login_title: "WEGO Admin", login_desc: "Enter your admin password to continue", login_btn: "Sign In", login_error: "Incorrect password!",
+      dash_title: "Website Orders", btn_export: "↓ Export CSV", btn_logout: "Logout", stat_total: "Total Orders", stat_active: "Active Orders", stat_expired: "Expired Orders", stat_data: "Total Data Sold",
+      search_placeholder: "🔍 Search by customer name or email...", th_customer: "Customer", th_limit: "Limit", th_used: "Used", th_expiry: "Expiry", th_status: "Status", th_actions: "Actions",
+      status_active: "Active", status_expired: "Expired", expiry_first: "From 1st use", no_orders: "No orders found.",
+      btn_config: "📋 Config", btn_link: "🔗 Link", copy_success: "✅ Copied", loading: "Loading..."
     },
     ar: {
-      login_title: "لوحة تحكم WEGO",
-      login_desc: "أدخل باسورد الأدمن للدخول",
-      login_btn: "دخول",
-      login_error: "باسورد غلط!",
-      dash_title: "أوردرات الموقع",
-      btn_export: "↓ تصدير CSV",
-      btn_logout: "تسجيل الخروج",
-      stat_total: "إجمالي الأوردرات",
-      stat_active: "الأوردرات النشطة",
-      stat_expired: "الأوردرات المنتهية",
-      stat_data: "إجمالي البيانات المبيعة",
-      search_placeholder: "🔍 ابحث بالاسم أو الإيميل...",
-      th_customer: "العميل",
-      th_limit: "المساحة",
-      th_used: "المستهلك",
-      th_expiry: "تاريخ الانتهاء",
-      th_status: "الحالة",
-      th_actions: "الإجراءات",
-      status_active: "نشط",
-      status_expired: "منتهي",
-      expiry_first: "من أول اتصال",
-      no_orders: "لا يوجد أوردرات.",
-      btn_config: "📋 نسخ الكونفيج",
-      btn_link: "🔗 نسخ اللينك",
-      copy_success: "✅ تم النسخ",
-      loading: "جاري..."
+      login_title: "لوحة تحكم WEGO", login_desc: "أدخل باسورد الأدمن للدخول", login_btn: "دخول", login_error: "باسورد غلط!",
+      dash_title: "أوردرات الموقع", btn_export: "↓ تصدير CSV", btn_logout: "تسجيل الخروج", stat_total: "إجمالي الأوردرات", stat_active: "الأوردرات النشطة", stat_expired: "الأوردرات المنتهية", stat_data: "إجمالي البيانات المبيعة",
+      search_placeholder: "🔍 ابحث بالاسم أو الإيميل...", th_customer: "العميل", th_limit: "المساحة", th_used: "المستهلك", th_expiry: "تاريخ الانتهاء", th_status: "الحالة", th_actions: "الإجراءات",
+      status_active: "نشط", status_expired: "منتهي", expiry_first: "من أول اتصال", no_orders: "لا يوجد أوردرات.",
+      btn_config: "📋 نسخ الكونفيج", btn_link: "🔗 نسخ اللينك", copy_success: "✅ تم النسخ", loading: "جاري..."
     }
   };
 
-  let currentLang = localStorage.getItem('wegoAdminLang') || 'ar'; // اللغة الافتراضية عربي
+  let currentLang = localStorage.getItem('wegoAdminLang') || 'ar';
   let allOrders = [];
 
-  // 🟢 دالة تغيير اللغة
   function applyLanguage() {
     const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
     document.getElementById('htmlRoot').setAttribute('dir', dir);
     document.getElementById('htmlRoot').setAttribute('lang', currentLang);
     
-    // تغيير النصوص
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      if (translations[currentLang][key]) {
-        el.textContent = translations[currentLang][key];
-      }
+      if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
     });
 
-    // تغيير الـ Placeholder
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
-      if (translations[currentLang][key]) {
-        el.placeholder = translations[currentLang][key];
-      }
+      if (translations[currentLang][key]) el.placeholder = translations[currentLang][key];
     });
 
-    // تغيير زرار اللغة
     document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-
-    // إعادة رسم الجدول عشان الكلمات تتغير
     renderTable(allOrders);
   }
 
@@ -230,14 +186,12 @@
     applyLanguage();
   }
 
-  // 🟢 التحقق من الباسورد أول ما الصفحة تفتح (عشان نمنع الجليتش)
   window.onload = async function() {
-    applyLanguage(); // تطبيق اللغة
-    
+    applyLanguage();
     const savedPass = sessionStorage.getItem('wegoAdminPass');
     if (savedPass) {
       document.getElementById('adminPass').value = savedPass;
-      await login(true); // بنبعت true عشان ميعملش إيرور لو الباسورد غلط
+      await login(true);
     } else {
       document.getElementById('loadingScreen').style.display = 'none';
       document.getElementById('loginScreen').style.display = 'flex';
@@ -258,7 +212,6 @@
 
       if (result.success) {
         sessionStorage.setItem('wegoAdminPass', pass);
-        
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('dashboard').style.display = 'block';
@@ -270,7 +223,7 @@
         if(!isAutoLogin) document.getElementById('loginError').style.display = 'block';
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('loginScreen').style.display = 'flex';
-        sessionStorage.removeItem('wegoAdminPass'); // مسح الباسورد لو غلط
+        sessionStorage.removeItem('wegoAdminPass');
       }
     } catch (err) {
       if(!isAutoLogin) alert('Server connection failed');
@@ -340,9 +293,9 @@
           <td>${expiryText}</td>
           <td><span class="badge ${badgeClass}">${statusText}</span></td>
           <td>
-            <div style="display:flex; gap:8px; justify-content: ${currentLang === 'ar' ? 'flex-start' : 'flex-start'};">
-              <button class="action-btn" onclick="copyConfig('${o.subUrl}', this)" data-config-btn>${t.btn_config}</button>
-              <button class="action-btn link-btn" onclick="copyLink('${o.subUrl}', this)" data-link-btn>${t.btn_link}</button>
+            <div style="display:flex; gap:8px;">
+              <button class="action-btn" onclick="copyConfig('${o.subUrl}', this)">${t.btn_config}</button>
+              <button class="action-btn link-btn" onclick="copyLink('${o.subUrl}', this)">${t.btn_link}</button>
             </div>
           </td>
         </tr>
@@ -363,7 +316,7 @@
     btn.innerHTML = t.loading;
     
     try {
-      const res = await fetch('http://localhost:3000/api/get-config', {
+      const res = await fetch('/api/get-config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subUrl })
