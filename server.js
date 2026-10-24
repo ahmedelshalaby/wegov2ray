@@ -128,6 +128,9 @@ app.post('/api/admin/orders', async (req, res) => {
     } catch (error) { res.status(500).json({ success: false, message: 'Server Error' }); }
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`🚀 السيرفر شغال على بورت ${process.env.PORT || 3000}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(process.env.PORT || 3000, () => {
+        console.log(`🚀 السيرفر شغال على بورت ${process.env.PORT || 3000}`);
+    });
+}
+module.exports = app;
