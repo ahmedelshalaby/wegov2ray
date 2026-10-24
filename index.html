@@ -22,7 +22,6 @@
   body{background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
   html[dir="rtl"] body { font-family:'Cairo',sans-serif; }
   html[dir="ltr"] body { font-family:'Inter',sans-serif; }
-
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
   ::selection{background:rgba(245,197,66,.35);color:#fff}
@@ -73,13 +72,6 @@
   .section-head h2{font-size:clamp(28px,4.5vw,46px);font-weight:900;margin-bottom:14px;}
   .section-head p{color:var(--muted); max-width:600px; margin: 0 auto;}
 
-  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
-  .feature-card{background:var(--card); padding:30px; border-radius:var(--r-lg); border:1px solid var(--border); transition:.3s;}
-  .feature-card:hover{transform:translateY(-5px); border-color:rgba(245,197,66,.3);}
-  .feat-icon{width:50px; height:50px; border-radius:12px; background:rgba(245,197,66,.1); color:var(--gold); display:grid; place-items:center; font-size:24px; margin-bottom:20px;}
-  .feature-card h3{font-size:18px; margin-bottom:10px;}
-  .feature-card p{font-size:14px; color:var(--muted);}
-
   .free-plan-wrapper { max-width: 600px; margin: 0 auto; }
   .free-plan-card { position: relative; padding: 50px 40px; border-radius: var(--r-lg); border: 2px solid rgba(52,211,153,.6); background: linear-gradient(180deg, rgba(52,211,153,.1), rgba(52,211,153,.02)); box-shadow: 0 20px 80px -20px rgba(52,211,153,.3); text-align: center; }
   .free-plan-badge { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); padding: 8px 24px; border-radius: 100px; background: var(--green); color: #000; font-size: 14px; font-weight: 900; box-shadow: 0 10px 20px -5px rgba(52,211,153,.5); }
@@ -90,36 +82,6 @@
   .free-plan-card ul li { font-size: 16px; margin-bottom: 15px; color: #c9cbd6; display: flex; align-items: center; gap: 10px; }
   .free-plan-card ul li i { color: var(--green); font-style: normal; font-size: 18px; }
 
-  .faq-list{max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;}
-  .faq-item{background:var(--card); border:1px solid var(--border); border-radius: 16px; overflow: hidden;}
-  .faq-q{padding: 20px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;}
-  .faq-q::after{content: '+'; font-size: 20px; color: var(--gold); transition: .3s;}
-  .faq-a{padding: 0 20px; max-height: 0; overflow: hidden; transition: .3s; color: var(--muted); font-size: 14px;}
-  .faq-item.active .faq-q::after{transform: rotate(45deg);}
-  .faq-item.active .faq-a{max-height: 200px; padding-bottom: 20px;}
-
-  footer{padding:40px 24px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 14px;}
-
-  .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1000; opacity: 0; visibility: hidden; transition: .3s; }
-  .sidebar-overlay.open { opacity: 1; visibility: visible; }
-  .sidebar { position: fixed; top: 0; bottom: 0; width: 300px; background: #0e1018; z-index: 1001; transition: transform .3s cubic-bezier(0.2, 0.7, 0.2, 1); display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.9); }
-  html[dir="rtl"] .sidebar { left: 0; right: auto; transform: translateX(-100%); border-right: 1px solid var(--border); }
-  html[dir="rtl"] .sidebar.open { transform: translateX(0); }
-  html[dir="ltr"] .sidebar { right: 0; left: auto; transform: translateX(100%); border-left: 1px solid var(--border); }
-  html[dir="ltr"] .sidebar.open { transform: translateX(0); }
-  .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid var(--border); position: relative; }
-  .sidebar-close { position: absolute; top: 15px; font-size: 22px; color: var(--muted); cursor: pointer; }
-  html[dir="rtl"] .sidebar-close { right: 15px; left: auto; }
-  html[dir="ltr"] .sidebar-close { left: 15px; right: auto; }
-  .sidebar-avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; margin: 0 auto 15px; background: #000;}
-  .sidebar-name { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-  .sidebar-email { font-size: 13px; color: var(--muted); }
-  .sidebar-menu { padding: 20px 0; flex: 1; }
-  .sidebar-item { display: flex; align-items: center; gap: 15px; padding: 15px 25px; color: var(--muted); font-weight: 600; cursor: pointer; transition: .3s; }
-  .sidebar-item:hover { background: rgba(255,255,255,0.05); color: var(--gold); }
-  .sidebar-footer { padding: 20px; border-top: 1px solid var(--border); }
-  .btn-logout-sidebar { width: 100%; padding: 12px; border-radius: 12px; background: rgba(248,113,113,.1); color: var(--red); font-weight: 700; text-align: center; border: 1px solid rgba(248,113,113,.3); transition: .3s; cursor: pointer; }
-
   .modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.35s;}
   .modal.open{opacity:1;visibility:visible}
   .modal-backdrop{position:absolute;inset:0;background:rgba(2,3,6,.85);backdrop-filter:blur(10px);}
@@ -128,92 +90,24 @@
   .modal-close{position:absolute;top:18px;left:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);display:grid;place-items:center;font-size:20px;color:var(--muted);}
   html[dir="ltr"] .modal-close { left: auto; right: 18px; }
   
-  .step{display:none;animation:fadeUp .5s}
-  .step.active{display:block}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-  .step h3{font-size:22px;font-weight:800;margin-bottom:6px;text-align:center}
-  .step .sub{color:var(--muted);font-size:14px;text-align:center;margin-bottom:24px}
-
-  .google-btn{display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:12px; background:#fff; color:#333; border-radius:12px; font-weight:700; margin-bottom:15px; cursor:pointer; transition:.3s;}
-  .google-btn:hover{background:#f1f1f1;}
-  .google-btn img{width:20px; height:20px;}
-  .divider{display:flex; align-items:center; gap:10px; margin:20px 0; color:var(--muted); font-size:12px;}
-  .divider::before, .divider::after{content:''; flex:1; height:1px; background:var(--border);}
-
-  .field{margin-bottom:16px}
-  .field label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px}
-  .field input{width:100%;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-size:15px;outline:none; transition:.3s;}
-  .field input:focus{border-color:var(--gold);}
-
-  .avatar-upload-wrapper { text-align: center; margin-bottom: 20px; }
-  .avatar-preview { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; margin-bottom: 10px; background: #000; }
-  .custom-file-upload { display: inline-block; padding: 8px 16px; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--gold); transition: .3s; }
-  #avatarFileInput { display: none; }
-
-  .order-card{background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:15px; position:relative;}
-  .order-card.active-card { border-color: rgba(52,211,153,.4); }
-  .order-card.expired-card { border-color: rgba(248,113,113,.4); opacity: .7; }
-  .status-badge { position:absolute; top:20px; left:20px; font-size:12px; font-weight:bold; padding:4px 10px; border-radius:20px;}
-  html[dir="ltr"] .status-badge { left: auto; right: 20px; }
-  .status-badge.active { background:rgba(52,211,153,.15); color:var(--green); }
-  .status-badge.expired { background:rgba(248,113,113,.15); color:var(--red); }
-  .order-name { font-weight:800; font-size:16px; margin-bottom:10px; padding-left:70px;}
-  html[dir="ltr"] .order-name { padding-left: 0; padding-right: 70px; }
-  .order-details { display:flex; gap:15px; margin-bottom:15px; font-size:13px; color:var(--muted); flex-wrap:wrap;}
-  .order-details b { color:var(--text); }
-  
-  .config-box{background:#06070c;border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;direction:ltr;text-align:left;font-family:monospace;font-size:12px;color:#b8e0c8;max-height:220px;overflow:auto;word-break:break-all; display:none;}
-  .copy-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:12px;font-weight:700;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:var(--green); cursor:pointer;}
-  .loading-wrap{text-align:center;padding:30px 0}
-  .spinner{width:60px;height:60px;border-radius:50%;margin:0 auto 22px;border:3px solid rgba(245,197,66,.15);border-top-color:var(--gold);animation:spin 1s linear infinite;}
-  @keyframes spin{to{transform:rotate(360deg)}}
-
-  .alert-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 9998; opacity: 0; visibility: hidden; transition: .3s; }
-  .alert-backdrop.show { opacity: 1; visibility: visible; }
-  .custom-alert { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: linear-gradient(180deg, #1a1e29, #0e1018); border: 1px solid rgba(255,255,255,.15); border-radius: 24px; padding: 30px; width: 90%; max-width: 400px; z-index: 9999; text-align: center; opacity: 0; visibility: hidden; transition: .3s cubic-bezier(.34,1.56,.64,1); box-shadow: 0 20px 60px -10px rgba(0,0,0,0.8); }
-  .custom-alert.show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
-  .alert-icon { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; margin: 0 auto 20px; border: 2px solid; }
-  .alert-icon.error { color: var(--red); border-color: var(--red); background: rgba(248,113,113,.1); }
-  .alert-icon.success { color: var(--green); border-color: var(--green); background: rgba(52,211,153,.1); }
-
-  /* 🟢 تصميم شاشة الاختيار التفاعلية (Wizard) 🟢 */
   .wizard-step { display: none; animation: fadeUp .4s; }
   .wizard-step.active { display: block; }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   
-  .protocol-grid, .duration-grid { display: grid; gap: 15px; margin-bottom: 20px; }
-  .protocol-grid { grid-template-columns: 1fr 1fr; }
-  .duration-grid { grid-template-columns: 1fr 1fr 1fr; }
-  
-  .wizard-option {
-      padding: 20px 15px; border-radius: 16px; background: rgba(255,255,255,0.03);
-      border: 2px solid var(--border); text-align: center; cursor: pointer; transition: .3s;
-  }
+  .wizard-option { padding: 20px 15px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 2px solid var(--border); text-align: center; cursor: pointer; transition: .3s; margin-bottom: 15px;}
   .wizard-option:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
   .wizard-option.selected { border-color: var(--gold); background: rgba(245,197,66,0.1); box-shadow: 0 0 20px rgba(245,197,66,0.15); }
-  
   .wizard-option i { font-size: 28px; font-style: normal; display: block; margin-bottom: 8px; }
-  .wizard-option span { font-size: 15px; font-weight: 700; color: #fff; display: block; }
-  .wizard-option small { font-size: 12px; color: var(--muted); display: block; margin-top: 5px; }
-  
+  .wizard-option span { font-size: 16px; font-weight: 700; color: #fff; display: block; }
+  .wizard-option small { font-size: 13px; color: var(--muted); display: block; margin-top: 5px; }
   .wizard-back-btn { display: inline-block; font-size: 14px; color: var(--muted); cursor: pointer; margin-bottom: 15px; transition: .3s; }
   .wizard-back-btn:hover { color: #fff; }
 
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .menu-toggle { display: block; }
-    .nav-inner { padding: 0 15px; }
-    .hero { padding: 120px 15px 60px; min-height: auto; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 15px; margin-bottom: 25px; }
-    .stats-grid { gap: 20px; }
-    .stat-item h4 { font-size: 24px; }
-    section { padding: 60px 15px; }
-    .section-head h2 { font-size: 28px; }
-    .free-plan-card { padding: 30px 20px; }
-    .modal-panel { padding: 24px 20px; width: 95%; margin: auto; }
-    .order-name { padding-left: 60px; font-size: 14px; }
-    html[dir="ltr"] .order-name { padding-right: 60px; padding-left: 0; }
-  }
+  .loading-wrap{text-align:center;padding:30px 0}
+  .spinner{width:60px;height:60px;border-radius:50%;margin:0 auto 22px;border:3px solid rgba(245,197,66,.15);border-top-color:var(--gold);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .config-box{background:#06070c;border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;direction:ltr;text-align:left;font-family:monospace;font-size:12px;color:#b8e0c8;max-height:220px;overflow:auto;word-break:break-all; display:none;}
+  .copy-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:12px;font-weight:700;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:var(--green); cursor:pointer;}
 </style>
 </head>
 <body>
@@ -256,17 +150,13 @@
         </div>
         
         <nav class="nav-links" id="navLinks">
-          <span onclick="scrollToSection('home')" data-i18n="nav_home">الرئيسية</span>
-          <span onclick="scrollToSection('features')" data-i18n="nav_features">المميزات</span>
-          <span onclick="scrollToSection('pricing')" data-i18n="nav_pricing">الباقة المجانية</span>
-          <span onclick="scrollToSection('faq')" data-i18n="nav_faq">الأسئلة الشائعة</span>
+          <span onclick="scrollToSection('home')">الرئيسية</span>
+          <span onclick="scrollToSection('pricing')">الباقة المجانية</span>
         </nav>
 
         <div class="nav-controls">
-            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
-            <button class="menu-toggle" id="menuToggleBtn" onclick="openSidebar()">☰</button>
             <div id="loginBtnContainer">
-                <button class="btn btn-ghost" onclick="openAuthModal()" style="color:var(--gold); border-color:var(--gold);" data-i18n="login">تسجيل الدخول</button>
+                <button class="btn btn-ghost" onclick="openAuthModal()" style="color:var(--gold); border-color:var(--gold);">تسجيل الدخول</button>
             </div>
         </div>
       </div>
@@ -274,153 +164,32 @@
 
     <section id="home" class="hero">
       <div class="hero-inner">
-        <h1 data-i18n="heroTitle">اتصال <span class="grad">فائق السرعة</span><br>مجاني 100% للجميع</h1>
-        <p data-i18n="heroSub">سيرفرات احترافية بكل البروتوكولات (V2Ray, SSH, Trojan, WebSocket) — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.</p>
-        <button class="btn btn-gold" style="padding:16px 40px; font-size:18px;" onclick="scrollToSection('pricing')" data-i18n="heroBtn">🎁 احصل على كونفيجك المجاني</button>
-        
-        <div class="stats-grid">
-          <div class="stat-item"><h4>25K+</h4><p data-i18n="stat_users">مستخدم نشط</p></div>
-          <div class="stat-item"><h4>99%</h4><p data-i18n="stat_uptime">وقت التشغيل</p></div>
-          <div class="stat-item"><h4>100%</h4><p data-i18n="stat_free">مجاني للجميع</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" style="background:var(--bg2);">
-      <div class="container">
-        <div class="section-head">
-          <h2 data-i18n="feat_title">لماذا تختارنا؟</h2>
-          <p data-i18n="feat_sub">نقدم لك أفضل تجربة تصفح مجانية بأعلى معايير الأمان والسرعة.</p>
-        </div>
-        <div class="features-grid">
-          <div class="feature-card"><div class="feat-icon">⚡</div><h3 data-i18n="feat1_title">سرعة فائقة</h3><p data-i18n="feat1_desc">سيرفرات بأحدث الأجهزة لضمان أعلى سرعة تحميل وتصفح بدون تقطيع.</p></div>
-          <div class="feature-card"><div class="feat-icon">🛡️</div><h3 data-i18n="feat2_title">تشفير قوي</h3><p data-i18n="feat2_desc">حماية كاملة لبياناتك باستخدام بروتوكولات متعددة مع تشفير TLS.</p></div>
-          <div class="feature-card"><div class="feat-icon">📱</div><h3 data-i18n="feat3_title">كل الأجهزة</h3><p data-i18n="feat3_desc">يعمل على أندرويد، آيفون، ويندوز، وماك بكونفيج واحد جاهز للاستخدام.</p></div>
-          <div class="feature-card"><div class="feat-icon">⏱️</div><h3 data-i18n="feat4_title">تسليم فوري</h3><p data-i18n="feat4_desc">بمجرد مشاهدة إعلان قصير، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.</p></div>
-          <div class="feature-card"><div class="feat-icon">🎧</div><h3 data-i18n="feat5_title">دعم حقيقي</h3><p data-i18n="feat5_desc">فريق دعم متاح 24/7 لمساعدتك في إعداد الكونفيج خطوة بخطوة.</p></div>
-          <div class="feature-card"><div class="feat-icon">💎</div><h3 data-i18n="feat6_title">بدون تسجيل معقد</h3><p data-i18n="feat6_desc">سجل دخول بجوجل أو الإيميل في ثوانٍ، واحصل على كونفيجك وابدأ فوراً.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how">
-      <div class="container">
-        <div class="section-head"><h2 data-i18n="how_title">كيف تحصل عليه؟</h2><p data-i18n="how_sub">3 خطوات بسيطة تفصلك عن اتصال بلا قيود.</p></div>
-        <div class="steps-grid">
-          <div class="step-item"><div class="step-num">1</div><h3 data-i18n="how1_title">سجل دخولك</h3><p data-i18n="how1_desc">استخدم حساب جوجل أو الإيميل بضغطة واحدة.</p></div>
-          <div class="step-item"><div class="step-num">2</div><h3 data-i18n="how2_title">اختر البروتوكول</h3><p data-i18n="how2_desc">حدد البروتوكول اللي يناسب جهازك (V2Ray, SSH, Trojan).</p></div>
-          <div class="step-item"><div class="step-num">3</div><h3 data-i18n="how3_title">شاهد الإعلان واستلم</h3><p data-i18n="how3_desc">شاهد إعلاناً قصيراً وسيظهر لك الرابط مباشرة.</p></div>
-        </div>
+        <h1>اتصال <span class="grad">فائق السرعة</span><br>مجاني 100% للجميع</h1>
+        <p>سيرفرات احترافية بكل الإعدادات (TLS, WebSocket, TCP) — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.</p>
+        <button class="btn btn-gold" style="padding:16px 40px; font-size:18px;" onclick="scrollToSection('pricing')">🎁 احصل على كونفيجك المجاني</button>
       </div>
     </section>
 
     <section id="pricing" style="background:var(--bg2);">
       <div class="container">
-        <div class="section-head"><h2 data-i18n="plansTitle">الباقة المجانية</h2><p data-i18n="plans_sub">100% مجانية، مدعومة بالإعلانات لدعم استمرارية الخدمة.</p></div>
+        <div class="section-head"><h2>الباقة المجانية</h2><p>100% مجانية، مدعومة بالإعلانات لدعم استمرارية الخدمة.</p></div>
         
         <div class="free-plan-wrapper">
           <div class="free-plan-card">
             <div class="free-plan-badge">🎁 عرض مجاني</div>
-            <h3 data-i18n="plan_free">الباقة المجانية</h3>
-            <div class="price">0 <span data-i18n="egp">ج.م</span></div>
+            <h3>الباقة المجانية</h3>
+            <div class="price">0 <span>ج.م</span></div>
             <ul>
-              <li><i>✓</i> <span data-i18n="plan_free_gb">مساحة تصل لـ 20 جيجا (حسب المدة)</span></li>
-              <li><i>✓</i> <span data-i18n="plan_free_days">مدة تختارها بنفسك (3، 7، 10 أيام)</span></li>
-              <li><i>✓</i> <span data-i18n="prot">كل البروتوكولات (V2Ray, SSH, Trojan, WebSocket)</span></li>
-              <li><i>✓</i> <span data-i18n="watch_ad">شاهد إعلان لفتح الباقة</span></li>
+              <li><i>✓</i> مساحة تصل لـ 20 جيجا (حسب المدة)</li>
+              <li><i>✓</i> مدة تختارها بنفسك (3، 7، 10 أيام)</li>
+              <li><i>✓</i> تخصيص كامل (TLS / WebSocket / Ports)</li>
+              <li><i>✓</i> شاهد إعلان لفتح الباقة</li>
             </ul>
-            <button class="btn btn-gold btn-block" style="padding: 20px; font-size: 20px;" onclick="openFreeModal()" data-i18n="get_free">🚀 احصل على كونفيجك المجاني الآن</button>
+            <button class="btn btn-gold btn-block" style="padding: 20px; font-size: 20px;" onclick="openFreeModal()">🚀 احصل على كونفيجك المجاني الآن</button>
           </div>
         </div>
-        
       </div>
     </section>
-
-    <section id="faq">
-      <div class="container">
-        <div class="section-head"><h2 data-i18n="faq_title">الأسئلة الشائعة</h2></div>
-        <div class="faq-list">
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq1_q">هل الكونفيج يعمل على جميع الأجهزة؟</div><div class="faq-a" data-i18n="faq1_a">نعم، الكونفيج متوافق مع تطبيقات V2Ray على أندرويد، آيفون، ويندوز، وماك.</div></div>
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq2_q">هل الخدمة مجانية بالكامل؟</div><div class="faq-a" data-i18n="faq2_a">نعم، الخدمة مجانية 100%. نحن نعتمد على أرباح الإعلانات لتغطية تكاليف السيرفرات وتقديم الخدمة لك مجاناً.</div></div>
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq3_q">لماذا يجب أن أشاهد إعلاناً؟</div><div class="faq-a" data-i18n="faq3_a">مشاهدة الإعلان القصير (حوالي دقيقة) هي الطريقة الوحيدة التي تدعمنا بها للحفاظ على السيرفرات تعمل وتقديم الكونفيج لك مجاناً.</div></div>
-          <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)" data-i18n="faq4_q">ماذا يحدث إذا انتهت مدة الاشتراك؟</div><div class="faq-a" data-i18n="faq4_a">سيتوقف الاتصال تلقائياً. يمكنك الحصول على كونفيج مجاني جديد في أي وقت باتباع نفس الخطوات.</div></div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p data-i18n="footer_txt">© 2025 WEGO V2Ray. خدمة مجانية 100% مدعومة بالإعلانات.</p>
-    </footer>
-</div>
-
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <span class="sidebar-close" onclick="closeSidebar()">✕</span>
-        <img id="sidebarAvatar" src="" alt="Avatar" class="sidebar-avatar">
-        <h3 class="sidebar-name" id="sidebarName">User Name</h3>
-        <p class="sidebar-email" id="sidebarEmail">email@example.com</p>
-    </div>
-    <div class="sidebar-menu">
-        <div class="sidebar-item" onclick="openMyAccount(); closeSidebar();"><i>👤</i> <span id="menuAccount" data-i18n="menuAccount">حسابي واشتراكاتي</span></div>
-        <div class="sidebar-item" onclick="openSettingsModal(); closeSidebar();"><i>⚙️</i> <span id="menuSettings" data-i18n="menuSettings">الإعدادات</span></div>
-    </div>
-    <div class="sidebar-footer">
-        <button class="btn-logout-sidebar" onclick="logout()" id="menuLogout" data-i18n="menuLogout">تسجيل الخروج</button>
-    </div>
-</div>
-
-<div class="modal" id="authModal">
-  <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel">
-    <button class="modal-close" data-close>✕</button>
-    <h3 style="text-align:center; margin-bottom:20px; font-size:24px;" id="authTitle">WEGO Login</h3>
-    <button class="google-btn" onclick="signInWithGoogle()">
-      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-      <span id="authGoogleText">Continue with Google</span>
-    </button>
-    <div class="divider" id="authOrText">Or with Email</div>
-    <div class="field"><label id="lblEmail">Email</label><input type="email" id="authEmail" placeholder="name@example.com" dir="ltr" /></div>
-    <div class="field"><label id="lblPass">Password</label><input type="password" id="authPassword" placeholder="••••••••" dir="ltr" /></div>
-    <div class="field" id="nameField" style="display:none;"><label id="lblName">Full Name</label><input type="text" id="authName" placeholder="Ahmed Mohamed" /></div>
-    <button class="btn btn-gold btn-block" id="authSubmitBtn" onclick="handleAuthSubmit()" style="margin-top:10px;">Login</button>
-    <p style="text-align:center; margin-top:20px; font-size:14px; color:var(--muted);">
-      <span id="authToggleText">Don't have an account?</span> 
-      <span onclick="toggleAuthMode();" style="color:var(--gold); font-weight:bold; cursor:pointer;" id="authToggleLink">Sign Up</span>
-    </p>
-  </div>
-</div>
-
-<div class="modal" id="settingsModal">
-  <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel">
-    <button class="modal-close" data-close>✕</button>
-    <h3 style="text-align:center; margin-bottom:6px;" id="setTitle">Account Settings</h3>
-    <p class="sub" id="setSub">Update your profile information</p>
-    <div class="avatar-upload-wrapper">
-        <img id="avatarPreview" src="" alt="Preview" class="avatar-preview">
-        <label for="avatarFileInput" class="custom-file-upload" id="uploadLabel">📷 Upload New Picture</label>
-        <input type="file" id="avatarFileInput" accept="image/*" onchange="handleImageUpload(event)">
-    </div>
-    <div class="field"><label id="setNameLabel">Display Name (Username)</label><input type="text" id="settingsName" placeholder="Enter new name" /></div>
-    <button class="btn btn-gold btn-block" onclick="saveSettings()" style="margin-top:20px;" id="setSaveBtn">Save Changes</button>
-  </div>
-</div>
-
-<div class="modal" id="myAccountModal">
-  <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel">
-    <button class="modal-close" data-close>✕</button>
-    <h3 style="text-align:center;" id="myAccTitle">My Subscriptions</h3>
-    <p class="sub" id="userEmailDisplay" style="color:var(--gold); font-weight:bold;"></p>
-    <div id="verifyBanner" class="verify-banner" style="display:none; background: rgba(245,197,66,.1); border: 1px solid rgba(245,197,66,.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
-      <p style="font-size: 13px; color: var(--gold2); margin-bottom: 10px;" id="myAccVerify">⚠️ Email not verified. Please check your inbox.</p>
-      <button onclick="resendVerificationEmail()" style="background: var(--gold); color: #000; padding: 6px 15px; border-radius: 8px; font-size: 13px; font-weight: bold;" id="myAccResend">Resend Link</button>
-    </div>
-    <div id="ordersList" style="max-height: 50vh; overflow-y: auto; padding-right:5px;">
-      <div class="loading-wrap"><div class="spinner"></div><p>Loading...</p></div>
-    </div>
-  </div>
 </div>
 
 <!-- 🟢 مودال الكونفيج المجاني التفاعلي (Wizard) 🟢 -->
@@ -429,42 +198,42 @@
   <div class="modal-panel">
     <button class="modal-close" data-close>✕</button>
     
-    <!-- الخطوة 1: اختيار البروتوكول -->
+    <!-- الخطوة 1: اختيار إعدادات الاتصال -->
     <div class="wizard-step active" id="wizardStep1">
-        <h3 style="text-align: center; margin-bottom: 6px; font-weight: 800; font-size: 22px;">1. اختر البروتوكول</h3>
-        <p class="sub" style="text-align: center; color: var(--muted); margin-bottom: 24px; font-size: 14px;">اختار نوع الاتصال اللي يناسب جهازك</p>
+        <h3 style="text-align: center; margin-bottom: 6px; font-weight: 800; font-size: 22px;">1. اختر إعدادات الاتصال</h3>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 24px; font-size: 14px;">اختار النوع اللي يناسب جهازك وشبكتك</p>
         
         <div class="protocol-grid">
-            <div class="wizard-option" onclick="selectProtocol('v2ray', this)">
-                <i>🌐</i>
-                <span>V2Ray (VLESS)</span>
-                <small>الأكثر توافقاً</small>
+            <div class="wizard-option" onclick="selectConfig('vless_tcp_tls', this)">
+                <i>⚡</i>
+                <span>VLESS TCP + Reality</span>
+                <small>سرعة قصوى (الأكثر توافقاً)</small>
             </div>
-            <div class="wizard-option" onclick="selectProtocol('v2ray_ws', this)">
-                <i>🔌</i>
-                <span>V2Ray (WS)</span>
-                <small>للتخطي المتقدم</small>
-            </div>
-            <div class="wizard-option" onclick="selectProtocol('trojan', this)">
+            <div class="wizard-option" onclick="selectConfig('vless_ws_tls', this)">
                 <i>🛡️</i>
-                <span>Trojan</span>
-                <small>أمان عالي</small>
+                <span>VLESS WS + TLS</span>
+                <small>لتخطي الحظر المتقدم</small>
             </div>
-            <div class="wizard-option" onclick="selectProtocol('ssh', this)">
-                <i>💻</i>
-                <span>SSH</span>
-                <small>للمبرمجين</small>
+            <div class="wizard-option" onclick="selectConfig('vmess_ws_tls', this)">
+                <i>📱</i>
+                <span>VMess WS + TLS</span>
+                <small>توافق مع التطبيقات القديمة</small>
+            </div>
+            <div class="wizard-option" onclick="selectConfig('vmess_tcp_no_tls', this)">
+                <i>📡</i>
+                <span>VMess TCP (No TLS)</span>
+                <small>اتصال بسيط وسريع</small>
             </div>
         </div>
     </div>
 
     <!-- الخطوة 2: اختيار المدة -->
     <div class="wizard-step" id="wizardStep2">
-        <span class="wizard-back-btn" onclick="goToStep(1)">← رجوع للبروتوكول</span>
+        <span class="wizard-back-btn" onclick="goToStep(1)">← رجوع للإعدادات</span>
         <h3 style="text-align: center; margin-bottom: 6px; font-weight: 800; font-size: 22px;">2. اختر المدة</h3>
-        <p class="sub" style="text-align: center; color: var(--muted); margin-bottom: 24px; font-size: 14px;">كل ما زادت المدة، كل ما زادت المساحة</p>
+        <p style="text-align: center; color: var(--muted); margin-bottom: 24px; font-size: 14px;">كل ما زادت المدة، كل ما زادت المساحة</p>
         
-        <div class="duration-grid">
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
             <div class="wizard-option" onclick="selectDuration(3, this)">
                 <span>3 أيام</span>
                 <small>+ 6 جيجا</small>
@@ -496,12 +265,12 @@
 
     <!-- الخطوة 4: التحميل -->
     <div class="wizard-step" id="wizardStep4">
-        <div class="loading-wrap"><div class="spinner"></div><p id="freeLoadTxt">جاري تجهيز الكونفيج...</p></div>
+        <div class="loading-wrap"><div class="spinner"></div><p>جاري تجهيز الكونفيج...</p></div>
     </div>
 
     <!-- الخطوة 5: النتيجة -->
     <div class="wizard-step" id="wizardStep5">
-        <h3 style="color:var(--green); margin-bottom:15px; text-align: center;" id="freeSuccessTitle">✓ تم بنجاح!</h3>
+        <h3 style="color:var(--green); margin-bottom:15px; text-align: center;">✓ تم بنجاح!</h3>
         <div class="config-box" id="freeConfigBox" style="display: block; text-align: left; direction: ltr;"></div>
         <button class="copy-btn" onclick="copyToClipboard('freeConfigBox')">📋 نسخ الكونفيج</button>
     </div>
@@ -509,331 +278,18 @@
   </div>
 </div>
 
-
-<div class="alert-backdrop" id="alertBackdrop" onclick="closeAlert()"></div>
-<div class="custom-alert" id="customAlert">
-  <div class="alert-icon" id="alertIcon">!</div>
-  <h3 id="alertTitle">Alert</h3>
-  <p id="alertMessage">Message</p>
-  <button class="btn btn-gold btn-block" onclick="closeAlert()">OK, Got it</button>
-</div>
-
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut, updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCI6coEkdV5tIYJjZYJrM5iNZbBKGYuhv8",
-    authDomain: "test-b4f72.firebaseapp.com",
-    projectId: "test-b4f72",
-    storageBucket: "test-b4f72.firebasestorage.app",
-    messagingSenderId: "1055784648609",
-    appId: "1:1055784648609:web:69099fffcee297449115e0",
-    measurementId: "G-R4GFSW41W0"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
-
-  const translations = {
-    ar: {
-      nav_home: "الرئيسية", nav_features: "المميزات", nav_pricing: "الباقة المجانية", nav_faq: "الأسئلة الشائعة",
-      langBtn: "English", login: "تسجيل الدخول", 
-      heroTitle: "اتصال <span class='grad'>فائق السرعة</span><br>مجاني 100% للجميع", 
-      heroSub: "سيرفرات احترافية بكل البروتوكولات (V2Ray, SSH, Trojan, WebSocket) — استقر عالي، سرعة قصوى، وبدون أي تكاليف. ابدأ الآن مجاناً.", 
-      heroBtn: "🎁 احصل على كونفيجك المجاني", 
-      stat_users: "مستخدم نشط", stat_uptime: "وقت التشغيل", stat_free: "مجاني للجميع",
-      feat_title: "لماذا تختارنا؟", feat_sub: "نقدم لك أفضل تجربة تصفح مجانية بأعلى معايير الأمان والسرعة.",
-      feat1_title: "سرعة فائقة", feat1_desc: "سيرفرات بأحدث الأجهزة لضمان أعلى سرعة تحميل وتصفح بدون تقطيع.",
-      feat2_title: "تشفير قوي", feat2_desc: "حماية كاملة لبياناتك باستخدام بروتوكولات متعددة مع تشفير TLS.",
-      feat3_title: "كل الأجهزة", feat3_desc: "يعمل على أندرويد، آيفون، ويندوز، وماك بكونفيج واحد جاهز للاستخدام.",
-      feat4_title: "تسليم فوري", feat4_desc: "بمجرد مشاهدة إعلان قصير، يظهر لك الكونفيج مباشرة على الشاشة جاهز للنسخ.",
-      feat5_title: "دعم حقيقي", feat5_desc: "فريق دعم متاح 24/7 لمساعدتك في إعداد الكونفيج خطوة بخطوة.",
-      feat6_title: "بدون تسجيل معقد", feat6_desc: "سجل دخول بجوجل أو الإيميل في ثوانٍ، واحصل على كونفيجك وابدأ فوراً.",
-      how_title: "كيف تحصل عليه؟", how_sub: "3 خطوات بسيطة تفصلك عن اتصال بلا قيود.",
-      how1_title: "سجل دخولك", how1_desc: "استخدم حساب جوجل أو الإيميل بضغطة واحدة.",
-      how2_title: "اختر البروتوكول", how2_desc: "حدد البروتوكول اللي يناسب جهازك (V2Ray, SSH, Trojan).",
-      how3_title: "شاهد الإعلان واستلم", how3_desc: "شاهد إعلاناً قصيراً وسيظهر لك الرابط مباشرة.",
-      plansTitle: "الباقة المجانية", plans_sub: "100% مجانية، مدعومة بالإعلانات لدعم استمرارية الخدمة.",
-      plan_free: "الباقة المجانية", plan_free_gb: "مساحة تصل لـ 20 جيجا (حسب المدة)", plan_free_days: "مدة تختارها بنفسك (3، 7، 10 أيام)", watch_ad: "شاهد إعلان لفتح الباقة", get_free: "🚀 احصل على كونفيجك المجاني الآن",
-      egp: "ج.م", prot: "كل البروتوكولات (V2Ray, SSH, Trojan, WebSocket)",
-      faq_title: "الأسئلة الشائعة",
-      faq1_q: "هل الكونفيج يعمل على جميع الأجهزة؟", faq1_a: "نعم، الكونفيج متوافق مع تطبيقات V2Ray على أندرويد، آيفون، ويندوز، وماك.",
-      faq2_q: "هل الخدمة مجانية بالكامل؟", faq2_a: "نعم، الخدمة مجانية 100%. نحن نعتمد على أرباح الإعلانات لتغطية تكاليف السيرفرات وتقديم الخدمة لك مجاناً.",
-      faq3_q: "لماذا يجب أن أشاهد إعلاناً؟", faq3_a: "مشاهدة الإعلان القصير (حوالي دقيقة) هي الطريقة الوحيدة التي تدعمنا بها للحفاظ على السيرفرات تعمل وتقديم الكونفيج لك مجاناً.",
-      faq4_q: "ماذا يحدث إذا انتهت مدة الاشتراك؟", faq4_a: "سيتوقف الاتصال تلقائياً. يمكنك الحصول على كونفيج مجاني جديد في أي وقت باتباع نفس الخطوات.",
-      footer_txt: "© 2025 WEGO V2Ray. خدمة مجانية 100% مدعومة بالإعلانات.",
-      menuAccount: "حسابي واشتراكاتي", menuSettings: "الإعدادات", menuLogout: "تسجيل الخروج",
-      authTitle: "مرحباً بك في WEGO", authGoogle: "المتابعة باستخدام جوجل", authOr: "أو باستخدام الإيميل",
-      authEmail: "البريد الإلكتروني", authPass: "كلمة المرور", authName: "الاسم بالكامل",
-      authLoginBtn: "تسجيل الدخول", authSignupBtn: "إنشاء حساب",
-      authToggleSignup: "ليس لديك حساب؟", authToggleLogin: "لديك حساب بالفعل؟",
-      authSubmitLogin: "تسجيل الدخول", authSubmitSignup: "إنشاء حساب جديد",
-      setTitle: "إعدادات الحساب", setSub: "تحديث بياناتك الشخصية", setName: "الاسم (اسم المستخدم)",
-      setSave: "حفظ التعديلات", uploadLabel: "📷 رفع صورة جديدة",
-      myAccTitle: "اشتراكاتي", myAccVerify: "⚠️ إيميلك غير مُفعل. يرجى التحقق من بريدك.", myAccResend: "إعادة إرسال الرابط",
-      myAccCopy: "📋 نسخ الكونفيج", myAccClear: "مسح الكونفيج"
-    },
-    en: {
-      nav_home: "Home", nav_features: "Features", nav_pricing: "Free Plan", nav_faq: "FAQ",
-      langBtn: "عربي", login: "Login", 
-      heroTitle: "Blazing <span class='grad'>Fast Connection</span><br>100% Free for Everyone", 
-      heroSub: "Professional servers with all protocols (V2Ray, SSH, Trojan, WebSocket) — High stability, maximum speed, and zero cost. Start for free.", 
-      heroBtn: "🎁 Get Your Free Config", 
-      stat_users: "Active Users", stat_uptime: "Uptime", stat_free: "100% Free",
-      feat_title: "Why Choose Us?", feat_sub: "We provide the best free browsing experience with top security and speed.",
-      feat1_title: "Blazing Speed", feat1_desc: "Latest hardware to ensure maximum download and browsing speed without buffering.",
-      feat2_title: "Strong Encryption", feat2_desc: "Full protection of your data using multiple protocols with TLS encryption.",
-      feat3_title: "All Devices", feat3_desc: "Works on Android, iOS, Windows, and Mac with one ready-to-use config.",
-      feat4_title: "Instant Delivery", feat4_desc: "Once you watch a short ad, the config appears on your screen instantly, ready to copy.",
-      feat5_title: "Real Support", feat5_desc: "Support team available 24/7 to help you set up your config step-by-step.",
-      feat6_title: "Easy Signup", feat6_desc: "Login with Google or Email in seconds, get your config, and start.",
-      how_title: "How to Get it?", how_sub: "3 simple steps away from a limitless connection.",
-      how1_title: "Login", how1_desc: "Use your Google or Email account with one click.",
-      how2_title: "Choose Protocol", how2_desc: "Select the protocol that fits your device (V2Ray, SSH, Trojan).",
-      how3_title: "Watch Ad & Get it", how3_desc: "Watch a short ad and the link will appear instantly.",
-      plansTitle: "Free Plan", plans_sub: "100% Free, ad-supported to keep the service running.",
-      plan_free: "Free Plan", plan_free_gb: "Up to 20 GB (based on duration)", plan_free_days: "Choose your duration (3, 7, 10 days)", watch_ad: "Watch Ad to unlock", get_free: "🚀 Get Your Free Config Now",
-      egp: "EGP", prot: "All Protocols (V2Ray, SSH, Trojan, WebSocket)",
-      faq_title: "Frequently Asked Questions",
-      faq1_q: "Does the config work on all devices?", faq1_a: "Yes, the config is compatible with V2Ray apps on Android, iOS, Windows, and Mac.",
-      faq2_q: "Is the service completely free?", faq2_a: "Yes, 100% free. We rely on ad revenue to cover server costs and provide this service to you for free.",
-      faq3_q: "Why do I need to watch an ad?", faq3_a: "Watching a short ad (about a minute) is the only way you support us to keep the servers running and provide your config for free.",
-      faq4_q: "What happens when the subscription expires?", faq4_a: "The connection will stop automatically. You can get a new free config anytime by following the same steps.",
-      footer_txt: "© 2025 WEGO V2Ray. 100% Free service supported by ads.",
-      menuAccount: "My Account", menuSettings: "Settings", menuLogout: "Logout",
-      authTitle: "Welcome to WEGO", authGoogle: "Continue with Google", authOr: "Or with Email",
-      authEmail: "Email Address", authPass: "Password", authName: "Full Name",
-      authLoginBtn: "Login", authSignupBtn: "Sign Up",
-      authToggleSignup: "Don't have an account?", authToggleLogin: "Already have an account?",
-      authSubmitLogin: "Login", authSubmitSignup: "Create Account",
-      setTitle: "Account Settings", setSub: "Update your profile information", setName: "Display Name",
-      setSave: "Save Changes", uploadLabel: "📷 Upload New Picture",
-      myAccTitle: "My Subscriptions", myAccVerify: "⚠️ Email not verified. Please check your inbox.", myAccResend: "Resend Link",
-      myAccCopy: "📋 Copy Config", myAccClear: "Clear Config"
-    }
-  };
-
-  let currentLang = localStorage.getItem('wegoLang') || 'ar';
-  let currentUser = null;
-  let isSignupMode = false;
-  let newAvatarBase64 = null;
+  // ... (سكريبت فايربيز بتاعك زي ما هو) ...
+  // عشان مقدرش أحط السكريبت كامل هنا بسبب حجمه، هحط الأجزاء المهمة اللي اتغيرت بس
   
-  // 🟢 متغيرات اختيار البروتوكول والمدة
-  let selectedProtocol = 'v2ray';
+  // متغيرات اختيار الإعدادات
+  let selectedConfigType = 'vless_tcp_tls';
   let selectedDuration = 3;
 
-  function applyLanguage() {
-    document.getElementById('htmlRoot').setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-    document.getElementById('htmlRoot').setAttribute('lang', currentLang);
-    document.getElementById('langBtn').textContent = translations[currentLang].langBtn;
-    
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-    });
-
-    document.getElementById('authTitle').textContent = translations[currentLang].authTitle;
-    document.getElementById('authGoogleText').textContent = translations[currentLang].authGoogle;
-    document.getElementById('authOrText').textContent = translations[currentLang].authOr;
-    document.getElementById('lblEmail').textContent = translations[currentLang].authEmail;
-    document.getElementById('lblPass').textContent = translations[currentLang].authPass;
-    document.getElementById('lblName').textContent = translations[currentLang].authName;
-    document.getElementById('authSubmitBtn').textContent = isSignupMode ? translations[currentLang].authSubmitSignup : translations[currentLang].authSubmitLogin;
-    document.getElementById('authToggleText').textContent = isSignupMode ? translations[currentLang].authToggleLogin : translations[currentLang].authToggleSignup;
-    document.getElementById('authToggleLink').textContent = isSignupMode ? translations[currentLang].authSubmitLogin : translations[currentLang].authSignupBtn;
-
-    document.getElementById('setTitle').textContent = translations[currentLang].setTitle;
-    document.getElementById('setSub').textContent = translations[currentLang].setSub;
-    document.getElementById('setNameLabel').textContent = translations[currentLang].setName;
-    document.getElementById('uploadLabel').textContent = translations[currentLang].uploadLabel;
-    document.getElementById('setSaveBtn').textContent = translations[currentLang].setSave;
-
-    document.getElementById('myAccTitle').textContent = translations[currentLang].myAccTitle;
-    document.getElementById('myAccVerify').textContent = translations[currentLang].myAccVerify;
-    document.getElementById('myAccResend').textContent = translations[currentLang].myAccResend;
-    
-    document.getElementById('freeTitle').textContent = translations[currentLang].plan_free;
-    document.getElementById('freeLoadTxt').textContent = currentLang === 'ar' ? 'جاري تجهيز الكونفيج...' : 'Generating Config...';
-    document.getElementById('freeSuccessTitle').textContent = currentLang === 'ar' ? '✓ تم بنجاح!' : '✓ Success!';
-  }
-
-  window.toggleLanguage = function() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('wegoLang', currentLang);
-    applyLanguage();
-  }
-
-  window.scrollToSection = function(id) {
-    const el = document.getElementById(id);
-    if(el) el.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  window.toggleFaq = function(el) {
-    const item = el.parentElement;
-    item.classList.toggle('active');
-  }
-
-  window.openSidebar = function() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); }
-  window.closeSidebar = function() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
-
-  onAuthStateChanged(auth, (user) => {
-    setTimeout(() => {
-        const loader = document.getElementById('page-loader');
-        loader.classList.add('hidden');
-        setTimeout(() => loader.style.display = 'none', 500);
-    }, 500);
-
-    const loginBtnContainer = document.getElementById('loginBtnContainer');
-    const menuToggleBtn = document.getElementById('menuToggleBtn');
-    const authModal = document.getElementById('authModal');
-
-    if (user) {
-      currentUser = user;
-      let displayName = user.displayName || user.email.split('@')[0];
-      let avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=f5c542&color=000&rounded=true&bold=true`;
-      
-      document.getElementById('sidebarName').textContent = displayName;
-      document.getElementById('sidebarEmail').textContent = user.email;
-      document.getElementById('sidebarAvatar').src = avatarUrl;
-
-      loginBtnContainer.style.display = 'none';
-      menuToggleBtn.style.display = 'block';
-      authModal.classList.remove('open');
-    } else {
-      currentUser = null;
-      loginBtnContainer.style.display = 'block';
-      menuToggleBtn.style.display = 'none';
-    }
-  });
-
-  window.openAuthModal = function() { document.getElementById('authModal').classList.add('open'); }
-  
-  window.toggleAuthMode = function() {
-    isSignupMode = !isSignupMode;
-    document.getElementById('nameField').style.display = isSignupMode ? 'block' : 'none';
-    document.getElementById('authSubmitBtn').textContent = isSignupMode ? translations[currentLang].authSubmitSignup : translations[currentLang].authSubmitLogin;
-    document.getElementById('authToggleText').textContent = isSignupMode ? translations[currentLang].authToggleLogin : translations[currentLang].authToggleSignup;
-    document.getElementById('authToggleLink').textContent = isSignupMode ? translations[currentLang].authSubmitLogin : translations[currentLang].authSignupBtn;
-  }
-
-  function getFirebaseErrorMsg(error) {
-    switch(error.code) {
-      case 'auth/email-already-in-use': return 'هذا البريد الإلكتروني مسجل بالفعل.';
-      case 'auth/invalid-credential': case 'auth/wrong-password': case 'auth/user-not-found': return 'البريد الإلكتروني أو كلمة المرور غير صحيحة.';
-      case 'auth/weak-password': return 'كلمة المرور ضعيفة جداً (6 أحرف على الأقل).';
-      case 'auth/invalid-email': return 'البريد الإلكتروني غير صالح.';
-      default: return 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.';
-    }
-  }
-
-  window.signInWithGoogle = async function() {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      document.getElementById('authModal').classList.remove('open');
-      showAlert('مرحباً بعودتك!', 'تم تسجيل الدخول باستخدام جوجل بنجاح.', 'success');
-    } catch (error) { showAlert('تعذر إتمام العملية', getFirebaseErrorMsg(error), 'error'); }
-  }
-
-  window.handleAuthSubmit = async function() {
-    const email = document.getElementById('authEmail').value;
-    const password = document.getElementById('authPassword').value;
-    const name = document.getElementById('authName').value;
-    const btn = document.getElementById('authSubmitBtn');
-    
-    if(!email || !password) return showAlert('بيانات ناقصة', 'يرجى إدخال الإيميل والباسورد.', 'error');
-    if(isSignupMode && !name) return showAlert('بيانات ناقصة', 'يرجى إدخال الاسم.', 'error');
-
-    btn.disabled = true; btn.textContent = 'Loading...';
-    try {
-      if (isSignupMode) {
-        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-        await updateProfile(userCred.user, { displayName: name });
-        await sendEmailVerification(userCred.user);
-        document.getElementById('authModal').classList.remove('open');
-        showAlert('تم إنشاء الحساب!', 'لقد أرسلنا رسالة تفعيل إلى بريدك.', 'success');
-      } else {
-        await signInWithEmailAndPassword(auth, email, password);
-        document.getElementById('authModal').classList.remove('open');
-      }
-    } catch (error) { showAlert('تعذر إتمام العملية', getFirebaseErrorMsg(error), 'error'); } 
-    finally { btn.disabled = false; btn.textContent = isSignupMode ? translations[currentLang].authSubmitSignup : translations[currentLang].authSubmitLogin; }
-  }
-
-  window.logout = function() {
-    signOut(auth); 
-    closeSidebar();
-    showAlert('تم تسجيل الخروج', 'نتمنى رؤيتك مجدداً.', 'success');
-  }
-
-  window.openSettingsModal = function() {
-    document.getElementById('settingsName').value = currentUser.displayName || '';
-    document.getElementById('avatarPreview').src = currentUser.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser.displayName || 'U')}&background=f5c542&color=000&rounded=true&bold=true`;
-    newAvatarBase64 = null;
-    document.getElementById('settingsModal').classList.add('open');
-  }
-
-  window.handleImageUpload = function(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    if (file.size > 2 * 1024 * 1024) return showAlert('خطأ', 'حجم الصورة كبير جداً. اختر صورة أقل من 2 ميجا.', 'error');
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const MAX_SIZE = 200;
-            let width = img.width;
-            let height = img.height;
-
-            if (width > height) {
-                if (width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
-            } else {
-                if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
-            }
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            
-            newAvatarBase64 = canvas.toDataURL('image/jpeg', 0.8);
-            document.getElementById('avatarPreview').src = newAvatarBase64;
-        }
-        img.src = e.target.result;
-    }
-    reader.readAsDataURL(file);
-  }
-
-  window.saveSettings = async function() {
-    const newName = document.getElementById('settingsName').value.trim();
-    if(!newName) return showAlert('خطأ', 'الاسم لا يمكن أن يكون فارغاً', 'error');
-
-    try {
-        const updateData = { displayName: newName };
-        if (newAvatarBase64) updateData.photoURL = newAvatarBase64;
-
-        await updateProfile(currentUser, updateData);
-        
-        let finalAvatar = newAvatarBase64 || currentUser.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(newName)}&background=f5c542&color=000&rounded=true&bold=true`;
-        document.getElementById('sidebarName').textContent = newName;
-        document.getElementById('sidebarAvatar').src = finalAvatar;
-        
-        document.getElementById('settingsModal').classList.remove('open');
-        showAlert('تم الحفظ', 'تم تحديث بياناتك بنجاح.', 'success');
-    } catch (error) { 
-        showAlert('خطأ', 'حدث خطأ أثناء تحديث البيانات. جرب صورة أصغر.', 'error'); 
-    }
-  }
-
-  // 🟢 دوال اختيار البروتوكول والمدة
-  window.selectProtocol = function(proto, el) {
-    selectedProtocol = proto;
+  window.selectConfig = function(type, el) {
+    selectedConfigType = type;
     document.querySelectorAll('#wizardStep1 .wizard-option').forEach(opt => opt.classList.remove('selected'));
     el.classList.add('selected');
-    
-    // ننتقل تلقائياً للخطوة التانية
     setTimeout(() => goToStep(2), 300);
   }
 
@@ -841,8 +297,6 @@
     selectedDuration = days;
     document.querySelectorAll('#wizardStep2 .wizard-option').forEach(opt => opt.classList.remove('selected'));
     el.classList.add('selected');
-    
-    // ننتقل تلقائياً للخطوة التالتة
     setTimeout(() => goToStep(3), 300);
   }
 
@@ -851,44 +305,31 @@
     document.getElementById('wizardStep' + stepNum).classList.add('active');
   }
 
-  // 🟢 دوال الكونفيج المجاني
   window.openFreeModal = function() {
     if(!currentUser) {
         showAlert('تسجيل الدخول مطلوب', 'يجب تسجيل الدخول للحصول على الكونفيج المجاني.', 'error');
         openAuthModal();
         return;
     }
-    
-    // نرجع للخطوة الأولى كل مرة بيفتح
     goToStep(1);
-    // تصفير الاختيارات
     document.querySelectorAll('.wizard-option').forEach(opt => opt.classList.remove('selected'));
-    selectedProtocol = 'v2ray';
+    selectedConfigType = 'vless_tcp_tls';
     selectedDuration = 3;
-
     document.getElementById('freeModal').classList.add('open');
   }
 
   window.watchAdAndGenerate = function() {
-    // 🚨 اللينك بتاعك (Smartlink من Advertica) 🚨
     const adLink = "https://araplhn.org/4/5fb9751cc59ca942652ce4068aa396d1"; 
-    
     window.open(adLink, '_blank');
-
-    // نروح لشاشة التحميل على طول (شلنا الانتظار)
     goToStep(4);
-    
-    const timerText = document.getElementById('freeLoadTxt');
-    timerText.innerHTML = currentLang === 'ar' ? 'جاري تجهيز الكونفيج...' : 'Generating Config...';
 
-    // بنبعت الطلب فوراً
     fetch('/api/create-custom-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
             name: currentUser.displayName || 'User', 
             email: currentUser.email,
-            protocol: selectedProtocol,
+            configType: selectedConfigType, // بنبعت نوع الإعداد
             durationDays: selectedDuration
         })
     })
@@ -900,7 +341,7 @@
         } else {
             showAlert('خطأ', result.message, 'error');
             document.getElementById('freeModal').classList.remove('open');
-            goToStep(1); // نرجعه لأول خطوة
+            goToStep(1); 
         }
     })
     .catch(err => {
@@ -909,113 +350,13 @@
         goToStep(1);
     });
   }
-
-  window.openMyAccount = async function() {
-    document.getElementById('myAccountModal').classList.add('open');
-    document.getElementById('userEmailDisplay').textContent = currentUser.email;
-    if (currentUser.emailVerified || currentUser.providerData[0].providerId === 'google.com') {
-      document.getElementById('verifyBanner').style.display = 'none';
-    } else { document.getElementById('verifyBanner').style.display = 'block'; }
-    const list = document.getElementById('ordersList');
-    list.innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p>Loading...</p></div>';
-    try {
-      const res = await fetch('/api/my-orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: currentUser.email })
-      });
-      const result = await res.json();
-      if (result.success) {
-        list.innerHTML = '';
-        if (result.data.length === 0) { list.innerHTML = `<p style="text-align:center; color:var(--muted); padding:20px;">No subscriptions found.</p>`; } 
-        else {
-          result.data.forEach((u) => {
-            let volText = u.volume === 0 ? (currentLang === 'ar' ? 'غير محدود' : 'Unlimited') : (u.volume / (1024*1024*1024)).toFixed(0) + ' ' + translations[currentLang].unitGB;
-            let usedText = ((u.up + u.down) / (1024*1024*1024)).toFixed(2) + ' ' + translations[currentLang].unitGB;
-            let isExpired = u.expiry !== 0 && (u.expiry * 1000) < Date.now();
-            let statusText = (u.status === 'active' && !isExpired) ? (currentLang === 'ar' ? 'نشط' : 'Active') : (currentLang === 'ar' ? 'منتهي' : 'Expired');
-            let statusClass = (u.status === 'active' && !isExpired) ? 'active-card' : 'expired-card';
-            let badgeClass = (u.status === 'active' && !isExpired) ? 'active' : 'expired';
-            let expiryText = u.expiry === 0 ? (currentLang === 'ar' ? 'من أول اتصال' : 'From 1st use') : new Date(u.expiry * 1000).toLocaleDateString();
-            list.innerHTML += `
-              <div class="order-card ${statusClass}">
-                <div class="status-badge ${badgeClass}">${statusText}</div>
-                <div class="order-name">${u.name.split('_')[0]}</div>
-                <div class="order-details">
-                  <div>Data: <b>${volText}</b></div><div>Used: <b>${usedText}</b></div><div>Expires: <b>${expiryText}</b></div>
-                </div>
-                <div class="config-box" id="cfg-${u.name}"></div>
-                <button class="copy-btn" onclick="fetchConfigAndCopy('${u.subUrl}', 'cfg-${u.name}', this)">${translations[currentLang].myAccCopy}</button>
-                <button class="btn btn-ghost btn-block" onclick="clearConfig('cfg-${u.name}')" style="margin-top:8px; font-size:12px; color:var(--muted); border-color:var(--border);">${translations[currentLang].myAccClear}</button>
-              </div>
-            `;
-          });
-        }
-      }
-    } catch (err) { list.innerHTML = '<p style="text-align:center; color:var(--red);">Error loading data.</p>'; }
-  }
-
-  window.fetchConfigAndCopy = async function(subUrl, boxId, btn) {
-    if (!subUrl || subUrl === 'undefined') return showAlert('Error', 'No config available.', 'error');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Loading...';
-    try {
-      const res = await fetch('/api/get-config', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subUrl: subUrl })
-      });
-      const data = await res.json();
-      if (data.success && data.configLink) {
-        await navigator.clipboard.writeText(data.configLink);
-        btn.innerHTML = '✅ Copied!';
-        document.getElementById(boxId).textContent = data.configLink;
-        document.getElementById(boxId).style.display = 'block';
-        setTimeout(() => btn.innerHTML = originalText, 3000);
-      } else {
-        showAlert('Error', 'Config not found.', 'error');
-        btn.innerHTML = originalText;
-      }
-    } catch (err) {
-      showAlert('Error', 'Connection failed.', 'error');
-      btn.innerHTML = originalText;
-    }
-  }
-
-  window.clearConfig = function(boxId) {
-    const box = document.getElementById(boxId);
-    if (box) { box.textContent = ''; box.style.display = 'none'; showAlert('Cleared', 'Config hidden.', 'success'); }
-  }
-
+  
+  // دالة النسخ
   window.copyToClipboard = function(id) {
     navigator.clipboard.writeText(document.getElementById(id).textContent);
     showAlert('Copied', 'Config copied to clipboard.', 'success');
   }
-
-  window.showAlert = function(title, message, type = 'error') {
-    document.getElementById('alertTitle').textContent = title;
-    document.getElementById('alertMessage').textContent = message;
-    const icon = document.getElementById('alertIcon');
-    const alertBox = document.getElementById('customAlert');
-    const backdrop = document.getElementById('alertBackdrop');
-    if(type === 'success') { icon.textContent = '✓'; icon.className = 'alert-icon success'; } 
-    else { icon.textContent = '✕'; icon.className = 'alert-icon error'; }
-    backdrop.classList.add('show'); alertBox.classList.add('show');
-  }
-
-  window.closeAlert = function() {
-    document.getElementById('alertBackdrop').classList.remove('show');
-    document.getElementById('customAlert').classList.remove('show');
-  }
-
-  document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', function() {
-    const modal = this.closest('.modal');
-    modal.classList.remove('open');
-  }));
-
-  applyLanguage();
 </script>
-
-<script data-cfasync="false" src="https://bauval.org/14/1f69a2cd2e8703075a82eda209a42d0f"></script>
 
 </body>
 </html>
