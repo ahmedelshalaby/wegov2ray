@@ -24,14 +24,3 @@ MAX_PER_IP_PER_DAY = "0"
 USER_IP_LIMIT = "5"
 ADS_ENABLED = "false"
 TURNSTILE_SITE_KEY = ""
-# Cloudflare must manage the zone for these custom domains.
-[[routes]]
-pattern = "wegov2ray.bond"
-custom_domain = true
-
-[[routes]]
-pattern = "www.wegov2ray.bond"
-custom_domain = true
-
-[observability]
-enabled = true
