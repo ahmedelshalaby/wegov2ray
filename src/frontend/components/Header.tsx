@@ -9,43 +9,50 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ supportUrl = 'https://t.me/wegov2ray' }) => {
   const { language, toggleLanguage, t } = useLanguage();
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[#0A0A0A]/80 border-b border-[#1A1A1A] transition-all">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand Logo with Pulsing Glowing Dot */}
-        <a href="#" className="flex items-center gap-1 group transition-transform duration-200 active:scale-95">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+          className="flex items-center gap-1 group transition-transform duration-200 active:scale-95 cursor-pointer"
+        >
           <span className="text-lg sm:text-xl font-extrabold tracking-tight text-[#E8E8E8] group-hover:text-white transition-colors">
             wegov2ray
           </span>
           <span className="w-2 h-2 rounded-full bg-[#FFD60A] glow-dot translate-y-0.5 animate-pulse-glow" />
-        </a>
+        </button>
 
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-[#8A8A8A]">
-          <a
-            href="#generator"
-            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5"
+          <button
+            onClick={() => scrollToSection('generator')}
+            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
           >
             {t.nav.generator}
-          </a>
-          <a
-            href="#status"
-            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5"
+          </button>
+          <button
+            onClick={() => scrollToSection('status')}
+            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
           >
             {t.nav.status}
-          </a>
-          <a
-            href="#guides"
-            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5"
+          </button>
+          <button
+            onClick={() => scrollToSection('guides')}
+            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
           >
             {t.nav.guides}
-          </a>
-          <a
-            href="#faq"
-            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5"
+          </button>
+          <button
+            onClick={() => scrollToSection('faq')}
+            className="hover:text-[#FFD60A] transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
           >
             {t.nav.faq}
-          </a>
+          </button>
         </nav>
 
         {/* Right Action Buttons */}
