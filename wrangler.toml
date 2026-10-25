@@ -13,7 +13,7 @@ crons = ["*/10 * * * *"]
 
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "fd0313ffd8c84a0799896465338904cb"
 
 [vars]
 NEXORA_API_URL = "https://ahmedmedo.bond:2053/api/v1"
