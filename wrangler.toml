@@ -17,7 +17,7 @@ id = "fd0313ffd8c84a0799896465338904cb"
 
 [vars]
 NEXORA_API_URL = "https://ahmedmedo.bond:2053/api/v1"
-SUPPORT_URL = "https://t.me/ahmedmedotelegram"
+SUPPORT_URL = "https://t.me/wegov2ray"
 LICENSE_CAP = "25"
 RESERVED_SLOTS = "3"
 MAX_PER_IP_PER_DAY = "0"
